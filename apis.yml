@@ -1,0 +1,285 @@
+aid: air-canada
+url: https://raw.githubusercontent.com/api-evangelist/air-canada/refs/heads/main/apis.yml
+name: Air Canada
+kind: company
+description: >-
+  Air Canada is Canada's flag carrier and largest airline, headquartered in
+  Montreal, operating scheduled passenger service under the AC designator along
+  with Air Canada Rouge, Air Canada Express and the Aeroplan loyalty programme.
+  Its home market is Canada, where it forms a duopoly with WestJet. Air Canada
+  sits at the supply end of the travel distribution chain: it is the sole source
+  of its own seat inventory, reached either through the legacy GDS EDIFACT
+  channel (Amadeus, Sabre, Travelport), through certified NDC aggregators, or
+  directly through its own NDC API. Its API posture is unusual for a carrier in
+  that the distribution surface is genuinely well documented in public: the
+  ndc.aircanada.com developer portal publishes complete IATA NDC 17.2 (EDIST)
+  message documentation, request/response element tables, error catalogues, use
+  cases and downloadable sample XML with no login. What is not public is access
+  itself - production credentials require a commercial agreement with Air
+  Canada's distribution team, accredited IATA/ARC codes passed on every request,
+  and passing Air Canada display certification test cases. There is no consumer
+  API (no public flight status, booking or Aeroplan endpoint), no OpenAPI or
+  machine-readable contract, no bulk export operation, and Air Canada publishes
+  that it may revoke NDC programme access at its sole discretion. Public docs,
+  gated access, no exit path.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/groq.png
+tags:
+- Travel
+- Canada
+- Aviation
+- Airline
+- NDC
+- Distribution
+- Booking
+- Airlines
+- Loyalty
+created: '2026-07-28'
+modified: '2026-07-28'
+specificationVersion: '0.19'
+apis:
+- aid: air-canada:air-canada-ndc-airshopping-api
+  name: Air Canada NDC AirShopping API
+  description: >-
+    IATA NDC 17.2 AirShopping message pair (AirShoppingRQ / AirShoppingRS).
+    Shops one-way, round-trip and North America multicity itineraries and
+    returns branded fare-family offers with per-passenger price breakdowns,
+    calendar offers and flight details. Requires agent IATA number and Agency ID
+    for agency flows, or Point of Sale for direct consumer flows.
+  humanURL: https://ndc.aircanada.com/api/documentation/airshopping
+  baseURL: https://ndcpartners.aircanada.com
+  tags:
+  - NDC
+  - Shopping
+  - Offers
+  properties:
+  - type: Documentation
+    url: https://ndc.aircanada.com/api/documentation/airshopping
+  - type: APIReference
+    url: https://ndc.aircanada.com/api/documentation/ndcapis
+  - type: GettingStarted
+    url: https://ndc.aircanada.com/api/gettingstarted/gettingstarted
+  - type: Specification
+    url: https://www.iata.org/en/programs/airline-distribution/retailing/ndc/
+- aid: air-canada:air-canada-ndc-offerprice-api
+  name: Air Canada NDC OfferPrice API
+  description: >-
+    IATA NDC 17.2 OfferPrice message pair (OfferPriceRQ / OfferPriceRS).
+    Returns detailed and comprehensive pricing for a selected offer, including
+    base fare, tax breakdown, surcharges and fare rules, for presentation on the
+    review page required by Air Canada's display requirements.
+  humanURL: https://ndc.aircanada.com/api/documentation/offerprice
+  baseURL: https://ndcpartners.aircanada.com
+  tags:
+  - NDC
+  - Pricing
+  - Offers
+  properties:
+  - type: Documentation
+    url: https://ndc.aircanada.com/api/documentation/offerprice
+  - type: APIReference
+    url: https://ndc.aircanada.com/api/documentation/ndcapis
+- aid: air-canada:air-canada-ndc-servicelist-api
+  name: Air Canada NDC ServiceList API
+  description: >-
+    IATA NDC 17.2 ServiceList message pair (ServiceListRQ / ServiceListRS).
+    Returns the optional and ancillary services purchasable against an offer or
+    order, such as Maple Leaf Lounge access and Air Canada Bistro meal vouchers.
+  humanURL: https://ndc.aircanada.com/api/documentation/servicelist
+  baseURL: https://ndcpartners.aircanada.com
+  tags:
+  - NDC
+  - Ancillaries
+  - Services
+  properties:
+  - type: Documentation
+    url: https://ndc.aircanada.com/api/documentation/servicelist
+  - type: APIReference
+    url: https://ndc.aircanada.com/api/documentation/ndcapis
+- aid: air-canada:air-canada-ndc-seatavailability-api
+  name: Air Canada NDC SeatAvailability API
+  description: >-
+    IATA NDC 17.2 SeatAvailability message pair (SeatAvailabilityRQ /
+    SeatAvailabilityRS). Returns seat maps with advance and preferred seat
+    pricing, either during a booking flow against an OfferID or after an Order
+    has been created against an OrderID.
+  humanURL: https://ndc.aircanada.com/api/documentation/seatavailability
+  baseURL: https://ndcpartners.aircanada.com
+  tags:
+  - NDC
+  - Seats
+  - Ancillaries
+  properties:
+  - type: Documentation
+    url: https://ndc.aircanada.com/api/documentation/seatavailability
+  - type: APIReference
+    url: https://ndc.aircanada.com/api/documentation/ndcapis
+- aid: air-canada:air-canada-ndc-ordercreate-api
+  name: Air Canada NDC OrderCreate API
+  description: >-
+    IATA NDC 17.2 OrderCreate message pair (OrderCreateRQ / OrderViewRS).
+    Creates an actual reservation and returns an airline-assigned OrderID plus
+    an Air Canada record locator and associated reservation details. Payment,
+    passenger and form-of-payment detail is carried on the request.
+  humanURL: https://ndc.aircanada.com/api/documentation/ordercreate
+  baseURL: https://ndcpartners.aircanada.com
+  tags:
+  - NDC
+  - Orders
+  - Booking
+  properties:
+  - type: Documentation
+    url: https://ndc.aircanada.com/api/documentation/ordercreate
+  - type: APIReference
+    url: https://ndc.aircanada.com/api/documentation/ndcapis
+- aid: air-canada:air-canada-ndc-orderretrieve-api
+  name: Air Canada NDC OrderRetrieve API
+  description: >-
+    IATA NDC 17.2 OrderRetrieve message pair (OrderRetrieveRQ / OrderViewRS).
+    Retrieves a single Order by mandatory OrderID and Owner. Air Canada
+    documents that retrieving a cancelled Order, a GDS booking, a redemption
+    booking, or the modification history of an Order is not supported, and that
+    filtering to specific sections of Order data is not supported.
+  humanURL: https://ndc.aircanada.com/api/documentation/orderretrieve
+  baseURL: https://ndcpartners.aircanada.com
+  tags:
+  - NDC
+  - Orders
+  - Servicing
+  properties:
+  - type: Documentation
+    url: https://ndc.aircanada.com/api/documentation/orderretrieve
+  - type: APIReference
+    url: https://ndc.aircanada.com/api/documentation/ndcapis
+- aid: air-canada:air-canada-ndc-orderchange-api
+  name: Air Canada NDC OrderChange API
+  description: >-
+    IATA NDC 17.2 OrderChange message pair (OrderChangeRQ / OrderViewRS).
+    Applies servicing changes to an existing Order, including seat and ancillary
+    servicing with or without itinerary change, passenger servicing and
+    frequent-flyer updates.
+  humanURL: https://ndc.aircanada.com/api/documentation/orderchange
+  baseURL: https://ndcpartners.aircanada.com
+  tags:
+  - NDC
+  - Orders
+  - Servicing
+  properties:
+  - type: Documentation
+    url: https://ndc.aircanada.com/api/documentation/orderchange
+  - type: APIReference
+    url: https://ndc.aircanada.com/api/documentation/ndcapis
+  - type: Examples
+    url: https://ndc.aircanada.com/xml/UC03-UC06_SeatServicing_withoutITIN.zip
+  - type: Examples
+    url: https://ndc.aircanada.com/xml/UC07-UC10_SeatServicing_withITIN.zip
+  - type: Examples
+    url: https://ndc.aircanada.com/xml/UC11-UC12_AncilServicing_withoutITIN.zip
+  - type: Examples
+    url: https://ndc.aircanada.com/xml/UC13-UC16_AncilServicing_withITIN.zip
+  - type: Examples
+    url: https://ndc.aircanada.com/xml/UC29_PaxServicing_FQTVonly.zip
+- aid: air-canada:air-canada-ndc-orderreshop-api
+  name: Air Canada NDC OrderReshop API
+  description: >-
+    IATA NDC 17.2 OrderReshop message pair (OrderReshopRQ / OrderReshopRS).
+    Reshops an existing Order to produce change offers, including partially
+    flown itineraries and origin/destination replacement.
+  humanURL: https://ndc.aircanada.com/api/documentation/orderreshop
+  baseURL: https://ndcpartners.aircanada.com
+  tags:
+  - NDC
+  - Orders
+  - Reshop
+  properties:
+  - type: Documentation
+    url: https://ndc.aircanada.com/api/documentation/orderreshop
+  - type: APIReference
+    url: https://ndc.aircanada.com/api/documentation/ndcapis
+  - type: Examples
+    url: https://ndc.aircanada.com/xml/UC02_PartiallyFlown-ReplaceOD.zip
+- aid: air-canada:air-canada-ndc-ordercancel-api
+  name: Air Canada NDC OrderCancel API
+  description: >-
+    IATA NDC 17.2 OrderCancel message pair (OrderCancelRQ / OrderCancelRS).
+    Cancels an existing Order held by Air Canada, referenced by OrderID and
+    Owner.
+  humanURL: https://ndc.aircanada.com/api/documentation/ordercancel
+  baseURL: https://ndcpartners.aircanada.com
+  tags:
+  - NDC
+  - Orders
+  - Cancellation
+  properties:
+  - type: Documentation
+    url: https://ndc.aircanada.com/api/documentation/ordercancel
+  - type: APIReference
+    url: https://ndc.aircanada.com/api/documentation/ndcapis
+- aid: air-canada:air-canada-ndc-orderchangenotification-api
+  name: Air Canada NDC OrderChangeNotification API
+  description: >-
+    IATA NDC 17.2 OrderChangeNotif message. Air Canada-initiated notification of
+    changes made to an Order outside the seller's own request, such as schedule
+    change or involuntary disruption handling.
+  humanURL: https://ndc.aircanada.com/api/documentation/orderchangenotification
+  baseURL: https://ndcpartners.aircanada.com
+  tags:
+  - NDC
+  - Orders
+  - Notifications
+  properties:
+  - type: Documentation
+    url: https://ndc.aircanada.com/api/documentation/orderchangenotification
+  - type: APIReference
+    url: https://ndc.aircanada.com/api/documentation/ndcapis
+common:
+- type: Website
+  url: https://www.aircanada.com/
+- type: DeveloperPortal
+  url: https://ndc.aircanada.com/
+- type: Documentation
+  url: https://ndc.aircanada.com/api/documentation/ndcapis
+- type: GettingStarted
+  url: https://ndc.aircanada.com/api/gettingstarted/gettingstarted
+- type: Documentation
+  url: https://ndc.aircanada.com/api/gettingstarted/apisetup
+- type: Documentation
+  url: https://ndc.aircanada.com/api/gettingstarted/sellersetup
+- type: Documentation
+  url: https://ndc.aircanada.com/api/gettingstarted/apisorchestration
+- type: Examples
+  url: https://ndc.aircanada.com/api/gettingstarted/testdata
+- type: Documentation
+  url: https://ndc.aircanada.com/api/documentation/scenario
+- type: SignUp
+  url: https://ndc.aircanada.com/seller-registration-form
+- type: Documentation
+  url: https://ndc.aircanada.com/ndc-program/registration
+- type: Partners
+  url: https://ndc.aircanada.com/ndc-program/connection-options
+- type: Documentation
+  url: https://ndc.aircanada.com/ndc-program/ndc-capabilities
+- type: Sandbox
+  url: https://gold-ndc-sandbox.aircanada.com/login
+- type: Support
+  url: https://ndc.aircanada.com/support
+- type: FAQ
+  url: https://ndc.aircanada.com/support/faq
+- type: StatusPage
+  url: https://ndc.aircanada.com/support/statusMonitoring
+- type: ChangeLog
+  url: https://ndc.aircanada.com/api/releasenotes/latestrelease
+- type: Roadmap
+  url: https://ndc.aircanada.com/api/roadmap
+- type: Documentation
+  url: https://www.aircanada.com/ca/en/aco/home/ndc.html
+- type: Documentation
+  url: https://www.aircanada.com/content/dam/aircanada/portal/documents/PDF/ndc-displayRequirements-en.pdf
+- type: TermsOfService
+  url: https://www.aircanada.com/ca/en/aco/home/legal/terms-of-use.html
+- type: PrivacyPolicy
+  url: https://www.aircanada.com/ca/en/aco/home/legal/privacy-policy.html
+- type: LinkedIn
+  url: https://www.linkedin.com/company/air-canada
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

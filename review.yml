@@ -1,0 +1,427 @@
+aid: air-canada
+name: Air Canada
+review:
+  question: >-
+    Does Air Canada publish a real, reachable API surface, and what would it
+    cost a customer of that surface to leave?
+  answer: true
+  date: '2026-07-28'
+  reviewer: API Evangelist
+  tier: airline
+  homeMarket: Canada
+  summary: |
+    Air Canada publishes a genuine, unauthenticated developer portal at
+    ndc.aircanada.com covering ten IATA NDC 17.2 (EDIST) message pairs, with
+    element-level request/response tables, error-code catalogues, use cases,
+    orchestration guidance, a public roadmap, release notes, a status page and
+    downloadable sample XML. That is far more than most flag carriers publish.
+    What it does not publish is a machine-readable contract (no OpenAPI, no
+    WSDL, no XSD download), a consumer API (no flight status, check-in or
+    Aeroplan endpoint), or any way to get in without a signed commercial
+    agreement. Two distinct surfaces were checked and are not conflated below:
+    the CONSUMER surface (none published) and the DISTRIBUTION surface
+    (documented, gated).
+surfaces:
+  consumer:
+    publicAPI: false
+    note: >-
+      No public consumer API. developer.aircanada.com and developers.aircanada.com
+      do not resolve; api.aircanada.com returns 403 at root with no documentation
+      behind it; www.aircanada.com/developers, /api, /openapi.json and
+      /swagger.json all return 404. developer.aeroplan.com and api.aeroplan.com
+      do not resolve. Flight status, check-in, booking and Aeroplan are
+      web/app-only.
+  distribution:
+    publicDocs: true
+    portal: https://ndc.aircanada.com/
+    standard: IATA NDC 17.2 (EDIST), XML over SOAP envelope
+    note: >-
+      Documentation is served by a React SPA whose content is embedded in the
+      client bundle, so every documentation route returns HTTP 200 with the SPA
+      shell and the prose renders client-side. No login, cookie or key is
+      required to read it.
+probes:
+  - url: https://www.aircanada.com/
+    status: 200
+    date: '2026-07-28'
+  - url: https://developer.aircanada.com/
+    status: 000
+    note: DNS does not resolve.
+    date: '2026-07-28'
+  - url: https://developers.aircanada.com/
+    status: 000
+    note: DNS does not resolve.
+    date: '2026-07-28'
+  - url: https://docs.aircanada.com/
+    status: 000
+    note: DNS does not resolve.
+    date: '2026-07-28'
+  - url: https://api.aircanada.com/
+    status: 403
+    note: Host answers but is not a documented developer surface.
+    date: '2026-07-28'
+  - url: https://www.aircanada.com/developers
+    status: 404
+    date: '2026-07-28'
+  - url: https://www.aircanada.com/api
+    status: 404
+    date: '2026-07-28'
+  - url: https://www.aircanada.com/openapi.json
+    status: 404
+    date: '2026-07-28'
+  - url: https://www.aircanada.com/swagger.json
+    status: 404
+    date: '2026-07-28'
+  - url: https://www.aircanada.com/.well-known/security.txt
+    status: 403
+    date: '2026-07-28'
+  - url: https://ndc.aircanada.com/
+    status: 200
+    note: Real, public, no-login NDC developer portal. React SPA.
+    date: '2026-07-28'
+  - url: https://ndc.aircanada.com/openapi.json
+    status: 200
+    note: >-
+      FALSE POSITIVE. Returns content-type text/html - the SPA catch-all shell,
+      not a spec. Same for /swagger.json, /api-docs and /.well-known/security.txt.
+      Confirmed by inspecting the response body; none parse as JSON or YAML.
+    date: '2026-07-28'
+  - url: https://ndc.aircanada.com/api/documentation/ndcapis
+    status: 200
+    date: '2026-07-28'
+  - url: https://ndc.aircanada.com/api/gettingstarted/gettingstarted
+    status: 200
+    date: '2026-07-28'
+  - url: https://ndc.aircanada.com/seller-registration-form
+    status: 200
+    date: '2026-07-28'
+  - url: https://gold-ndc-sandbox.aircanada.com/login
+    status: 200
+    note: Sandbox is a login wall, not a self-serve sandbox.
+    date: '2026-07-28'
+  - url: https://ndcpartners.aircanada.com/
+    status: 400
+    note: Production NDC partner gateway host. Answers, rejects a bare GET.
+    date: '2026-07-28'
+  - url: https://ndc.aircanada.com/xml/UC02_PartiallyFlown-ReplaceOD.zip
+    status: 200
+    contentType: application/zip
+    bytes: 53192
+    note: Real, public, unauthenticated sample XML download.
+    date: '2026-07-28'
+  - url: https://ndc.aircanada.com/xml/UC29_PaxServicing_FQTVonly.zip
+    status: 200
+    contentType: application/zip
+    bytes: 15331
+    date: '2026-07-28'
+  - url: https://content-ndc-portal.aircanada.com/s3fs-public/samples/
+    status: 403
+    note: Referenced in the portal bundle but not publicly readable.
+    date: '2026-07-28'
+  - url: https://www.aircanada.com/content/dam/aircanada/portal/documents/PDF/ndc-displayRequirements-en.pdf
+    status: 200
+    contentType: application/pdf
+    bytes: 2506997
+    note: 10 pages. Source of the contractual lock-in quotes below.
+    date: '2026-07-28'
+  - url: https://www.aircanada.com/ca/en/aco/home/ndc.html
+    status: 200
+    date: '2026-07-28'
+  - url: https://developer.aeroplan.com/
+    status: 000
+    note: DNS does not resolve.
+    date: '2026-07-28'
+  - url: https://api.aeroplan.com/
+    status: 000
+    note: DNS does not resolve.
+    date: '2026-07-28'
+specHarvest:
+  openapiFound: false
+  wsdlFound: false
+  xsdDownloadFound: false
+  specsSaved: 0
+  note: >-
+    No machine-readable contract of any kind is published. Probed
+    /openapi.json, /swagger.json, /api-docs and /.well-known/ on both
+    www.aircanada.com and ndc.aircanada.com; the only 200s were the SPA
+    catch-all serving text/html, which were confirmed not to parse. The
+    interface is IATA EDIST XML, and the underlying XSDs are IATA schemas that
+    Air Canada references but does not redistribute. The portal bundle leaks
+    developer-workstation paths showing the schema set in use -
+    "NDC-2017.2-schemas-edist" and, critically, an Air Canada-specific variant
+    directory "NDC2017.2-schemas-edist-ACNDC" (and "-acndcCO") - which is the
+    clearest available evidence that Air Canada extends the IATA schemas rather
+    than implementing them unmodified.
+switchingCost:
+  interfaceShape:
+    value: standard-plus-proprietary
+    standard: IATA NDC 17.2 / EDIST, namespace http://www.iata.org/IATA/EDIST/2017.2
+    evidence: >-
+      Air Canada states verbatim on aircanada.com/ca/en/aco/home/ndc.html: "We
+      support version 2017.2 API schema and have achieved NDC@Scale
+      certification from IATA. We encourage you to develop towards the 2017.2
+      XML schema to gain access to all the exciting features and content from
+      Air Canada." The portal documents the standard NDC message pairs by their
+      IATA names (AirShoppingRQ/RS, OfferPriceRQ/RS, ServiceListRQ/RS,
+      SeatAvailabilityRQ/RS, OrderCreateRQ, OrderViewRS, OrderRetrieveRQ,
+      OrderChangeRQ, OrderReshopRQ/RS, OrderCancelRQ/RS, OrderChangeNotif) and
+      encodes data elements against IATA PADIS code lists, IATA Resolution 762
+      and 763, ISO 3166-1, ISO 4217 and ISO 8601. It is genuinely the standard.
+      But it is the standard plus a private extension: the portal bundle
+      references schema directory "NDC2017.2-schemas-edist-ACNDC", an Air
+      Canada-specific fork of the IATA 2017.2 EDIST schema set, alongside the
+      unmodified "NDC-2017.2-schemas-edist". Air Canada also layers
+      carrier-specific semantics on standard elements - Aeroplan Program Code
+      "AC" and eUpgrade GroupCode/SubGroupCode/MembershipID/LoyalLevel/ProgramID
+      passed through the AirShopping service-filter section, and a FlightPass
+      loyalty path keyed on
+      AirShoppingRQ/DataLists/PassengerLists/Passenger/LoyaltyProgramAccount/AccountNumber.
+      A seller who codes to Air Canada's ACNDC dialect has NOT thereby coded to
+      every other airline's NDC.
+    contrast: >-
+      17.2 was frozen in 2017. IATA has since moved to the Airline Retailing
+      Maturity index and to Offers-and-Orders schemas; a seller building to
+      Air Canada in 2026 is building to a nine-year-old schema generation.
+  secondSource:
+    value: no-alternative
+    alternativesConsidered: >-
+      For Air Canada's own seat inventory there is no second source, and that is
+      the finding. Amadeus, Sabre and Travelport can resell it; Verteil,
+      Travelfusion, Duffel, Spotnana, FareNexus, Softvoyage, TSTLLC, Kyte,
+      Concur/GetThere, Zeno, Certify, ClarityTTS and APG can aggregate it; ARC
+      Direct Connect can route it. Every one of those is a different pipe to the
+      same single source. Air Canada itself enumerates exactly four access
+      methods in its FAQ: "1. Direct integration ... 2. Existing technology
+      aggregator partners ... 3. GDS solution: Amadeus Travel Platform and Sabre
+      Travel Marketplace ... 4. Free desktop platform: Air Canada Connex". What
+      is substitutable is the intermediary, not the supplier. The only genuine
+      alternative to Air Canada's inventory is a different carrier's inventory,
+      which is a different product - and in Canada that means WestJet, Porter,
+      or rail via VIA Rail.
+    note: >-
+      Choosing a channel is therefore a choice about which switching cost you
+      take on, not whether you take one on. Aggregators are interchangeable
+      with migration; Air Canada is not interchangeable at all.
+  exitPath:
+    value: no-export-published
+    evidence: >-
+      No export, dump, bulk or reporting operation exists in the documented
+      message set. There is no OrderList message. OrderRetrieve is the only read
+      path and it requires a mandatory OrderID plus Owner - you must already
+      know the key of every record you want back, one at a time. Air Canada
+      documents the limits explicitly on the OrderRetrieve page: "Retrieving a
+      history of the modifications done to the Order is not supported (Air
+      Canada does not support Order versioning yet.)", "Specifying filters to
+      only display specific sections of the Order data is not supported",
+      "Retrieving a Cancelled Order is not supported" and "Retrieving a GDS
+      booking or a Redemption booking is not supported". A seller who loses
+      access loses the ability to enumerate what it booked. No GDPR or PIPEDA
+      data-portability endpoint is published on the developer surface; the
+      privacy policy at aircanada.com/ca/en/aco/home/legal/privacy-policy.html
+      is a consumer document, not a partner data-export commitment.
+  identifierPortability:
+    value: >-
+      Mixed - shared IATA industry identifiers for everything the industry
+      already agreed on, Air Canada-owned opaque keys for everything that
+      matters commercially.
+    portableIdentifiers:
+      - IATA/ICAO airline designator (AirlineID, "AC"), per IATA Resolution 762
+      - IATA three-letter airport/city codes (AirportCode, CityCode), per IATA Resolution 763
+      - Agency IATA Number (8-digit, or TIDS), and ARC registration for US agencies
+      - AgencyID, PseudoCity, AgentUserID
+      - IATA PADIS code lists (data elements 1001, 1153, 4405, 9888, 9972)
+      - ISO 3166-1 country, ISO 4217 currency, ISO 8601 dates
+      - Ticket/document number (TicketDocNbr = airline code + form code + serial)
+    nonPortableIdentifiers:
+      - >-
+        OrderID - "The airline-assigned unique Order ID. Example:
+        ORDER-c98c-4759-a20b" with an Owner airline designator. Opaque, Air
+        Canada-minted, meaningless anywhere else.
+      - OfferID and OfferItemID - session-scoped, Air Canada-minted
+      - >-
+        Air Canada record locator, returned by OrderCreate. The error catalogue
+        also exposes "Unable to determine 1A record locator" and "NO MATCH FOR
+        RECORD LOCATOR - NAME", where 1A is the Amadeus system code - evidence
+        that the NDC surface sits on an Amadeus PNR underneath.
+      - Aeroplan account number and eUpgrade Group/SubGroup/Membership IDs
+    note: >-
+      The portable half is exactly the half the industry standardised forty
+      years ago. The half a seller's own systems key on - orders, offers,
+      record locators - is not portable.
+  contractualLockIn:
+    published: true
+    source: https://www.aircanada.com/content/dam/aircanada/portal/documents/PDF/ndc-displayRequirements-en.pdf
+    verbatim:
+      - >-
+        "Third parties must demonstrate that their applications support these
+        display requirements to gain NDC production access and to be an 'Air
+        Canada NDC certified channel'."
+      - >-
+        "The third-party must provide Air Canada full access to its application
+        in order to perform product integrity audits to ensure ongoing
+        compliance with Display Requirements."
+      - >-
+        "Air Canada shall have the absolute right, to replace, modify or
+        supplement the Display Requirements as they apply to one or more Air
+        Canada products, provided that Air Canada provides (30) days prior
+        notice of any such replacements, modifications, or supplements to the
+        Display Requirements."
+      - >-
+        "Air Canada shall have the right to revoke NDC program access at its
+        sole discretion, via the APIs in any instance of breach or
+        non-compliance with the changes in a timely manner."
+      - >-
+        "Mandatory offerings are required at the time of the initial launch of
+        the NDC connection with Air Canada and must be maintained during the
+        life cycle of their application."
+      - >-
+        "If a service fee is applied by the partner it must not be
+        discriminatory against Air Canada. The service fee must read as 'charge
+        of $$ by travel agent'."
+      - >-
+        "(Optional) Partners choosing to show a mixed itinerary, Air Canada
+        one-way and OAL return, must source Air Canada from the API and the
+        segment must be fully merchandised."
+      - >-
+        Step 2 of the published onboarding flow, verbatim from
+        ndc.aircanada.com/api/gettingstarted/gettingstarted: "Qualification -
+        Connect with the AC NDC team for a program introduction. Finalize a
+        commercial agreement and receive project approval."
+    notPublished:
+      - Minimum term length
+      - Termination notice period for the seller
+      - Segment fees, booking fees or incentive terms
+      - Exclusivity clauses
+      - The commercial agreement itself
+    reading: >-
+      This is unusually explicit for a carrier and worth stating plainly: Air
+      Canada publishes, in a public PDF, that it can unilaterally change the
+      product-display obligations your UI must satisfy on 30 days' notice, that
+      it may audit your application to check, and that it may revoke your API
+      access at its sole discretion. The obligation is not just to call the API
+      correctly - it is to render Air Canada's branded fare bundles a particular
+      way, for the life of your application. That is design-level lock-in, not
+      integration-level lock-in. The commercial terms attached to it are not
+      published and are not inferred here.
+  accessGate:
+    value: commercial-agreement
+    alsoRequires: accredited-or-licensed
+    whatADeveloperMustDo:
+      - >-
+        Submit the seller registration form at
+        ndc.aircanada.com/seller-registration-form, declaring business model
+        (agency / technology provider / corporate booking tool / metasearch /
+        online booking tool), main 8-digit IATA number, additional IATA numbers,
+        API schema version, points of sale, expected AirShopping and OrderCreate
+        timeouts and expected transactions per second.
+      - Wait for the Air Canada distribution team to review and make contact.
+      - "Qualification: finalize a commercial agreement and receive project approval."
+      - "Planning: project onboarding, discovery session, profile setup."
+      - "Building: support setup, access to the test environment, recurring project meetings."
+      - "Certification: certify flows and XMLs; complete display certification test cases."
+      - "Pre-production: PROD environment setup and validation."
+      - "Go live: get live access."
+      - >-
+        In production, pass accredited codes only. Air Canada documents: "In
+        production, sellers must pass their accredited IATA codes only" and "Do
+        not use any IATA codes that are used in examples."
+    lighterPath: >-
+      Air Canada Connex (acconnex.aircanada.com) is a free web booking tool, not
+      an API. Air Canada states: "As an agency using a valid IATA number
+      (including TIDS accredited agencies) or as a registered agency with ARC,
+      you can simply register online, and you will receive login credentials at
+      the end of the registration process." Self-serve, but human-operated, and
+      it does not give you programmatic access.
+    documentationGate: none
+    note: >-
+      The documentation is ungated; the API is not. Reading everything about
+      the interface costs nothing. Calling it costs a signed agreement plus
+      accreditation plus certification.
+  distributionModel:
+    value: gds-intermediated
+    alsoOffers: ndc-direct
+    ndcPosture: >-
+      NDC-direct API published and publicly documented at IATA NDC 17.2, with
+      Air Canada claiming IATA NDC@Scale certification verbatim on its own site.
+      Bulk volume still moves through Amadeus, Sabre and Travelport, which is
+      why the honest primary value is gds-intermediated with a real ndc-direct
+      option alongside it.
+    channels:
+      - "Direct integration: Air Canada NDC API, 24/7 monitoring and support"
+      - "Certified technology aggregator partners"
+      - "GDS: Amadeus Travel Platform, Sabre Travel/Central Marketplace, Travelport (Travelport+)"
+      - "Air Canada Connex: free web-based agency booking tool"
+    gdsSurcharge:
+      published: false
+      note: >-
+        No GDS surcharge or full-content-agreement term is published on
+        aircanada.com/ndc.html or on the NDC portal, and none is asserted here.
+        Air Canada's stated rationale is verbatim: "Air Canada will provide a
+        competitive alternative to legacy GDS EDIFACT distribution models to
+        mitigate increased costs and technological limitations, which currently
+        reduce access to Air Canada's complete offerings at the best possible
+        prices."
+    marketContext: >-
+      Air Canada's NDC programme is domiciled in the same city as IATA, which
+      writes NDC. The Canadian market is small by carrier count - Air Canada and
+      WestJet as a duopoly, Porter as challenger, Hopper as an API-native OTA,
+      VIA Rail on the rail side - but the standards body that defines airline
+      distribution worldwide is headquartered in Montreal, which makes Air
+      Canada's conformance posture disproportionately legible. Note also that
+      low-cost carriers globally (easyJet, Jet2, Jetstar, Southwest)
+      historically bypassed the GDS entirely; that is a switching-cost fact
+      about the whole market, and it is the direction Air Canada's NDC
+      programme is pushing toward without going all the way.
+endpointsObservedInPortalBundle:
+  note: >-
+    These endpoint strings are published in the public portal's client bundle
+    (ndc.aircanada.com/static/js/main.c265d76f.js) as documentation examples.
+    They are recorded verbatim as evidence. None were called. Production
+    requires credentials.
+  production:
+    - https://ndcpartners.aircanada.com/
+  certification:
+    - https://gold-ndcpartners.aircanada.com/agg/ndc/17.2/v1/AirShopping
+  test:
+    - https://tpz-ndcpartners.aircanada.com/ipg-gw/ndc/17.2/v1/AirShopping
+    - https://tpz-ndcpartners.aircanada.com/ipg-gw/ndc/17.2/v1/OfferPrice
+    - https://tpz-ndcpartners.aircanada.com/ipg-gw/ndc/17.2/v1/ServiceList
+    - https://tpz-ndcpartners.aircanada.com/ipg-gw/ndc/17.2/v1/SeatAvailability
+    - https://tpz-ndcpartners.aircanada.com/ipg-gw/ndc/17.2/v1/OrderRetrieve
+    - https://tpz-ndcpartners.aircanada.com/ipg-gw/ndc/17.2/v1/OrderCancel
+    - https://tpz-ndcpartners.aircanada.com/ipg-gw/ndc/17.2/v1/OrderReshop
+    - https://tpz-ndcpartners.aircanada.com/aps-gw/ndc/17.2/v1/OrderCreate
+    - https://tpz-ndcpartners.aircanada.com/aps-gw/ndc/17.2/v1/OrderChange
+sources:
+  - url: https://ndc.aircanada.com/
+    type: DeveloperPortal
+    note: Public NDC developer portal. No login required to read documentation.
+  - url: https://ndc.aircanada.com/api/documentation/ndcapis
+    type: APIReference
+    note: Index of the ten documented NDC 17.2 message services.
+  - url: https://ndc.aircanada.com/api/gettingstarted/gettingstarted
+    type: GettingStarted
+    note: Seven-step onboarding flow, including "Finalize a commercial agreement".
+  - url: https://ndc.aircanada.com/seller-registration-form
+    type: SignUp
+    note: Seller registration form; collects 8-digit IATA number and business model.
+  - url: https://www.aircanada.com/ca/en/aco/home/ndc.html
+    type: Documentation
+    note: Source of the verbatim NDC@Scale and 2017.2 schema claim.
+  - url: https://www.aircanada.com/content/dam/aircanada/portal/documents/PDF/ndc-displayRequirements-en.pdf
+    type: Documentation
+    note: Source of every contractual lock-in quote recorded above.
+  - url: https://ndc.aircanada.com/support/faq
+    type: FAQ
+    note: Source of the four access methods and the EDIFACT/GDS positioning.
+  - url: https://www.iata.org/en/programs/airline-distribution/retailing/ndc/
+    type: Specification
+    note: The NDC standard itself, published by IATA, headquartered in Montreal.
+actions:
+  apisYmlCreated: true
+  apisListed: 10
+  openapiDirectory: omitted
+  reason: >-
+    No OpenAPI, WSDL or downloadable XSD exists to harvest. Nothing was
+    fabricated. The publicly downloadable sample XML zips are referenced by URL
+    as Examples properties in apis.yml rather than committed as binaries.
