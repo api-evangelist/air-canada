@@ -1,0 +1,448 @@
+generated: '2026-07-28'
+method: searched
+source: >-
+  https://ndc.aircanada.com/api/documentation/ordercreate/errorcodes - the "Payment
+  Authorization - Error Codes" table published on the Air Canada NDC OrderCreate error
+  reference, read verbatim from the portal's published client bundle on 2026-07-28.
+description: >-
+  Air Canada takes form-of-payment on OrderCreateRQ and OrderChangeRQ (both routed
+  through the aps-gw PCI gateway rather than the ipg-gw shopping gateway), so the NDC
+  surface carries a real card-authorization decline table. These codes are the
+  Amadeus/host authorization responses surfaced through the NDC Errors element - they
+  complement, and do not replace, errors/air-canada-error-codes.yml.
+envelope:
+  element: Errors/Error
+  returned_on: [OrderCreateRQ -> OrderViewRS, OrderChangeRQ -> OrderViewRS]
+  gateway: https://ndcpartners.aircanada.com/aps-gw/ndc/17.2/v1/OrderCreate
+masking:
+  published: false
+  note: >-
+    Air Canada does not publish which decline reasons may be shown to a traveller and
+    which must be masked. Several messages are written as agent instructions ("CALL TO
+    AUTHORISE", "PICKUP CARD") and are plainly not buyer-facing, but that is an
+    observation, not a published rule.
+count: 141
+decline_codes:
+  - code: 102
+    message: "CHECK DATE"
+    category: payment_processing
+  - code: 105
+    message: "SIMULTANEOUS CHANGES TO PNR - USE WRA/RT TO PRINT OR IGNORE"
+    category: payment_processing
+  - code: 118
+    message: "UNABLE TO PROCESS"
+    category: payment_processing
+  - code: 284
+    message: "SECURED PNR"
+    category: payment_processing
+  - code: 313
+    message: "INVALID ACCOUNT NUMBER"
+    category: card_decline
+  - code: 315
+    message: "NEED FORM OF PAYMENT"
+    category: card_decline
+  - code: 432
+    message: "INVALID CURRENCY CODE"
+    category: payment_processing
+  - code: 477
+    message: "INVALID FORMAT"
+    category: payment_processing
+  - code: 806
+    message: "NOT AUTHORISED"
+    category: payment_processing
+  - code: 1149
+    message: "CREDIT CARD EXPIRED"
+    category: card_decline
+  - code: 1929
+    message: "INVALID RECORD LOCATOR"
+    category: payment_processing
+  - code: 1931
+    message: "NO MATCH FOR RECORD LOCATOR"
+    category: payment_processing
+  - code: 1949
+    message: "PASSENGER AND/OR SEGMENT DATA NOT VALID"
+    category: payment_processing
+  - code: 1959
+    message: "NEED PNR"
+    category: payment_processing
+  - code: 1966
+    message: "NEED ITINERARY"
+    category: payment_processing
+  - code: 2098
+    message: "RESTRICTED FORM OF PAYMENT"
+    category: card_decline
+  - code: 2135
+    message: "INVALID FARE DATA"
+    category: payment_processing
+  - code: 2162
+    message: "LINK DOWN - RETRY IN 2 MINUTES"
+    category: payment_processing
+  - code: 2213
+    message: "INVALID FORM OF PAYMENT"
+    category: card_decline
+  - code: 2219
+    message: "DO NOT HONOR"
+    category: card_decline
+  - code: 2312
+    message: "INVALID SEQUENCE NUMBER"
+    category: payment_processing
+  - code: 2668
+    message: "PARAMETER COMBINATION INVALID/RESTRICTED"
+    category: card_decline
+  - code: 2894
+    message: "ERROR MESSAGE NOT FOUND"
+    category: payment_processing
+  - code: 3025
+    message: "ALL PASSENGERS/SEGMENTS ALREADY TICKETED"
+    category: payment_processing
+  - code: 3323
+    message: "NEED TST FOR SPECIFIED SEGMENTS"
+    category: payment_processing
+  - code: 3504
+    message: "COMBINATION NOT ALLOWED"
+    category: card_decline
+  - code: 3654
+    message: "INVALID NUMBER OF DECIMAL POSITIONS"
+    category: payment_processing
+  - code: 3671
+    message: "FARE ELEMENT ALREADY EXISTS FOR PASSENGER/SEGMENT"
+    category: payment_processing
+  - code: 3673
+    message: "LINK DOWN - RETRY"
+    category: payment_processing
+  - code: 3811
+    message: "INVALID AMOUNT"
+    category: payment_processing
+  - code: 3836
+    message: "FP MAXIMUM LENGTH EXCEEDED"
+    category: payment_processing
+  - code: 3941
+    message: "TKT CREDIT CARD LINK DOWN - PLEASE CALL TO AUTHORISE"
+    category: card_decline
+  - code: 3953
+    message: "TKT CREDIT CARD ERROR : CALL TO AUTHORISE"
+    category: card_decline
+  - code: 3955
+    message: "TKT CREDIT CARD ERROR : INVALID ACCOUNT NUMBER"
+    category: card_decline
+  - code: 3973
+    message: "INVALID EDIFACT FORMAT"
+    category: payment_processing
+  - code: 4070
+    message: "UNABLE TO PROCESS - CONTACT HELP DESK"
+    category: payment_processing
+  - code: 4153
+    message: "CREDIT CARD DENIAL 1 - CALL TO AUTHORISE"
+    category: card_decline
+  - code: 4154
+    message: "CREDIT CARD DENIAL 1.01 - CALL TO AUTHORISE"
+    category: card_decline
+  - code: 4155
+    message: "CREDIT CARD DENIAL 1.02 - CALL TO AUTHORISE - SPECIAL CASE"
+    category: card_decline
+  - code: 4156
+    message: "CREDIT CARD DENIAL 1.03 - CALL TO AUTHORISE - INVALID MERCH ID"
+    category: card_decline
+  - code: 4157
+    message: "CREDIT CARD DENIAL 1.15 - CALL TO AUTHORISE- INVALID BIN"
+    category: card_decline
+  - code: 4158
+    message: "CREDIT CARD DENIAL 1.91 - CALL TO AUTHORISE - ISSUER INOPERATIVE"
+    category: card_decline
+  - code: 4159
+    message: "CREDIT CARD DENIAL 4 - PICKUP CARD"
+    category: card_decline
+  - code: 4160
+    message: "CC SECURITY ID DOES NOT MATCH"
+    category: card_decline
+  - code: 4161
+    message: "CREDIT CARD DENIAL 4.07 - PICKUP CARD - SPECIAL CASE"
+    category: card_decline
+  - code: 4162
+    message: "CREDIT CARD DENIAL 4.41 - PICKUP CARD - CARD LOST"
+    category: card_decline
+  - code: 4163
+    message: "CREDIT CARD DENIAL 4.43 - PICKUP CARD - CARD STOLEN"
+    category: card_decline
+  - code: 4164
+    message: "CREDIT CARD DENIAL 5 - DO NOT HONOUR CARD"
+    category: card_decline
+  - code: 4165
+    message: "CREDIT CARD DENIAL 5.05 - DO NOT HONOUR CARD"
+    category: card_decline
+  - code: 4166
+    message: "CREDIT CARD DENIAL 5.12 - INVALID TRANSACTION"
+    category: card_decline
+  - code: 4167
+    message: "CREDIT CARD DENIAL 5.51 - INSUFFICIENT FUNDS"
+    category: card_decline
+  - code: 4168
+    message: "CREDIT CARD ERROR 04 - INVALID EXPIRATION DATE"
+    category: card_decline
+  - code: 4177
+    message: "CREDIT CARD NOT ACCEPTED BY TICKETING AIRLINE"
+    category: card_decline
+  - code: 4366
+    message: "CREDIT CARD ERROR 06 - INVALID FORMAT"
+    category: card_decline
+  - code: 4367
+    message: "CREDIT CARD ERROR 0600 - UNDETERMINED EDIT ERROR"
+    category: card_decline
+  - code: 4368
+    message: "CREDIT CARD ERROR 0619 - RE-ENTER TRANSACTION"
+    category: card_decline
+  - code: 4369
+    message: "CREDIT CARD ERROR 0654 - EXPIRED CARD"
+    category: card_decline
+  - code: 4371
+    message: "CREDIT CARD ERROR 0680 - INVALID DATE"
+    category: card_decline
+  - code: 4373
+    message: "CREDIT CARD ERROR 0683 - UNABLE TO VERIFY PIN"
+    category: card_decline
+  - code: 4374
+    message: "CREDIT CARD ERROR 0693 - CANNOT LEGALLY PROCESS"
+    category: card_decline
+  - code: 4375
+    message: "CREDIT CARD ERROR 0696 - EDIT ERROR"
+    category: card_decline
+  - code: 4377
+    message: "CREDIT CARD ERROR 0702 - INVALID ACCOUNT NUMBER"
+    category: card_decline
+  - code: 4379
+    message: "CREDIT CARD DENIAL 5.52 - NO CHECKING ACCOUNT"
+    category: card_decline
+  - code: 4380
+    message: "CREDIT CARD DENIAL 5.53 - NO SAVING ACCOUNT"
+    category: card_decline
+  - code: 4382
+    message: "CREDIT CARD DENIAL 5.57 - TRANS NOT PERMITTED TO CARDHOLDER"
+    category: card_decline
+  - code: 4384
+    message: "CREDIT CARD DENIAL 5.62 - RESTRICTED CARD"
+    category: card_decline
+  - code: 4387
+    message: "CREDIT CARD DENIAL 8 - CALL TO AUTHORISE"
+    category: card_decline
+  - code: 4388
+    message: "CREDIT CARD DENIAL 9 - CALL TO AUTHORISE"
+    category: card_decline
+  - code: 4390
+    message: "CREDIT CARD ERROR 0114 - NO SUCH ACCOUNT"
+    category: card_decline
+  - code: 4391
+    message: "CREDIT CARD ERROR 02 - INVALID ACCOUNT NUMBER"
+    category: card_decline
+  - code: 4392
+    message: "CREDIT CARD ERROR 03 - INVALID AMOUNT"
+    category: card_decline
+  - code: 4393
+    message: "CREDIT CARD ERROR 0313 - INVALID AMOUNT"
+    category: card_decline
+  - code: 4395
+    message: "CREDIT CARD ERROR 0725 - INVALID POS CONDITION CODE"
+    category: card_decline
+  - code: 4691
+    message: "INVALID FORM OF PAYMENT SELECTION"
+    category: card_decline
+  - code: 4800
+    message: "FP NOT ALLOWED FOR NEGOTIATED FARE"
+    category: payment_processing
+  - code: 4845
+    message: "INVALID PASSENGER SELECTION"
+    category: payment_processing
+  - code: 4905
+    message: "CREDIT CARD DENIAL 3 - CARDHOLDER HAS NEW NUMBER"
+    category: card_decline
+  - code: 5197
+    message: "INVALID AIRLINE DESIGNATOR/VENDOR SUPPLIER"
+    category: payment_processing
+  - code: 5424
+    message: "UNABLE TO PROCESS LINK NOT FOUND"
+    category: payment_processing
+  - code: 6388
+    message: "INCORRECT PNR LINE NUMBER"
+    category: payment_processing
+  - code: 6485
+    message: "SELECT FA OR FH PNR LINE NUMBER"
+    category: payment_processing
+  - code: 6842
+    message: "INVALID SECURITY CODE(S)"
+    category: card_decline
+  - code: 7349
+    message: "NEW FOP REQUIRED FOR ADDITIONAL COLLECTION"
+    category: payment_processing
+  - code: 7768
+    message: "CHECK PASSENGER ASSOCIATION"
+    category: payment_processing
+  - code: 8337
+    message: "NON HOMOGENEOUS PNR"
+    category: payment_processing
+  - code: 8692
+    message: "INVALID MERCHANT TYPE"
+    category: card_decline
+  - code: 8699
+    message: "INVALID MERCHANT ID"
+    category: card_decline
+  - code: 11441
+    message: "ACTION NOT ALLOWED. CHECK YOUR OFFICE PROFILE"
+    category: payment_processing
+  - code: 11576
+    message: "NO CREDIT CARD ELIGIBLE FOR VALIDATION"
+    category: card_decline
+  - code: 11845
+    message: "MANDATORY FIELD MISSING FROM SR"
+    category: payment_processing
+  - code: 12953
+    message: "CCAVS TRANSACTION OK - PARTIAL MATCH ON POSTAL CODE"
+    category: card_decline
+  - code: 15712
+    message: "CREDIT CARD DENIAL - 58 - TRANSACTION NOT ALLOWED AT TERMINAL"
+    category: card_decline
+  - code: 15754
+    message: "INVALID EXPIRATION DATE"
+    category: payment_processing
+  - code: 21601
+    message: "ACCESS TO DOCUMENT DENIED"
+    category: payment_processing
+  - code: 21604
+    message: "SYSTEM ERROR OCCURRED - PLEASE IGNORE AND RE-ENTER"
+    category: payment_processing
+  - code: 21607
+    message: "DOCUMENT NUMBER NOT PRIMARY"
+    category: payment_processing
+  - code: 21642
+    message: "AUTOMATED FO CANNOT BE GENERATED - MANUAL REISSUE ONLY"
+    category: payment_processing
+  - code: 22377
+    message: "CREDIT CARD ERROR-PLEASE TRY AGAIN LATER"
+    category: card_decline
+  - code: 22381
+    message: "REENTER FP-SAME CREDIT CARD WITH DIFFERENT SECURITY ID"
+    category: card_decline
+  - code: 22427
+    message: "PAYMENT FAILED - PLEASE CONTACT AIRLINE"
+    category: card_decline
+  - code: 22462
+    message: "CREDIT CARD DENIAL - CALL TO AUTHORISE"
+    category: card_decline
+  - code: 23019
+    message: "INVALID CREDIT CARD INPUT CHECK AND TRY AGAIN"
+    category: card_decline
+  - code: 23020
+    message: "CREDIT CARD DENIAL"
+    category: card_decline
+  - code: 23021
+    message: "CREDIT CARD DENIAL - PICKUP CARD"
+    category: card_decline
+  - code: 23207
+    message: "CREDIT CARD CALL HELP DESK"
+    category: card_decline
+  - code: 24081
+    message: "ECREDIT CARD DENIAL - NO AUTHORIZATION DONE"
+    category: card_decline
+  - code: 24100
+    message: "NEED ITINERARY"
+    category: payment_processing
+  - code: 24176
+    message: "UNMATCHED TICKET"
+    category: payment_processing
+  - code: 24596
+    message: "PREVIOUS TSM EXISTS- SERVICE OVERLAP"
+    category: payment_processing
+  - code: 24613
+    message: "NEED SERVICE"
+    category: payment_processing
+  - code: 24614
+    message: "NO DATA IN SERVICE TABLE FOR SERVICES"
+    category: payment_processing
+  - code: 24674
+    message: "DOCUMENT BEING EXCHANGED IS NON EXCHANGEABLE"
+    category: payment_processing
+  - code: 24938
+    message: "INCONSISTENT RESPONSE RECEIVED FROM THE BANK"
+    category: card_decline
+  - code: 24963
+    message: "ITINERARY PRICING REQUIRED BEFORE SERVICE REPRICING"
+    category: payment_processing
+  - code: 25779
+    message: "ERROR(S) DETECTED AT CREATION TIME"
+    category: payment_processing
+  - code: 25799
+    message: "ERROR AT FOP CREATION: SOME FOPS ARE DEFECTIVE"
+    category: payment_processing
+  - code: 25904
+    message: "MULTIPLETST/ETKT-_REPRICE_BY_TST/ETKT"
+    category: payment_processing
+  - code: 29321
+    message: "PAYMENT ERROR"
+    category: card_decline
+  - code: 31708
+    message: "MAXIMUM NUMBER OF EXCHANGES EXCEEDED"
+    category: payment_processing
+  - code: 31744
+    message: "AMADEUS SERVICE CHANGER NOT AUTHORIZED"
+    category: payment_processing
+  - code: 31888
+    message: "DUPLICATED LINE SELECTION"
+    category: payment_processing
+  - code: 31890
+    message: "INVALID - PAST DATE SERVICE"
+    category: payment_processing
+  - code: 31893
+    message: "SERVICE NOT DEFINED FOR NEW VALIDATING CARRIER"
+    category: payment_processing
+  - code: 31894
+    message: "MULTI-COUPON EMDS ARE NOT AUTHORIZED"
+    category: payment_processing
+  - code: 31896
+    message: "INVALID: MULTIPLE REFERENCE TO AN EMD/COUPON"
+    category: payment_processing
+  - code: 31897
+    message: "PROVIDE EMD NUMBER TO EXCHANGE"
+    category: payment_processing
+  - code: 31898
+    message: "DOCUMENT NUMBER DOES NOT REFER AN EMD"
+    category: payment_processing
+  - code: 31903
+    message: "MISSING DATA IN ORIGINAL DOCUMENT FOR FO GENERATION"
+    category: payment_processing
+  - code: 32077
+    message: "MISSING RFIC/SC - CHECK SERVICE MAPPING TABLE"
+    category: payment_processing
+  - code: 32280
+    message: "UNABLE TO RETRIEVE EMD"
+    category: payment_processing
+  - code: 32329
+    message: "EMD COUPONS MAY NOT MATCH ET COUPONS"
+    category: payment_processing
+  - code: 32624
+    message: "REPRICING RESTRICTED - NON CHARGEABLE SSR FOUND"
+    category: payment_processing
+  - code: 32628
+    message: "INVALID COUPON STATUS FOR VOLUNTARY CHANGE"
+    category: payment_processing
+  - code: 32630
+    message: "SUBSEQUENT EXCHANGES NOT ALLOWED"
+    category: payment_processing
+  - code: 32700
+    message: "INVALID INPUT DATA"
+    category: payment_processing
+  - code: 32928
+    message: "SERVICES MUST HAVE THE SAME RFISC"
+    category: payment_processing
+  - code: 33303
+    message: "OB FEES PRICING CALCULATION PROBLEM"
+    category: payment_processing
+  - code: 33305
+    message: "TECHNICAL ERROR-UNABLE TO UPDATE PRICING RECORD"
+    category: payment_processing
+  - code: 35403
+    message: "NO AUTHORIZED EMD MATCHED FOR EXCHANGE"
+    category: payment_processing
+  - code: 36698
+    message: "OFFICE NOT AUTHORIZED TO REISSUE EMD"
+    category: payment_processing
+  - code: 36700
+    message: "CARRIER %S NOT AUTHORIZED TO REISSUE EMD"
+    category: payment_processing

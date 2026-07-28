@@ -1,0 +1,456 @@
+<ServiceListRS Version="2017.2" xmlns="http://www.iata.org/IATA/EDIST/2017.2" EchoToken="ET" TimeStamp="2022-12-17T19:46:01.899-05:00" TransactionIdentifier="1" SequenceNmbr="1">
+    <Document>
+        <Name>ACNDC AGG NDCx2.0</Name>
+        <ReferenceVersion>IATA NDC 17.2</ReferenceVersion>
+    </Document>
+    <Success/>
+    <ShoppingResponseID>
+        <ResponseID>dbc2acb3-b265-4d74-8cd8-a0e5fd11f168-2995.65728783169</ResponseID>
+    </ShoppingResponseID>
+    <ALaCarteOffer OfferID="FV4215U3DM-SLRS-OfferID-1" Owner="AC">
+        <ALaCarteOfferItem OfferItemID="RDBBTGV6DE-SLRS-OfferItemID-1">
+            <Eligibility>
+                <PassengerRefs>RBPGOMNJ5D-T1</PassengerRefs>
+                <SegmentRefs>YATCBH42TS-SEG1</SegmentRefs>
+            </Eligibility>
+            <UnitPriceDetail>
+                <TotalAmount>
+                    <DetailCurrencyPrice>
+                        <Total Code="USD">12.65</Total>
+                    </DetailCurrencyPrice>
+                </TotalAmount>
+                <BaseAmount>12.05</BaseAmount>
+                <Taxes>
+                    <Total>0.6</Total>
+                    <Breakdown>
+                        <Tax>
+                            <Amount>0.6</Amount>
+                            <Nation>XX</Nation>
+                            <TaxCode>XG</TaxCode>
+                        </Tax>
+                    </Breakdown>
+                </Taxes>
+            </UnitPriceDetail>
+            <Service ServiceID="TBOFOCFMAK-ServiceID-1">
+                <ServiceDefinitionRef>LB9KAQRB9Y-ServiceDefinition-012</ServiceDefinitionRef>
+            </Service>
+        </ALaCarteOfferItem>
+        <ALaCarteOfferItem OfferItemID="AZLQJXE3H4-SLRS-OfferItemID-2">
+            <Eligibility>
+                <PassengerRefs>RBPGOMNJ5D-T1</PassengerRefs>
+                <SegmentRefs>YATCBH42TS-SEG1</SegmentRefs>
+            </Eligibility>
+            <UnitPriceDetail>
+                <TotalAmount>
+                    <DetailCurrencyPrice>
+                        <Total Code="USD">0</Total>
+                    </DetailCurrencyPrice>
+                </TotalAmount>
+                <BaseAmount>0</BaseAmount>
+                <Taxes>
+                    <Total>0</Total>
+                </Taxes>
+            </UnitPriceDetail>
+            <Service ServiceID="CPD6SNHEBE-ServiceID-2">
+                <ServiceDefinitionRef>ICMEI13LEP-ServiceDefinition-013 THTAQJF6V5-ServiceDefinition-015</ServiceDefinitionRef>
+            </Service>
+        </ALaCarteOfferItem>
+        <ALaCarteOfferItem OfferItemID="XCU4F191I0-SLRS-OfferItemID-3">
+            <Eligibility>
+                <PassengerRefs>RBPGOMNJ5D-T1</PassengerRefs>
+                <SegmentRefs>YATCBH42TS-SEG1</SegmentRefs>
+            </Eligibility>
+            <UnitPriceDetail>
+                <TotalAmount>
+                    <DetailCurrencyPrice>
+                        <Total Code="USD">0</Total>
+                    </DetailCurrencyPrice>
+                </TotalAmount>
+                <BaseAmount>0</BaseAmount>
+                <Taxes>
+                    <Total>0</Total>
+                </Taxes>
+            </UnitPriceDetail>
+            <Service ServiceID="AJUE36TL6E-ServiceID-3">
+                <ServiceDefinitionRef>WBHKFBZZVC-ServiceDefinition-014</ServiceDefinitionRef>
+            </Service>
+        </ALaCarteOfferItem>
+        <ALaCarteOfferItem OfferItemID="RAF6P5Z8F8-SLRS-OfferItemID-4">
+            <Eligibility>
+                <PassengerRefs>RBPGOMNJ5D-T1</PassengerRefs>
+                <SegmentRefs>YATCBH42TS-SEG1</SegmentRefs>
+            </Eligibility>
+            <UnitPriceDetail>
+                <TotalAmount>
+                    <DetailCurrencyPrice>
+                        <Total Code="USD">0</Total>
+                    </DetailCurrencyPrice>
+                </TotalAmount>
+                <BaseAmount>0</BaseAmount>
+                <Taxes>
+                    <Total>0</Total>
+                </Taxes>
+            </UnitPriceDetail>
+            <Service ServiceID="IMVWIMH2FX-ServiceID-4">
+                <ServiceDefinitionRef>D6XYTF03VF-ServiceDefinition-017</ServiceDefinitionRef>
+            </Service>
+        </ALaCarteOfferItem>
+        <ALaCarteOfferItem OfferItemID="DIPNCOSCUW-SLRS-OfferItemID-5">
+            <Eligibility>
+                <PassengerRefs>RBPGOMNJ5D-T1</PassengerRefs>
+                <SegmentRefs>YATCBH42TS-SEG1</SegmentRefs>
+            </Eligibility>
+            <UnitPriceDetail>
+                <TotalAmount>
+                    <DetailCurrencyPrice>
+                        <Total Code="USD">0</Total>
+                    </DetailCurrencyPrice>
+                </TotalAmount>
+                <BaseAmount>0</BaseAmount>
+                <Taxes>
+                    <Total>0</Total>
+                </Taxes>
+            </UnitPriceDetail>
+            <Service ServiceID="HLJJ0143YI-ServiceID-5">
+                <ServiceDefinitionRef>KTGFGVVQEZ-ServiceDefinition-018</ServiceDefinitionRef>
+            </Service>
+        </ALaCarteOfferItem>
+        <ALaCarteOfferItem OfferItemID="ZAID3FXASI-SLRS-OfferItemID-6">
+            <Eligibility>
+                <PassengerRefs>RBPGOMNJ5D-T1</PassengerRefs>
+                <SegmentRefs>YATCBH42TS-SEG1</SegmentRefs>
+            </Eligibility>
+            <UnitPriceDetail>
+                <TotalAmount>
+                    <DetailCurrencyPrice>
+                        <Total Code="USD">0</Total>
+                    </DetailCurrencyPrice>
+                </TotalAmount>
+                <BaseAmount>0</BaseAmount>
+                <Taxes>
+                    <Total>0</Total>
+                </Taxes>
+            </UnitPriceDetail>
+            <Service ServiceID="VJOF8WG1FN-ServiceID-6">
+                <ServiceDefinitionRef>PSW4BXI1HH-ServiceDefinition-016</ServiceDefinitionRef>
+            </Service>
+        </ALaCarteOfferItem>
+    </ALaCarteOffer>
+    <DataLists>
+        <PassengerList>
+            <Passenger PassengerID="RBPGOMNJ5D-T1">
+                <PTC>ADT</PTC>
+            </Passenger>
+        </PassengerList>
+        <FlightSegmentList>
+            <FlightSegment SegmentKey="YATCBH42TS-SEG1">
+                <Departure>
+                    <AirportCode>YUL</AirportCode>
+                    <Date>2023-06-05</Date>
+                    <Time>18:30</Time>
+                </Departure>
+                <Arrival>
+                    <AirportCode>YVR</AirportCode>
+                    <Date>2023-06-05</Date>
+                    <Time>20:47</Time>
+                </Arrival>
+                <MarketingCarrier>
+                    <AirlineID>AC</AirlineID>
+                    <Name>AIR CANADA</Name>
+                    <FlightNumber>311</FlightNumber>
+                </MarketingCarrier>
+                <OperatingCarrier>
+                    <AirlineID>AC</AirlineID>
+                    <Name>AIR CANADA</Name>
+                </OperatingCarrier>
+                <Equipment>
+                    <AircraftCode>789</AircraftCode>
+                </Equipment>
+                <ClassOfService>
+                    <Code>T</Code>
+                </ClassOfService>
+            </FlightSegment>
+        </FlightSegmentList>
+        <OriginDestinationList>
+            <OriginDestination OriginDestinationKey="EAF9D3N71U-OD1">
+                <DepartureCode>YUL</DepartureCode>
+                <ArrivalCode>YVR</ArrivalCode>
+                <FlightReferences>YATCBH42TS-SEG1</FlightReferences>
+            </OriginDestination>
+        </OriginDestinationList>
+        <ServiceDefinitionList>
+            <ServiceDefinition Owner="AC" ServiceDefinitionID="LB9KAQRB9Y-ServiceDefinition-012">
+                <Name>MEAL</Name>
+                <Descriptions>
+                    <Description>
+                        <Text>Pay ${12.05} + applicable taxes for an Air Canada Bistro voucher redeemable for 1 fresh meal item or alcoholic beverage and 1 snack item. The voucher code will be indicated on your boarding pass.</Text>
+                    </Description>
+                    <Description>
+                        <Text>Use your voucher to purchase any Air Canada Bistro item including alcoholic beverages on select flights of two hours or more. Your voucher cannot be used to purchase duty-free items.</Text>
+                    </Description>
+                    <Description>
+                        <Text>Meal items are not available for purchase on flights departing after 10 pm. On those flights, you&#39;ll be able to choose from a selection of beverages and snack items.</Text>
+                    </Description>
+                    <Description>
+                        <Text>All purchases made on board Air Canada and Air Canada Rouge flights, as well as on Air Canada Express flights operated by Jazz are payable only with Visa, MasterCard and American Express credit cards.</Text>
+                    </Description>
+                    <Description>
+                        <Text>Snacks include chips, chocolate bars, nuts, vegetables and dip, soup, and cheese and crackers. All are available for $3.54 to $5.90 CAD/ USD (all taxes included).</Text>
+                    </Description>
+                    <Description>
+                        <Text>Fresh meal menu items include pizza, pasta, wraps and sandwiches, all from $8.85 to $11.74 CAD/USD (all taxes included).</Text>
+                    </Description>
+                    <Description>
+                        <Text>On Air Canada Express flights operated by Jazz which last between 2 hr and 3 hr 15 min, your voucher can be redeemed for snack items valued at up to $13.57 CAD/USD (all taxes included), as menu items differ.</Text>
+                    </Description>
+                    <Description>
+                        <Text>Air Canada Bistro snack and meal vouchers can be redeemed exclusively on flights operated by Air Canada and Air Canada Rouge, as well as on Air Canada Express flights operated by Jazz.</Text>
+                    </Description>
+                    <Description>
+                        <Text>Menu listings for Air Canada Express flights operated by Jazz can be found on the www.flyjazz.com website.</Text>
+                    </Description>
+                    <Description>
+                        <Text>Vouchers are non-transferable and can only be used by the ticket holder.</Text>
+                    </Description>
+                    <Description>
+                        <Text>Once the ticket has been purchased, this option can&#39;t be changed or refunded.</Text>
+                    </Description>
+                </Descriptions>
+                <BookingInstructions>
+                    <Text>Prepaid Air Canada Bistro voucher</Text>
+                </BookingInstructions>
+            </ServiceDefinition>
+            <ServiceDefinition Owner="AC" ServiceDefinitionID="ICMEI13LEP-ServiceDefinition-013">
+                <Name>RQST</Name>
+                <SeatDefinitionRefs>DIGCBFWTOT-SeatCharacteristic-00746</SeatDefinitionRefs>
+                <Encoding>
+                    <Code>ASTW</Code>
+                </Encoding>
+                <Descriptions>
+                    <Description>
+                        <Text>Select a standard Window seat for ${0}.</Text>
+                    </Description>
+                    <Description>
+                        <Text>The seat charge is applicable to each one-way flight. Taxes are not included.</Text>
+                    </Description>
+                    <Description>
+                        <Text>If you change your mind during the seat selection process, you can decline the selection and won&#39;t pay the applicable charge.</Text>
+                    </Description>
+                    <Description>
+                        <Text>Advance seat selection is based on availability.</Text>
+                    </Description>
+                    <Description>
+                        <Text>Once purchased, standard seat selection is non-refundable.</Text>
+                    </Description>
+                </Descriptions>
+                <BookingInstructions>
+                    <Text>Standard Seat - Window</Text>
+                </BookingInstructions>
+            </ServiceDefinition>
+            <ServiceDefinition Owner="AC" ServiceDefinitionID="WBHKFBZZVC-ServiceDefinition-014">
+                <Name>RQST</Name>
+                <SeatDefinitionRefs>ZUGL0V6BUR-SeatCharacteristic-00747</SeatDefinitionRefs>
+                <Encoding>
+                    <Code>ASTM</Code>
+                </Encoding>
+                <Descriptions>
+                    <Description>
+                        <Text>Select a standard Middle seat for ${0}.</Text>
+                    </Description>
+                    <Description>
+                        <Text>The seat charge is applicable to each one-way flight. Taxes are not included.</Text>
+                    </Description>
+                    <Description>
+                        <Text>If you change your mind during the seat selection process, you can decline the selection and won&#39;t pay the applicable charge.</Text>
+                    </Description>
+                    <Description>
+                        <Text>Advance seat selection is based on availability.</Text>
+                    </Description>
+                    <Description>
+                        <Text>Once purchased, standard seat selection is non-refundable.</Text>
+                    </Description>
+                </Descriptions>
+                <BookingInstructions>
+                    <Text>Standard Seat - Middle</Text>
+                </BookingInstructions>
+            </ServiceDefinition>
+            <ServiceDefinition Owner="AC" ServiceDefinitionID="THTAQJF6V5-ServiceDefinition-015">
+                <Name>RQST</Name>
+                <SeatDefinitionRefs>DIGCBFWTOT-SeatCharacteristic-00746</SeatDefinitionRefs>
+                <Encoding>
+                    <Code>ASTA</Code>
+                </Encoding>
+                <Descriptions>
+                    <Description>
+                        <Text>Select a standard Aisle seat for ${0} .</Text>
+                    </Description>
+                    <Description>
+                        <Text>The seat charge is applicable to each one-way flight. Taxes are not included.</Text>
+                    </Description>
+                    <Description>
+                        <Text>If you change your mind during the seat selection process, you can decline the selection and won&#39;t pay the applicable charge.</Text>
+                    </Description>
+                    <Description>
+                        <Text>Advance seat selection is based on availability.</Text>
+                    </Description>
+                    <Description>
+                        <Text>Once purchased, standard seat selection is non-refundable.</Text>
+                    </Description>
+                </Descriptions>
+                <BookingInstructions>
+                    <Text>Standard Seat - Aisle</Text>
+                </BookingInstructions>
+            </ServiceDefinition>
+            <ServiceDefinition Owner="AC" ServiceDefinitionID="PSW4BXI1HH-ServiceDefinition-016">
+                <Name>RQST</Name>
+                <SeatDefinitionRefs>KEUKKBM3GM-SeatCharacteristic-00750</SeatDefinitionRefs>
+                <Encoding>
+                    <Code>ASPW</Code>
+                </Encoding>
+                <Descriptions>
+                    <Description>
+                        <Text>Select a Preferred Window seat for ${0}.</Text>
+                    </Description>
+                    <Description>
+                        <Text>The seat charge is applicable to each one-way flight. Taxes are not included.</Text>
+                    </Description>
+                    <Description>
+                        <Text>If you change your mind during the seat selection process, you can decline the selection and won&#39;t pay the applicable charge.</Text>
+                    </Description>
+                    <Description>
+                        <Text>Advance Preferred seat selection is based on availability.</Text>
+                    </Description>
+                    <Description>
+                        <Text>Preferred seat charges are non refundable, except if:</Text>
+                    </Description>
+                    <Description>
+                        <Text>you are not seated in your originally selected Preferred seat because of an involuntary schedule or airport change (e.g. flight disruption, cancellation), or because Air Canada moves you from your Preferred seat prior to departure or during the flight.</Text>
+                    </Description>
+                    <Description>
+                        <Text>you have a confirmed upgrade to Business or Business First Class prior to flight check-in.</Text>
+                    </Description>
+                    <Description>
+                        <Text>you cancel your itinerary, or voluntarily change to a different flight or fare family and Preferred seat selection becomes complimentary on your new itinerary.</Text>
+                    </Description>
+                </Descriptions>
+                <BookingInstructions>
+                    <Text>Preferred Seat - Window</Text>
+                </BookingInstructions>
+            </ServiceDefinition>
+            <ServiceDefinition Owner="AC" ServiceDefinitionID="D6XYTF03VF-ServiceDefinition-017">
+                <Name>RQST</Name>
+                <SeatDefinitionRefs>FFRZFFB9S7-SeatCharacteristic-00748</SeatDefinitionRefs>
+                <Encoding>
+                    <Code>ASPM</Code>
+                </Encoding>
+                <Descriptions>
+                    <Description>
+                        <Text>Select a Preferred Middle seat for ${0}.</Text>
+                    </Description>
+                    <Description>
+                        <Text>The seat charge is applicable to each one-way flight. Taxes are not included.</Text>
+                    </Description>
+                    <Description>
+                        <Text>If you change your mind during the seat selection process, you can decline the selection and won&#39;t pay the applicable charge.</Text>
+                    </Description>
+                    <Description>
+                        <Text>Advance Preferred seat selection is based on availability.</Text>
+                    </Description>
+                    <Description>
+                        <Text>Preferred seat charges are non refundable, except if:</Text>
+                    </Description>
+                    <Description>
+                        <Text>you are not seated in your originally selected Preferred seat because of an involuntary schedule or airport change (e.g. flight disruption, cancellation), or because Air Canada moves you from your Preferred seat prior to departure or during the flight.</Text>
+                    </Description>
+                    <Description>
+                        <Text>you have a confirmed upgrade to Business or Business First Class prior to flight check-in.</Text>
+                    </Description>
+                    <Description>
+                        <Text>you cancel your itinerary, or voluntarily change to a different flight or fare family and Preferred seat selection becomes complimentary on your new itinerary.</Text>
+                    </Description>
+                </Descriptions>
+                <BookingInstructions>
+                    <Text>Preferred Seat - Middle</Text>
+                </BookingInstructions>
+            </ServiceDefinition>
+            <ServiceDefinition Owner="AC" ServiceDefinitionID="KTGFGVVQEZ-ServiceDefinition-018">
+                <Name>RQST</Name>
+                <SeatDefinitionRefs>VRS9IX9VT0-SeatCharacteristic-00749</SeatDefinitionRefs>
+                <Encoding>
+                    <Code>ASPA</Code>
+                </Encoding>
+                <Descriptions>
+                    <Description>
+                        <Text>Select a Preferred Aisle seat for ${0}.</Text>
+                    </Description>
+                    <Description>
+                        <Text>The seat charge is applicable to each one-way flight. Taxes are not included.</Text>
+                    </Description>
+                    <Description>
+                        <Text>If you change your mind during the seat selection process, you can decline the selection and won&#39;t pay the applicable charge.</Text>
+                    </Description>
+                    <Description>
+                        <Text>Advance Preferred seat selection is based on availability.</Text>
+                    </Description>
+                    <Description>
+                        <Text>Preferred seat charges are non refundable, except if:</Text>
+                    </Description>
+                    <Description>
+                        <Text>you are not seated in your originally selected Preferred seat because of an involuntary schedule or airport change (e.g. flight disruption, cancellation), or because Air Canada moves you from your Preferred seat prior to departure or during the flight.</Text>
+                    </Description>
+                    <Description>
+                        <Text>you have a confirmed upgrade to Business or Business First Class prior to flight check-in.</Text>
+                    </Description>
+                    <Description>
+                        <Text>you cancel your itinerary, or voluntarily change to a different flight or fare family and Preferred seat selection becomes complimentary on your new itinerary.</Text>
+                    </Description>
+                </Descriptions>
+                <BookingInstructions>
+                    <Text>Preferred Seat - Aisle</Text>
+                </BookingInstructions>
+            </ServiceDefinition>
+        </ServiceDefinitionList>
+        <SeatDefinitionList>
+            <SeatDefinition SeatDefinitionID="DIGCBFWTOT-SeatCharacteristic-00746">
+                <Description>
+                    <Text refs="YATCBH42TS-SEG1">ASTW</Text>
+                </Description>
+                <Description>
+                    <Text refs="YATCBH42TS-SEG1">ASTA</Text>
+                </Description>
+                <SeatCharacteristicCode>CH</SeatCharacteristicCode>
+            </SeatDefinition>
+            <SeatDefinition SeatDefinitionID="ZUGL0V6BUR-SeatCharacteristic-00747">
+                <Description>
+                    <Text refs="YATCBH42TS-SEG1">ASTM</Text>
+                </Description>
+                <SeatCharacteristicCode>9</SeatCharacteristicCode>
+                <SeatCharacteristicCode>CH</SeatCharacteristicCode>
+            </SeatDefinition>
+            <SeatDefinition SeatDefinitionID="FFRZFFB9S7-SeatCharacteristic-00748">
+                <Description>
+                    <Text refs="YATCBH42TS-SEG1">ASPM</Text>
+                </Description>
+                <SeatCharacteristicCode>9</SeatCharacteristicCode>
+                <SeatCharacteristicCode>CH</SeatCharacteristicCode>
+                <SeatCharacteristicCode>O</SeatCharacteristicCode>
+            </SeatDefinition>
+            <SeatDefinition SeatDefinitionID="VRS9IX9VT0-SeatCharacteristic-00749">
+                <Description>
+                    <Text refs="YATCBH42TS-SEG1">ASPA</Text>
+                </Description>
+                <SeatCharacteristicCode>A</SeatCharacteristicCode>
+                <SeatCharacteristicCode>CH</SeatCharacteristicCode>
+                <SeatCharacteristicCode>O</SeatCharacteristicCode>
+            </SeatDefinition>
+            <SeatDefinition SeatDefinitionID="KEUKKBM3GM-SeatCharacteristic-00750">
+                <Description>
+                    <Text refs="YATCBH42TS-SEG1">ASPW</Text>
+                </Description>
+                <SeatCharacteristicCode>CH</SeatCharacteristicCode>
+                <SeatCharacteristicCode>O</SeatCharacteristicCode>
+                <SeatCharacteristicCode>W</SeatCharacteristicCode>
+            </SeatDefinition>
+        </SeatDefinitionList>
+    </DataLists>
+</ServiceListRS>

@@ -1,0 +1,92 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="https://prod.services.acndc.net/ndcexchange/NDC/schema/v1">
+ <soapenv:Header/>
+ <soapenv:Body>
+ <v1:NDCMSG_Envelope>
+ <NDCMSG_Header>
+ <Sender>
+ <SellerID>*******************</SellerID>
+ </Sender>
+ <Recipient>
+ <Address>
+ <Company>AC</Company>
+ </Address>
+ </Recipient>
+ <SchemaType>NDC</SchemaType>
+ <SchemaVersion>YY.2017.2</SchemaVersion>
+ </NDCMSG_Header>
+<NDCMSG_Body>
+ <NDCMSG_Payload>
+
+<![CDATA[
+		
+<AirShoppingRQ Version="2017.2" EchoToken="ET" TimeStamp="2021-04-08T10:18:42.087-04:00" TransactionIdentifier="1" SequenceNmbr="1" xmlns="http://www.iata.org/IATA/EDIST/2017.2">
+
+<Document>
+<Name>acndc AGG NDCx 2.0</Name>
+<ReferenceVersion>IATA NDC 17.2</ReferenceVersion>
+</Document>
+<PointOfSale>
+<Location>
+<CountryCode></CountryCode>
+</Location>
+</PointOfSale>
+	
+<Party>
+<Sender>
+<TravelAgencySender>
+ <IATA_Number></IATA_Number>
+ <AgencyID></AgencyID>
+ </TravelAgencySender>
+</Sender>
+</Party>
+
+<Parameters>
+<Languages>
+<LanguageCode>en-CA</LanguageCode>
+</Languages>
+<CurrCodes>
+<FiledInCurrency>
+<CurrCode></CurrCode>
+</FiledInCurrency>
+</CurrCodes>
+</Parameters>
+<CoreQuery>
+
+<OriginDestinations>
+<OriginDestination>
+<Departure>
+<AirportCode>YYZ</AirportCode>
+<Date>2023-03-28</Date>
+</Departure>
+<Arrival>
+<AirportCode>YVR</AirportCode>
+</Arrival>
+</OriginDestination>
+</OriginDestinations>
+
+</CoreQuery>
+
+<DataLists>
+<PassengerList>
+<Passenger PassengerID="Pax1">
+    <PTC>ADT</PTC>
+   </Passenger>
+</PassengerList>
+
+<PassengerList>
+<Passenger PassengerID="Pax2">
+    <PTC>CHD</PTC>
+   </Passenger>
+</PassengerList>
+
+</DataLists>
+
+
+</AirShoppingRQ>
+
+]]>
+</NDCMSG_Payload>
+</NDCMSG_Body>
+</v1:NDCMSG_Envelope>
+</soapenv:Body>
+</soapenv:Envelope>

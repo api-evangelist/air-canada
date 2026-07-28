@@ -1,0 +1,102 @@
+generated: '2026-07-28'
+method: searched
+source: https://ndc.aircanada.com/api/documentation/orderchangenotification
+spec_type: none
+description: >-
+  Air Canada publishes no AsyncAPI document, but it does run a real
+  airline-initiated event surface: OrderChangeNotification (OCN). Sellers
+  register a webhook host and URL with Air Canada and receive an NDC 17.2
+  OrderChangeNotif message whenever an involuntary change is made to an Order
+  they created - a disruption, schedule change, or the passenger's response to
+  one. This file captures that webhook surface verbatim from the published
+  documentation. It is push-only: there is no streaming, queue, or polling event
+  API, and there is no self-service webhook management UI.
+
+surface:
+  kind: webhook
+  direction: outbound (Air Canada calls the seller)
+  message: OrderChangeNotif
+  schema: IATA NDC 17.2 OrderChangeNotification schema
+  transport: HTTPS POST to a seller-supplied webhook URL
+  opt_in: true
+  opt_in_note: >-
+    Verbatim: "Such messages will only be sent to sellers that have registered
+    with AC to receive OCN messages."
+
+registration:
+  channel: email
+  contact: ACDirectconnectNDC@aircanada.ca
+  instruction: >-
+    Verbatim: "To register with AC for reception of these messages, please send
+    an encrypted email or share a secure location with
+    ACDirectconnectNDC@aircanada.ca and include the below data required before
+    connectivity testing can begin."
+  required_data:
+    - Webhook host
+    - Webhook URL
+    - Authentication method (OAuth)
+    - AT system credentials
+    - PRD system credentials (optional for testing, required for go live)
+    - OAuthTokenURL (if OAuth is the authentication method)
+    - OAuthScope (if OAuth is the authentication method)
+    - Any headers required in the request
+  self_service: false
+  signature_verification:
+    published: false
+    note: >-
+      No HMAC signature, shared secret or replay-protection scheme is published.
+      Authenticity rests on the seller-side OAuth/system credentials Air Canada
+      is given at registration.
+
+payload:
+  fields:
+    - Booking reference (Order)
+    - Status Code, indicating the change that triggered the notification
+    - Order Details
+  consumer_expectation: >-
+    Verbatim: "Sellers are expected to retrieve the affected Order to view the
+    latest version of the Order." OCN is a change signal, not a full state
+    transfer - the seller follows it with OrderRetrieve.
+
+event_catalog:
+  description: >-
+    "List of Status Codes currently supported", verbatim from the OCN
+    documentation page. Reason codes 1-27 are involuntary, 28-35 cover voluntary
+    changes and ticketing-time-limit expiry.
+  events:
+    - {code: 1,  type: involuntary, name: Flight number change}
+    - {code: 2,  type: involuntary, name: Flight Time Change}
+    - {code: 3,  type: involuntary, name: Flight Cancelled}
+    - {code: 4,  type: involuntary, name: Flight Delayed}
+    - {code: 5,  type: involuntary, name: Flight Added}
+    - {code: 21, type: involuntary, name: Other}
+    - {code: 22, type: involuntary, name: Accepted by Customer}
+    - {code: 23, type: involuntary, name: Alternative Chosen by Customer}
+    - {code: 24, type: involuntary, name: Cancelled by Customer}
+    - {code: 25, type: involuntary, name: Aircraft Changed}
+    - {code: 26, type: involuntary, name: Date Change}
+    - {code: 27, type: involuntary, name: Cabin Change}
+    - {code: 28, type: voluntary,   name: Flight Change}
+    - {code: 29, type: voluntary,   name: Seat Change}
+    - {code: 31, type: voluntary,   name: Cancellation - Retain for Future Credit}
+    - {code: 32, type: voluntary,   name: Name Change}
+    - {code: 33, type: ticketing,   name: PNR On Hold - Itinerary Cancelled by Expired Ticketing Time Limit}
+    - {code: 34, type: ticketing,   name: PNR On Hold - Ancillary Cancelled by Expired Ticketing Time Limit}
+    - {code: 35, type: voluntary,   name: Travel Option Change}
+  count: 19
+  note: >-
+    Codes 6-20 and 30 are not listed by Air Canada; the published table jumps
+    from 5 to 21 and from 29 to 31. Recorded as published, with no interpolation.
+
+scope:
+  triggers:
+    - Involuntary Order changes (flight disruptions)
+    - Reprotection acceptance or refusal - passenger accepts the disruption, opts for a refund because of it, or selects alternate flights because of it
+  excluded:
+    published: false
+    note: Air Canada does not publish a retry policy, delivery guarantee, ordering guarantee or dead-letter behaviour for OCN.
+
+related_api: air-canada:air-canada-ndc-orderchangenotification-api
+cross_links:
+  authentication: authentication/air-canada-authentication.yml
+  conventions: conventions/air-canada-conventions.yml

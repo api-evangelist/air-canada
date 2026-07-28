@@ -1,0 +1,84 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="https://prod.services.ACNDC.net/ndcexchange/NDC/schema/v1">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <v1:NDCMSG_Envelope>
+            <NDCMSG_Header>
+                <Sender>
+                    <SellerID>*******************</SellerID>
+                </Sender>
+                <Recipient>
+                    <Address>
+                        <Company>AC</Company>
+                    </Address>
+                </Recipient>
+                <SchemaType>NDC</SchemaType>
+                <SchemaVersion>YY.2017.2</SchemaVersion>
+            </NDCMSG_Header>
+            <NDCMSG_Body>
+                <NDCMSG_Payload>
+                    <![CDATA[
+                    
+<SeatAvailabilityRQ Version="2017.2" xmlns="http://www.iata.org/IATA/EDIST/2017.2">
+	<Document>
+		<Name>ACNDC AGG NDCx 2.0</Name>
+		<ReferenceVersion>IATA NDC 17.2</ReferenceVersion>
+	</Document>
+    <Party>
+	<Sender>
+			<TravelAgencySender>
+				<IATA_Number>2222222</IATA_Number>
+				<AgencyID>000</AgencyID>
+				<AgentUser>
+					<AgentUserID>ABCD</AgentUserID>
+				</AgentUser>
+			</TravelAgencySender>
+	</Sender>
+    <Party>
+	<Parameters>
+		<Languages>
+			<LanguageCode>en-CA</LanguageCode>
+		</Languages>
+	</Parameters>
+	<Query>
+		<Offer OfferID="NKX8HP-OfferID-1" Owner="AC" ResponseID="2347b067-00f5-4066-8704-11deb91179bb-9085.286882701997">
+        </Offer>
+	</Query>
+    <Qualifier>
+		<ProgramQualifiers>
+			<!-- NTP promo codes	 -->
+			<ProgramQualifier>
+				<DiscountProgramQualifier>
+					<Account>NTP</Account>
+					<Name>DYD8VGY1</Name>
+				</DiscountProgramQualifier>
+				<ProgramStatusQualifier>
+					<ProgramStatus/>
+				</ProgramStatusQualifier>
+			</ProgramQualifier>
+		</ProgramQualifiers>
+		<!-- ACB account number  -->
+		<SpecialFareQualifiers>
+			<AirlineID>AC</AirlineID>
+			<Contract>PN01782</Contract>
+		</SpecialFareQualifiers>
+	</Qualifier>
+    <DataLists>
+		<PassengerList>
+			<Passenger PassengerID="Pax1">
+				<PTC>ADT</PTC>
+                <LoyaltyProgramAccount>
+				<ProgramCode>AC</ProgramCode>
+				<AccountNumber>600160667</AccountNumber>
+			    </LoyaltyProgramAccount>
+            </Passenger>
+		</PassengerList>
+	</DataLists>
+</SeatAvailabilityRQ>
+
+]]>
+
+</NDCMSG_Payload>
+</NDCMSG_Body>
+</v1:NDCMSG_Envelope>
+</soapenv:Body>
+</soapenv:Envelope>

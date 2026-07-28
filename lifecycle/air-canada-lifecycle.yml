@@ -1,0 +1,121 @@
+generated: '2026-07-28'
+method: searched
+source: >-
+  https://ndc.aircanada.com/api/gettingstarted/apisetup,
+  https://ndc.aircanada.com/api/releasenotes/latestrelease,
+  https://ndc.aircanada.com/api/roadmap,
+  https://ndc.aircanada.com/support/statusMonitoring and
+  https://www.aircanada.com/ca/en/aco/home/ndc.html
+description: >-
+  Air Canada's NDC programme has the operational furniture most carriers do not
+  publish - a release-notes page, a roadmap page, a webservice status page, a
+  known-issues page and a named service desk. What it does not publish is a
+  deprecation policy, a sunset commitment, or a contractual SLA. The version it
+  runs, IATA NDC 17.2, was frozen by IATA in 2017, and the published portal
+  content itself has not moved since early 2023.
+
+versioning:
+  scheme: uri-path + in-payload schema version
+  current: '17.2'
+  uri_segment: /ndc/17.2/v1/
+  payload_version: YY.2017.2 (SchemaVersion), Version="2017.2" (message attribute)
+  standard: IATA NDC 17.2 (EDIST)
+  vendor_extension: >-
+    The portal bundle references an Air Canada-specific schema directory
+    NDC2017.2-schemas-edist-ACNDC alongside the unmodified
+    NDC-2017.2-schemas-edist. See review.yml.
+  statement: >-
+    Verbatim, aircanada.com/ca/en/aco/home/ndc.html: "We support version 2017.2
+    API schema and have achieved NDC@Scale certification from IATA. We encourage
+    you to develop towards the 2017.2 XML schema to gain access to all the
+    exciting features and content from Air Canada."
+  note: >-
+    17.2 was frozen in 2017. IATA has since moved to the Airline Retailing
+    Maturity index and Offers-and-Orders schemas, so a seller integrating in 2026
+    is building to a nine-year-old schema generation.
+
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  note: >-
+    No API deprecation or sunset policy is published, and no RFC 8594
+    Sunset/Deprecation header support is documented. The only published
+    change-notice commitment is about the display requirements, not the API:
+    "Air Canada shall have the absolute right, to replace, modify or supplement
+    the Display Requirements ... provided that Air Canada provides (30) days
+    prior notice." Separately, "Air Canada shall have the right to revoke NDC
+    program access at its sole discretion." Because no deprecation policy exists,
+    no Deprecation pointer is wired in apis.yml.
+  source: https://www.aircanada.com/content/dam/aircanada/portal/documents/PDF/ndc-displayRequirements-en.pdf
+
+retired_features:
+  - feature: TP-Proxy-Key and Tx-http-timeout request headers
+    status: no longer required
+    evidence: >-
+      Verbatim, API Setup: "NOTE: You no longer need to submit the two additional
+      parameters given below, when sending an OrderCreateRQ or OrderChangeRQ."
+    note: Announced in place on the docs page rather than through a deprecation notice.
+
+release_notes:
+  url: https://ndc.aircanada.com/api/releasenotes/latestrelease
+  scheme: dated releases, filterable by date range and impacted API
+  table_columns: [Release Date, Release & Summary, Implementation Requirement, API(s) affected]
+  latest_published_entry: 09 Jan 23
+  detail: changelog/air-canada-changelog.yml
+
+roadmap:
+  url: https://ndc.aircanada.com/api/roadmap
+  published_title: Q1 Roadmap
+  last_modified: '2023-01-09'
+  framing: >-
+    Verbatim from the getting-started page: "Check out Air Canada NDC Road map of
+    the expected enhancements in 2023."
+  note: The published roadmap page has not been revised since January 2023.
+
+status_page:
+  url: https://ndc.aircanada.com/support/statusMonitoring
+  label: Webservice Status
+  machine_readable:
+    endpoints:
+      - https://ndcportal-api.digital.aircanada.com/ndc/status/hourly
+      - https://ndcportal-api.digital.aircanada.com/ndc/status/daily
+    status: 403
+    note: >-
+      The portal fetches its status data from a real JSON status API, but that
+      API returns {"message":"Forbidden"} to anonymous callers. The status page
+      itself is public.
+  known_issues: https://ndc.aircanada.com/support/knownissues
+
+sla:
+  contractual_sla_published: false
+  uptime_claim: '99.9%'
+  uptime_claim_note: >-
+    99.9% Uptime is published as a marketing statistic on the NDC portal home
+    page ("Our technology in numbers", alongside "20+ Markets Enabled" and "15+
+    Integrated Technology Partners"). It is not a contractual service level and
+    no credit regime, measurement window or exclusions are published.
+  support_commitment: >-
+    Connection Options lists "Direct integration: Air Canada NDC API, 24/7
+    monitoring and support" as a channel benefit.
+
+support:
+  dashboard: https://ndc.aircanada.com/support
+  faq: https://ndc.aircanada.com/support/faq
+  service_desk: https://aircanada-ndc-helpdesk.atlassian.net/servicedesk/customer/portals
+  service_desk_name: NDC Direct Connect Service Desk
+  ocn_registration_contact: ACDirectconnectNDC@aircanada.ca
+  ticket_requirement: >-
+    Support asks for the orc-transaction-id value in the Transaction ID/Trace
+    field of the ticket - see conventions/air-canada-conventions.yml.
+
+documentation_freshness:
+  observed: '2026-07-28'
+  page_modified_dates_range: 2023-01-06 to 2023-02-24
+  note: >-
+    Every documented page in the portal carries a modifiedDate in January or
+    February 2023. The documentation is complete but has not been revised in over
+    three years.
+
+deprecated_operations: []

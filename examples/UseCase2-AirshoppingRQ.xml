@@ -1,0 +1,87 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="https://prod.services.ACNDC.net/ndcexchange/NDC/schema/v1">
+ <soapenv:Header/>
+ <soapenv:Body>
+ <v1:NDCMSG_Envelope>
+ <NDCMSG_Header>
+ <Sender>
+ <SellerID>*******************</SellerID>
+ </Sender>
+ <Recipient>
+ <Address>
+ <Company>AC</Company>
+ </Address>
+ </Recipient>
+ <SchemaType>NDC</SchemaType>
+ <SchemaVersion>YY.2017.2</SchemaVersion>
+ </NDCMSG_Header>
+<NDCMSG_Body>
+ <NDCMSG_Payload>
+
+<![CDATA[
+		
+<AirShoppingRQ Version="2017.2" EchoToken="ET" TimeStamp="2021-04-08T10:18:42.087-04:00" TransactionIdentifier="1" SequenceNmbr="1" xmlns="http://www.iata.org/IATA/EDIST/2017.2">
+
+<Document>
+<Name>ACNDC AGG NDCx 2.0</Name>
+<ReferenceVersion>IATA NDC 17.2</ReferenceVersion>
+</Document>
+
+<Party>
+<Sender>
+<EnabledSystemSender>
+<SystemID>AGENCY ABC</SystemID>
+</EnabledSystemSender>
+</Sender>
+</Party>
+
+<Parameters>
+<Languages>
+<LanguageCode>en-CA</LanguageCode>
+</Languages>
+</Parameters>
+<CoreQuery>
+
+<OriginDestinations>
+
+<OriginDestination>
+<Departure>
+<AirportCode>YUL</AirportCode>
+<Date>2023-01-19</Date>
+</Departure>
+<Arrival>
+<AirportCode>YVR</AirportCode>
+</Arrival>
+</OriginDestination>
+
+<OriginDestination>
+<Departure>
+<AirportCode>YVR</AirportCode>
+<Date>2023-01-26</Date>
+</Departure>
+<Arrival>
+<AirportCode>YUL</AirportCode>
+</Arrival>
+</OriginDestination>
+
+</OriginDestinations>
+
+</CoreQuery>
+
+<DataLists>
+<PassengerList>
+<Passenger PassengerID="Pax1">
+    <PTC>ADT</PTC>
+    <LoyaltyProgramAccount> <ProgramCode>AC</ProgramCode> <AccountNumber>354395774</AccountNumber> </LoyaltyProgramAccount>
+   </Passenger>
+</PassengerList>
+
+</DataLists>
+
+</AirShoppingRQ>
+
+]]>
+</NDCMSG_Payload>
+</NDCMSG_Body>
+</v1:NDCMSG_Envelope>
+</soapenv:Body>
+</soapenv:Envelope>

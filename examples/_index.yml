@@ -1,0 +1,458 @@
+generated: '2026-07-28'
+method: searched
+source: https://ndc.aircanada.com/xml/
+description: >-
+  Air Canada publishes downloadable request and response XML for every documented
+  NDC 17.2 message, covering six use cases and five end-to-end booking scenarios,
+  with no login. These are the only machine-readable artifacts Air Canada ships -
+  there is no OpenAPI, WSDL or XSD - so they are the ground truth for the wire
+  format. Every file listed here was fetched from ndc.aircanada.com on 2026-07-28
+  and returned HTTP 200 with content-type text/xml. Files at or below 120 KB are
+  committed to this directory verbatim; the multi-megabyte AirShopping and
+  SeatAvailability responses are indexed by URL instead of committed.
+note: >-
+  SellerID is masked with asterisks in Air Canada's own published samples. The only
+  card number appearing in the committed files is Air Canada's published test card
+  4012999999999999.
+base_url: https://ndc.aircanada.com/xml/
+counts:
+  published_xml_files: 104
+  committed: 67
+  indexed_by_url_only: 29
+  referenced_but_404: 8
+  zip_bundles: 6
+committed:
+  - file: Scenario1-AirShoppingRQ.xml
+    message: AirShopping
+    bytes: 1650
+    url: https://ndc.aircanada.com/xml/Scenario1-AirShoppingRQ.xml
+  - file: Scenario1-OfferPriceRQ.xml
+    message: OfferPrice
+    bytes: 1974
+    url: https://ndc.aircanada.com/xml/Scenario1-OfferPriceRQ.xml
+  - file: Scenario1-OfferPriceRS.xml
+    message: OfferPrice
+    bytes: 17252
+    url: https://ndc.aircanada.com/xml/Scenario1-OfferPriceRS.xml
+  - file: Scenario1-OrderCreateRQ.xml
+    message: OrderCreate
+    bytes: 4387
+    url: https://ndc.aircanada.com/xml/Scenario1-OrderCreateRQ.xml
+  - file: Scenario1-OrderViewRS.xml
+    message: OrderView
+    bytes: 30900
+    url: https://ndc.aircanada.com/xml/Scenario1-OrderViewRS.xml
+  - file: Scenario1-SeatAvailabilityRQ.xml
+    message: SeatAvailability
+    bytes: 1740
+    url: https://ndc.aircanada.com/xml/Scenario1-SeatAvailabilityRQ.xml
+  - file: Scenario2-AirShoppingRQ.xml
+    message: AirShopping
+    bytes: 1993
+    url: https://ndc.aircanada.com/xml/Scenario2-AirShoppingRQ.xml
+  - file: Scenario2-OfferPriceRQ.xml
+    message: OfferPrice
+    bytes: 2130
+    url: https://ndc.aircanada.com/xml/Scenario2-OfferPriceRQ.xml
+  - file: Scenario2-OfferPriceRS.xml
+    message: OfferPrice
+    bytes: 20537
+    url: https://ndc.aircanada.com/xml/Scenario2-OfferPriceRS.xml
+  - file: Scenario2-OrderCreateRQ.xml
+    message: OrderCreate
+    bytes: 4639
+    url: https://ndc.aircanada.com/xml/Scenario2-OrderCreateRQ.xml
+  - file: Scenario2-OrderViewRS.xml
+    message: OrderView
+    bytes: 31600
+    url: https://ndc.aircanada.com/xml/Scenario2-OrderViewRS.xml
+  - file: Scenario2-SeatAvailabilityRQ.xml
+    message: SeatAvailability
+    bytes: 1997
+    url: https://ndc.aircanada.com/xml/Scenario2-SeatAvailabilityRQ.xml
+  - file: Scenario3-AirShoppingRQ.xml
+    message: AirShopping
+    bytes: 2656
+    url: https://ndc.aircanada.com/xml/Scenario3-AirShoppingRQ.xml
+  - file: Scenario3-OfferPriceRQ.xml
+    message: OfferPrice
+    bytes: 3198
+    url: https://ndc.aircanada.com/xml/Scenario3-OfferPriceRQ.xml
+  - file: Scenario3-OfferPriceRS.xml
+    message: OfferPrice
+    bytes: 23999
+    url: https://ndc.aircanada.com/xml/Scenario3-OfferPriceRS.xml
+  - file: Scenario3-OrderCreateRQ.xml
+    message: OrderCreate
+    bytes: 5085
+    url: https://ndc.aircanada.com/xml/Scenario3-OrderCreateRQ.xml
+  - file: Scenario3-OrderViewRS.xml
+    message: OrderView
+    bytes: 31813
+    url: https://ndc.aircanada.com/xml/Scenario3-OrderViewRS.xml
+  - file: Scenario3-SeatAvailabilityRQ.xml
+    message: SeatAvailability
+    bytes: 2427
+    url: https://ndc.aircanada.com/xml/Scenario3-SeatAvailabilityRQ.xml
+  - file: Scenario4-AirshoppingRQ.xml
+    message: AirShopping
+    bytes: 1840
+    url: https://ndc.aircanada.com/xml/Scenario4-AirshoppingRQ.xml
+  - file: Scenario4-OfferPriceRQ.xml
+    message: OfferPrice
+    bytes: 2436
+    url: https://ndc.aircanada.com/xml/Scenario4-OfferPriceRQ.xml
+  - file: Scenario4-OfferPriceRS.xml
+    message: OfferPrice
+    bytes: 24988
+    url: https://ndc.aircanada.com/xml/Scenario4-OfferPriceRS.xml
+  - file: Scenario4-OrderCreateRQ.xml
+    message: OrderCreate
+    bytes: 5532
+    url: https://ndc.aircanada.com/xml/Scenario4-OrderCreateRQ.xml
+  - file: Scenario4-OrderViewRS.xml
+    message: OrderView
+    bytes: 48686
+    url: https://ndc.aircanada.com/xml/Scenario4-OrderViewRS.xml
+  - file: Scenario4-SeatAvailabilityRQ.xml
+    message: SeatAvailability
+    bytes: 1187
+    url: https://ndc.aircanada.com/xml/Scenario4-SeatAvailabilityRQ.xml
+  - file: Scenario4-ServiceListRQ.xml
+    message: ServiceList
+    bytes: 1611
+    url: https://ndc.aircanada.com/xml/Scenario4-ServiceListRQ.xml
+  - file: Scenario4-ServiceListRS.xml
+    message: ServiceList
+    bytes: 23977
+    url: https://ndc.aircanada.com/xml/Scenario4-ServiceListRS.xml
+  - file: Scenario5-OfferPriceRQ.xml
+    message: OfferPrice
+    bytes: 2656
+    url: https://ndc.aircanada.com/xml/Scenario5-OfferPriceRQ.xml
+  - file: Scenario5-OfferPriceRS.xml
+    message: OfferPrice
+    bytes: 27090
+    url: https://ndc.aircanada.com/xml/Scenario5-OfferPriceRS.xml
+  - file: Scenario5-OrderCreateRQ.xml
+    message: OrderCreate
+    bytes: 5508
+    url: https://ndc.aircanada.com/xml/Scenario5-OrderCreateRQ.xml
+  - file: Scenario5-OrderViewRS.xml
+    message: OrderView
+    bytes: 35975
+    url: https://ndc.aircanada.com/xml/Scenario5-OrderViewRS.xml
+  - file: Scenario5-SeatAvailability1RQ.xml
+    message: SeatAvailability
+    bytes: 1198
+    url: https://ndc.aircanada.com/xml/Scenario5-SeatAvailability1RQ.xml
+  - file: Scenario5-SeatAvailability2RQ.xml
+    message: SeatAvailability
+    bytes: 1199
+    url: https://ndc.aircanada.com/xml/Scenario5-SeatAvailability2RQ.xml
+  - file: UseCase1-AirShoppingRQ_Step1.xml
+    message: AirShopping
+    bytes: 1885
+    url: https://ndc.aircanada.com/xml/UseCase1-AirShoppingRQ_Step1.xml
+  - file: UseCase1-AirshoppingRQ.xml
+    message: AirShopping
+    bytes: 1658
+    url: https://ndc.aircanada.com/xml/UseCase1-AirshoppingRQ.xml
+  - file: UseCase1-OfferPriceRQ_Step2.xml
+    message: OfferPrice
+    bytes: 1805
+    url: https://ndc.aircanada.com/xml/UseCase1-OfferPriceRQ_Step2.xml
+  - file: UseCase1-OfferPriceRS_Step2.xml
+    message: OfferPrice
+    bytes: 14027
+    url: https://ndc.aircanada.com/xml/UseCase1-OfferPriceRS_Step2.xml
+  - file: UseCase1-OrderCancel-OrderCancelRQ.xml
+    message: OrderCancel
+    bytes: 2013
+    url: https://ndc.aircanada.com/xml/UseCase1-OrderCancel-OrderCancelRQ.xml
+  - file: UseCase1-OrderCreate-AirShoppingRQ.xml
+    message: AirShopping
+    bytes: 1754
+    url: https://ndc.aircanada.com/xml/UseCase1-OrderCreate-AirShoppingRQ.xml
+  - file: UseCase1-OrderReshop-OrderReshopRQ.xml
+    message: OrderReshop
+    bytes: 1673
+    url: https://ndc.aircanada.com/xml/UseCase1-OrderReshop-OrderReshopRQ.xml
+  - file: UseCase1-OrderReshop-OrderReshopRS.xml
+    message: OrderReshop
+    bytes: 1832
+    url: https://ndc.aircanada.com/xml/UseCase1-OrderReshop-OrderReshopRS.xml
+  - file: UseCase1-OrderRetrieveRQ.xml
+    message: OrderRetrieve
+    bytes: 1546
+    url: https://ndc.aircanada.com/xml/UseCase1-OrderRetrieveRQ.xml
+  - file: UseCase1-OrderViewRS.xml
+    message: OrderView
+    bytes: 34682
+    url: https://ndc.aircanada.com/xml/UseCase1-OrderViewRS.xml
+  - file: UseCase1-SeatAvailabilityRQ_Step2.xml
+    message: SeatAvailability
+    bytes: 1435
+    url: https://ndc.aircanada.com/xml/UseCase1-SeatAvailabilityRQ_Step2.xml
+  - file: UseCase1-ServiceList-AirShoppingRQ.xml
+    message: AirShopping
+    bytes: 1736
+    url: https://ndc.aircanada.com/xml/UseCase1-ServiceList-AirShoppingRQ.xml
+  - file: UseCase1-ServiceList-ServiceListRS.xml
+    message: ServiceList
+    bytes: 24529
+    url: https://ndc.aircanada.com/xml/UseCase1-ServiceList-ServiceListRS.xml
+  - file: UseCase1_AirShoppingRQ_Step1.xml
+    message: AirShopping
+    bytes: 1693
+    url: https://ndc.aircanada.com/xml/UseCase1_AirShoppingRQ_Step1.xml
+  - file: UseCase2-AirShoppingRQ_2ADT.xml
+    message: AirShopping
+    bytes: 1919
+    url: https://ndc.aircanada.com/xml/UseCase2-AirShoppingRQ_2ADT.xml
+  - file: UseCase2-AirShoppingRQ_Step1.xml
+    message: AirShopping
+    bytes: 1660
+    url: https://ndc.aircanada.com/xml/UseCase2-AirShoppingRQ_Step1.xml
+  - file: UseCase2-AirshoppingRQ.xml
+    message: AirShopping
+    bytes: 1850
+    url: https://ndc.aircanada.com/xml/UseCase2-AirshoppingRQ.xml
+  - file: UseCase2-OfferPriceRQ_2ADT.xml
+    message: OfferPrice
+    bytes: 2056
+    url: https://ndc.aircanada.com/xml/UseCase2-OfferPriceRQ_2ADT.xml
+  - file: UseCase2-OfferPriceRS_2ADT.xml
+    message: OfferPrice
+    bytes: 19854
+    url: https://ndc.aircanada.com/xml/UseCase2-OfferPriceRS_2ADT.xml
+  - file: UseCase2-OrderCreate-OrderCreateRQ.xml
+    message: OrderCreate
+    bytes: 4179
+    url: https://ndc.aircanada.com/xml/UseCase2-OrderCreate-OrderCreateRQ.xml
+  - file: UseCase2-SeatAvailabilityRQ_Step2.xml
+    message: SeatAvailability
+    bytes: 1660
+    url: https://ndc.aircanada.com/xml/UseCase2-SeatAvailabilityRQ_Step2.xml
+  - file: UseCase2-ServiceList-ServiceListRS.xml
+    message: ServiceList
+    bytes: 27249
+    url: https://ndc.aircanada.com/xml/UseCase2-ServiceList-ServiceListRS.xml
+  - file: UseCase3-AirShoppingRQ.xml
+    message: AirShopping
+    bytes: 1965
+    url: https://ndc.aircanada.com/xml/UseCase3-AirShoppingRQ.xml
+  - file: UseCase3-AirShoppingRQ_Step1.xml
+    message: AirShopping
+    bytes: 1830
+    url: https://ndc.aircanada.com/xml/UseCase3-AirShoppingRQ_Step1.xml
+  - file: UseCase3-OfferPriceRQ_2ADT_OW_Step2.xml
+    message: OfferPrice
+    bytes: 1809
+    url: https://ndc.aircanada.com/xml/UseCase3-OfferPriceRQ_2ADT_OW_Step2.xml
+  - file: UseCase3-OfferPriceRS_2ADT_OW_Step2.xml
+    message: OfferPrice
+    bytes: 16276
+    url: https://ndc.aircanada.com/xml/UseCase3-OfferPriceRS_2ADT_OW_Step2.xml
+  - file: UseCase3-SeatAvailabilityRQ_Step2.xml
+    message: SeatAvailability
+    bytes: 1845
+    url: https://ndc.aircanada.com/xml/UseCase3-SeatAvailabilityRQ_Step2.xml
+  - file: UseCase4-AirShoppingRQ.xml
+    message: AirShopping
+    bytes: 2104
+    url: https://ndc.aircanada.com/xml/UseCase4-AirShoppingRQ.xml
+  - file: UseCase5-AirShoppingRQ.xml
+    message: AirShopping
+    bytes: 2102
+    url: https://ndc.aircanada.com/xml/UseCase5-AirShoppingRQ.xml
+  - file: UseCase6-AirShoppingRQ.xml
+    message: AirShopping
+    bytes: 2079
+    url: https://ndc.aircanada.com/xml/UseCase6-AirShoppingRQ.xml
+  - file: Usecase1-OrderCancel-OrderCancelRS.xml
+    message: OrderCancel
+    bytes: 4065
+    url: https://ndc.aircanada.com/xml/Usecase1-OrderCancel-OrderCancelRS.xml
+  - file: Usecase1-ServiceList-ServiceListRQ.xml
+    message: ServiceList
+    bytes: 1884
+    url: https://ndc.aircanada.com/xml/Usecase1-ServiceList-ServiceListRQ.xml
+  - file: Usecase2-OrderCreate-AirShoppingRQ.xml
+    message: AirShopping
+    bytes: 1991
+    url: https://ndc.aircanada.com/xml/Usecase2-OrderCreate-AirShoppingRQ.xml
+  - file: Usecase2-ServiceList-AirShoppingRQ.xml
+    message: AirShopping
+    bytes: 1898
+    url: https://ndc.aircanada.com/xml/Usecase2-ServiceList-AirShoppingRQ.xml
+  - file: Usecase2-ServiceList-ServiceListRQ.xml
+    message: ServiceList
+    bytes: 1829
+    url: https://ndc.aircanada.com/xml/Usecase2-ServiceList-ServiceListRQ.xml
+indexed_by_url_only_note: >-
+  Fetched and verified as real XML on 2026-07-28 but too large to commit.
+indexed_by_url_only:
+  - file: Scenario1-AirShoppingRS.xml
+    message: AirShopping
+    bytes: 1552588
+    url: https://ndc.aircanada.com/xml/Scenario1-AirShoppingRS.xml
+  - file: Scenario1-SeatAvailabilityRS.xml
+    message: SeatAvailability
+    bytes: 333506
+    url: https://ndc.aircanada.com/xml/Scenario1-SeatAvailabilityRS.xml
+  - file: Scenario2-AirShoppingRS.xml
+    message: AirShopping
+    bytes: 1329190
+    url: https://ndc.aircanada.com/xml/Scenario2-AirShoppingRS.xml
+  - file: Scenario2-SeatAvailabilityRS.xml
+    message: SeatAvailability
+    bytes: 559594
+    url: https://ndc.aircanada.com/xml/Scenario2-SeatAvailabilityRS.xml
+  - file: Scenario3-AirShoppingRS.xml
+    message: AirShopping
+    bytes: 2782169
+    url: https://ndc.aircanada.com/xml/Scenario3-AirShoppingRS.xml
+  - file: Scenario3-SeatAvailabilityRS.xml
+    message: SeatAvailability
+    bytes: 534192
+    url: https://ndc.aircanada.com/xml/Scenario3-SeatAvailabilityRS.xml
+  - file: Scenario4-AirShoppingRS.xml
+    message: AirShopping
+    bytes: 1883818
+    url: https://ndc.aircanada.com/xml/Scenario4-AirShoppingRS.xml
+  - file: Scenario4-SeatAvailabilityRS.xml
+    message: SeatAvailability
+    bytes: 312346
+    url: https://ndc.aircanada.com/xml/Scenario4-SeatAvailabilityRS.xml
+  - file: Scenario5-AirShoppingRS.xml
+    message: AirShopping
+    bytes: 4026521
+    url: https://ndc.aircanada.com/xml/Scenario5-AirShoppingRS.xml
+  - file: Scenario5-SeatAvailability1RS.xml
+    message: SeatAvailability
+    bytes: 342654
+    url: https://ndc.aircanada.com/xml/Scenario5-SeatAvailability1RS.xml
+  - file: Scenario5-SeatAvailability2RS.xml
+    message: SeatAvailability
+    bytes: 342655
+    url: https://ndc.aircanada.com/xml/Scenario5-SeatAvailability2RS.xml
+  - file: UseCase1-AirShoppingRS_Step1.xml
+    message: AirShopping
+    bytes: 1567292
+    url: https://ndc.aircanada.com/xml/UseCase1-AirShoppingRS_Step1.xml
+  - file: UseCase1-AirshoppingRS.xml
+    message: AirShopping
+    bytes: 818308
+    url: https://ndc.aircanada.com/xml/UseCase1-AirshoppingRS.xml
+  - file: UseCase1-OrderCreate-AirShoppingRS.xml
+    message: AirShopping
+    bytes: 1567259
+    url: https://ndc.aircanada.com/xml/UseCase1-OrderCreate-AirShoppingRS.xml
+  - file: UseCase1-SeatAvailabilityRS_Step2.xml
+    message: SeatAvailability
+    bytes: 182799
+    url: https://ndc.aircanada.com/xml/UseCase1-SeatAvailabilityRS_Step2.xml
+  - file: UseCase1-ServiceList-AirShoppingRS.xml
+    message: AirShopping
+    bytes: 1634102
+    url: https://ndc.aircanada.com/xml/UseCase1-ServiceList-AirShoppingRS.xml
+  - file: UseCase1_AirShoppingRS_Step1.xml
+    message: AirShopping
+    bytes: 780140
+    url: https://ndc.aircanada.com/xml/UseCase1_AirShoppingRS_Step1.xml
+  - file: UseCase2-AirShoppingRS_2ADT.xml
+    message: AirShopping
+    bytes: 2359763
+    url: https://ndc.aircanada.com/xml/UseCase2-AirShoppingRS_2ADT.xml
+  - file: UseCase2-AirShoppingRS_Step1.xml
+    message: AirShopping
+    bytes: 1625403
+    url: https://ndc.aircanada.com/xml/UseCase2-AirShoppingRS_Step1.xml
+  - file: UseCase2-AirshoppingRS.xml
+    message: AirShopping
+    bytes: 2926780
+    url: https://ndc.aircanada.com/xml/UseCase2-AirshoppingRS.xml
+  - file: UseCase2-OrderCreate-AirShoppingRS.xml
+    message: AirShopping
+    bytes: 3029324
+    url: https://ndc.aircanada.com/xml/UseCase2-OrderCreate-AirShoppingRS.xml
+  - file: UseCase2-ServiceList-AirShoppingRS.xml
+    message: AirShopping
+    bytes: 2380007
+    url: https://ndc.aircanada.com/xml/UseCase2-ServiceList-AirShoppingRS.xml
+  - file: UseCase3-AirShoppingRS.xml
+    message: AirShopping
+    bytes: 3802393
+    url: https://ndc.aircanada.com/xml/UseCase3-AirShoppingRS.xml
+  - file: UseCase3-AirShoppingRS_Step1.xml
+    message: AirShopping
+    bytes: 1573867
+    url: https://ndc.aircanada.com/xml/UseCase3-AirShoppingRS_Step1.xml
+  - file: UseCase4-AirShoppingRS.xml
+    message: AirShopping
+    bytes: 4159171
+    url: https://ndc.aircanada.com/xml/UseCase4-AirShoppingRS.xml
+  - file: UseCase5-AirShoppingRS.xml
+    message: AirShopping
+    bytes: 4160873
+    url: https://ndc.aircanada.com/xml/UseCase5-AirShoppingRS.xml
+  - file: UseCase6-AirShoppingRS.xml
+    message: AirShopping
+    bytes: 3508515
+    url: https://ndc.aircanada.com/xml/UseCase6-AirShoppingRS.xml
+  - file: Usecase2-SeatAvailabilityRS_Step2.xml
+    message: SeatAvailability
+    bytes: 333506
+    url: https://ndc.aircanada.com/xml/Usecase2-SeatAvailabilityRS_Step2.xml
+  - file: Usecase3-SeatAvailabilityRS-Step2.xml
+    message: SeatAvailability
+    bytes: 252767
+    url: https://ndc.aircanada.com/xml/Usecase3-SeatAvailabilityRS-Step2.xml
+zip_bundles:
+  - file: UC02_PartiallyFlown-ReplaceOD.zip
+    description: OrderReshop - partially flown, replace origin/destination
+    url: https://ndc.aircanada.com/xml/UC02_PartiallyFlown-ReplaceOD.zip
+  - file: UC03-UC06_SeatServicing_withoutITIN.zip
+    description: OrderChange - seat servicing without itinerary change
+    url: https://ndc.aircanada.com/xml/UC03-UC06_SeatServicing_withoutITIN.zip
+  - file: UC07-UC10_SeatServicing_withITIN.zip
+    description: OrderChange - seat servicing with itinerary change
+    url: https://ndc.aircanada.com/xml/UC07-UC10_SeatServicing_withITIN.zip
+  - file: UC11-UC12_AncilServicing_withoutITIN.zip
+    description: OrderChange - ancillary servicing without itinerary change
+    url: https://ndc.aircanada.com/xml/UC11-UC12_AncilServicing_withoutITIN.zip
+  - file: UC13-UC16_AncilServicing_withITIN.zip
+    description: OrderChange - ancillary servicing with itinerary change
+    url: https://ndc.aircanada.com/xml/UC13-UC16_AncilServicing_withITIN.zip
+  - file: UC29_PaxServicing_FQTVonly.zip
+    description: OrderChange - passenger servicing, frequent flyer only
+    url: https://ndc.aircanada.com/xml/UC29_PaxServicing_FQTVonly.zip
+referenced_but_missing_note: >-
+  Linked from the Air Canada documentation but the URL returns the portal SPA
+  shell rather than XML - broken links on the provider side, recorded as found.
+referenced_but_missing:
+  - file: Scenario5-AirshoppingRQ.xml
+    url: https://ndc.aircanada.com/xml/Scenario5-AirshoppingRQ.xml
+    status: 200 (text/html SPA shell, not XML)
+  - file: UseCase1-OrderCreate-OrdercreateRQ.xml
+    url: https://ndc.aircanada.com/xml/UseCase1-OrderCreate-OrdercreateRQ.xml
+    status: 200 (text/html SPA shell, not XML)
+  - file: UseCase1-Ordercreate-OrderviewRS.xml
+    url: https://ndc.aircanada.com/xml/UseCase1-Ordercreate-OrderviewRS.xml
+    status: 200 (text/html SPA shell, not XML)
+  - file: UseCase2-OrderCreate-OfferpriceRS.xml
+    url: https://ndc.aircanada.com/xml/UseCase2-OrderCreate-OfferpriceRS.xml
+    status: 200 (text/html SPA shell, not XML)
+  - file: Usecase1-Ordercreate-OfferpriceRQ.xml
+    url: https://ndc.aircanada.com/xml/Usecase1-Ordercreate-OfferpriceRQ.xml
+    status: 200 (text/html SPA shell, not XML)
+  - file: Usecase1-orderCreate-OfferPriceRS.xml
+    url: https://ndc.aircanada.com/xml/Usecase1-orderCreate-OfferPriceRS.xml
+    status: 200 (text/html SPA shell, not XML)
+  - file: Usecase2-OrderCreate-OfferpriceRQ.xml
+    url: https://ndc.aircanada.com/xml/Usecase2-OrderCreate-OfferpriceRQ.xml
+    status: 200 (text/html SPA shell, not XML)
+  - file: Usecase2-OrderCreate-OrderViewRS.xml
+    url: https://ndc.aircanada.com/xml/Usecase2-OrderCreate-OrderViewRS.xml
+    status: 200 (text/html SPA shell, not XML)

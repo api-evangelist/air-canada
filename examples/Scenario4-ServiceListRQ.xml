@@ -1,0 +1,72 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="https://prod.services.acndc.net/ndcexchange/NDC/schema/v1">
+<soapenv:Header/>
+<soapenv:Body>
+<v1:NDCMSG_Envelope>
+<NDCMSG_Header>
+<Sender>
+<SellerID>*******************</SellerID>
+</Sender>
+<Recipient>
+<Address>
+<Company>AC</Company>
+</Address>
+</Recipient>
+<SchemaType>NDC</SchemaType>
+<SchemaVersion>YY.2017.2</SchemaVersion>
+</NDCMSG_Header>
+<NDCMSG_Body>
+<NDCMSG_Payload>
+
+<![CDATA[
+
+<ServiceListRQ Version="17.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.iata.org/IATA/EDIST/2017.2">
+<PointOfSale>
+<Location>
+<CountryCode>US</CountryCode>
+</Location>
+</PointOfSale>
+<Document>
+<Name>NDC-Exchange</Name>
+<ReferenceVersion>UAT-AC-EIP</ReferenceVersion>
+</Document>
+<Party>
+<Sender>
+<TravelAgencySender>
+<TravelAgencySender>
+<IATA_Number></IATA_Number> <AgencyID></AgencyID>
+</TravelAgencySender>
+</TravelAgencySender>
+</Sender>
+</Party>
+<Parameters>
+<Languages>
+<LanguageCode>en-CA</LanguageCode>
+</Languages>
+</Parameters>
+<ShoppingResponseID>
+
+
+<ResponseID>94056626-f905-426c-9aa4-21b2c864a9ea-9149.421269852253</ResponseID>
+</ShoppingResponseID>
+<Query>
+<Offers>
+<Offer>
+
+<OfferID Owner="AC">YHZQ4M-OfferID-1</OfferID>
+<OfferItemIDs>
+<OfferItemID Owner="AC">JBYYK3MWAR-OfferItemID-1</OfferItemID>
+<OfferItemID Owner="AC">BS6OTEUVNH-OfferItemID-2</OfferItemID>
+
+</OfferItemIDs>
+</Offer>
+
+</Offers>
+</Query>
+</ServiceListRQ>
+]]>
+
+</NDCMSG_Payload>
+</NDCMSG_Body>
+</v1:NDCMSG_Envelope>
+</soapenv:Body>
+</soapenv:Envelope>

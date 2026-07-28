@@ -1,0 +1,233 @@
+generated: '2026-07-28'
+method: generated
+source: >-
+  https://ndc.aircanada.com/api/gettingstarted/apisetup (the published endpoint
+  table), https://ndc.aircanada.com/api/gettingstarted/apisorchestration (the
+  mandatory message order) and the per-service documentation pages. Air Canada
+  publishes no OpenAPI, so 0-working/derive-agentic-access.py could not be run;
+  the operations below are the ten NDC 17.2 message services Air Canada documents
+  by name at endpoints it publishes, classified by hand against the same rules the
+  script applies.
+description: >-
+  A recommended x-agentic-access execution contract for the Air Canada NDC API,
+  following the Curity "Access Intelligence" model (apidays Munich 2026;
+  vocabulary and Spectral ruleset in research/curity/agentic-governance/). This is
+  a governance STARTING POINT authored by API Evangelist, not an Air Canada claim.
+  Air Canada publishes no agent access guidance, no scope model and no
+  human-in-the-loop policy - a single apikey header carries every call, which
+  means the airline itself draws no distinction between an agent shopping for
+  fares and an agent taking a payment. That is exactly the gap this file names.
+  audience is left null to be bound per deployment.
+
+disclaimer: >-
+  Air Canada has not published any of this. Every consequence rating, TTL ceiling
+  and escalation requirement below is API Evangelist's recommendation derived from
+  what the message provably does, not a documented Air Canada control. The
+  underlying platform offers no mechanism to enforce it - see
+  authentication/air-canada-authentication.yml.
+
+summary:
+  operations: 10
+  by_action_class:
+    connected: 4
+    acting: 6
+  by_consequence:
+    read: 4
+    write: 2
+    physical: 4
+  human_in_the_loop: 0
+  audit_required: 6
+  transport: SOAP 1.1 over HTTPS POST, XML payload
+  enforcement_available: false
+  enforcement_note: >-
+    Air Canada issues one apikey per seller with no scopes, no per-operation
+    permissions and no token exchange. Nothing below can be enforced at the
+    airline boundary; it must be enforced in the seller's own gateway in front of
+    ndcpartners.aircanada.com.
+
+operations:
+  - operation: AirShopping
+    endpoint: ipg-gw/ndc/17.2/v1/AirShopping
+    message: AirShoppingRQ / AirShoppingRS
+    action_class: connected
+    consequence: read
+    audience: null
+    token:
+      max_ttl_seconds: 3600
+    audit: recommended
+    note: >-
+      Pure inventory search. The heaviest operation on the platform - Air Canada
+      asks sellers at registration what percentage of their calls will be
+      AirShopping and to compute their TPS from it, so an agent looping this is
+      the most likely cause of a capacity conversation.
+
+  - operation: OfferPrice
+    endpoint: ipg-gw/ndc/17.2/v1/OfferPrice
+    message: OfferPriceRQ / OfferPriceRS
+    action_class: connected
+    consequence: read
+    audience: null
+    token:
+      max_ttl_seconds: 3600
+    audit: recommended
+    note: >-
+      Read-only pricing of a selected offer, but mandatory before OrderCreate.
+      An agent that skips it cannot book.
+
+  - operation: ServiceList
+    endpoint: ipg-gw/ndc/17.2/v1/ServiceList
+    message: ServiceListRQ / ServiceListRS
+    action_class: connected
+    consequence: read
+    audience: null
+    token:
+      max_ttl_seconds: 3600
+    audit: recommended
+
+  - operation: SeatAvailability
+    endpoint: ipg-gw/ndc/17.2/v1/SeatAvailability
+    message: SeatAvailabilityRQ / SeatAvailabilityRS
+    action_class: connected
+    consequence: read
+    audience: null
+    token:
+      max_ttl_seconds: 3600
+    audit: recommended
+
+  - operation: OrderRetrieve
+    endpoint: ipg-gw/ndc/17.2/v1/OrderRetrieve
+    message: OrderRetrieveRQ / OrderViewRS
+    action_class: acting
+    consequence: read
+    audience: null
+    token:
+      max_ttl_seconds: 3600
+    audit: required
+    purpose_required: true
+    note: >-
+      Classified acting rather than connected because the response returns
+      passenger PII - name, birthdate, gender, identity document, postal address,
+      email and phone - for a named traveller, keyed on an OrderID the caller must
+      already hold. It is a read, but it is a read of someone else's personal
+      data, so purpose should be recorded.
+
+  - operation: OrderReshop
+    endpoint: ipg-gw/ndc/17.2/v1/OrderReshop
+    message: OrderReshopRQ / OrderReshopRS
+    action_class: acting
+    consequence: write
+    audience: null
+    token:
+      max_ttl_seconds: 900
+    audit: required
+    note: >-
+      Produces change offers against an existing Order. Does not itself move
+      money, but it is step one of the two-step cancellation and its output
+      determines the refund method the subsequent OrderCancel applies.
+
+  - operation: OrderChange
+    endpoint: aps-gw/ndc/17.2/v1/OrderChange
+    message: OrderChangeRQ / OrderViewRS
+    action_class: acting
+    consequence: physical
+    audience: null
+    token:
+      max_ttl_seconds: 300
+      exchange: required
+    purpose_required: true
+    audit: required
+    escalation:
+      human_in_the_loop: recommended
+    note: >-
+      Routed through the PCI gateway (aps-gw) because it can carry form of
+      payment. Modifies a live reservation - itinerary, seats, ancillaries,
+      passenger detail - and can charge a card. Consequence physical because the
+      change is to a real ticketed journey and settles money.
+
+  - operation: OrderCreate
+    endpoint: aps-gw/ndc/17.2/v1/OrderCreate
+    message: OrderCreateRQ / OrderViewRS
+    action_class: acting
+    consequence: physical
+    audience: null
+    token:
+      max_ttl_seconds: 300
+      exchange: required
+    purpose_required: true
+    audit: required
+    escalation:
+      human_in_the_loop: recommended
+    note: >-
+      The money operation. Carries the full card payload to the PCI gateway,
+      creates a real reservation, mints an OrderID and a record locator, and
+      returns a ticket number. Irreversible without a separate cancellation flow
+      that may not refund. This is the single operation an autonomous agent
+      should not hold a standing credential for.
+
+  - operation: OrderCancel
+    endpoint: ipg-gw/ndc/17.2/v1/OrderCancel
+    message: OrderCancelRQ / OrderCancelRS
+    action_class: acting
+    consequence: physical
+    audience: null
+    token:
+      max_ttl_seconds: 300
+      exchange: required
+    purpose_required: true
+    audit: required
+    escalation:
+      human_in_the_loop: recommended
+    note: >-
+      Destroys a live reservation. Air Canada documents a trap that makes this
+      more dangerous for an agent than for a human: if no cancellation method was
+      selected via OrderReshop first, OrderCancel "retains for future use" rather
+      than refunding - the traveller loses the flight AND the money stays with the
+      airline. Cancelled Orders also cannot be retrieved afterwards, so the agent
+      cannot verify its own outcome.
+
+  - operation: OrderChangeNotification
+    endpoint: inbound to the seller (webhook), registered by email
+    message: OrderChangeNotif
+    direction: inbound-to-seller
+    action_class: connected
+    consequence: physical
+    audience: null
+    token:
+      max_ttl_seconds: 3600
+    audit: required
+    note: >-
+      Air Canada calls the seller, not the reverse. Consequence is physical
+      because the payload announces an involuntary change to a real journey -
+      schedule change, cancellation, disruption. No signature verification scheme
+      is published, so a receiving agent cannot cryptographically establish that a
+      disruption notice actually came from Air Canada. Treat every notification as
+      unauthenticated and re-read state with OrderRetrieve before acting. See
+      asyncapi/air-canada-ocn-webhooks.yml.
+
+agent_guidance:
+  - >-
+    Split the credential. Air Canada issues one apikey with no scoping, so the
+    only place a read/write boundary can exist is the seller's own gateway. Front
+    ipg-gw shopping calls and aps-gw payment calls with different internal
+    credentials.
+  - >-
+    Never let an agent retry OrderCreate blindly. There is no idempotency key and
+    no de-duplication contract; a retried OrderCreateRQ is a second booking and a
+    second charge. See conventions/air-canada-conventions.yml.
+  - >-
+    Always OrderReshop before OrderCancel. Skipping it converts a refund into a
+    retained credit.
+  - >-
+    Persist every OrderID at creation time. There is no list or search operation
+    and no bulk export, so an OrderID lost by the agent is a booking the seller
+    can never enumerate again.
+  - >-
+    Capture orc-transaction-id on every call. It is the only trace identifier Air
+    Canada support will accept on a ticket.
+
+cross_links:
+  authentication: authentication/air-canada-authentication.yml
+  conventions: conventions/air-canada-conventions.yml
+  errors: errors/air-canada-error-codes.yml
+  webhooks: asyncapi/air-canada-ocn-webhooks.yml
+  skills: skills/_index.yml

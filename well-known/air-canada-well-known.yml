@@ -1,0 +1,95 @@
+generated: '2026-07-28'
+method: searched
+source: live probes of the /.well-known/ surface on every Air Canada host in apis.yml
+description: >-
+  Air Canada publishes no /.well-known/ discovery surface on any of its API or
+  documentation hosts. This file records the probe so the absence is evidence
+  rather than a gap in the research. Two of the three hosts return misleading
+  200s: ndc.aircanada.com is a React single-page app whose server answers every
+  unknown path with the SPA shell (text/html), so /.well-known/security.txt,
+  /llms.txt and /.well-known/openid-configuration all "succeed" with an HTML
+  document that is not the requested resource. No pointer is wired into
+  apis.yml for this artifact because there is nothing discoverable to point at.
+probed: '2026-07-28'
+hosts:
+  - host: https://ndc.aircanada.com
+    role: developer portal (public, no login)
+    server_behavior: SPA catch-all - every path returns the app shell with HTTP 200
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        real: false
+        note: text/html SPA shell, not RFC 9116 content
+      - path: /.well-known/openid-configuration
+        status: 200
+        real: false
+        note: text/html SPA shell
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        real: false
+        note: text/html SPA shell
+      - path: /.well-known/api-catalog
+        status: 200
+        real: false
+        note: text/html SPA shell
+      - path: /.well-known/ai-plugin.json
+        status: 200
+        real: false
+        note: text/html SPA shell
+      - path: /llms.txt
+        status: 200
+        real: false
+        note: text/html SPA shell
+  - host: https://www.aircanada.com
+    role: corporate / consumer website
+    server_behavior: S3-fronted origin returns AccessDenied for unknown paths
+    documents:
+      - path: /.well-known/security.txt
+        status: 403
+        real: false
+      - path: /.well-known/openid-configuration
+        status: 403
+        real: false
+      - path: /.well-known/oauth-authorization-server
+        status: 403
+        real: false
+      - path: /.well-known/api-catalog
+        status: 403
+        real: false
+      - path: /.well-known/ai-plugin.json
+        status: 403
+        real: false
+      - path: /llms.txt
+        status: 404
+        real: false
+  - host: https://ndcpartners.aircanada.com
+    role: production NDC partner gateway
+    server_behavior: >-
+      answers every GET with HTTP 400 and the JSON body "Invalid request format" -
+      the gateway only accepts SOAP POSTs to the documented service paths
+    documents:
+      - path: /.well-known/security.txt
+        status: 400
+        real: false
+      - path: /.well-known/openid-configuration
+        status: 400
+        real: false
+      - path: /.well-known/oauth-authorization-server
+        status: 400
+        real: false
+      - path: /.well-known/api-catalog
+        status: 400
+        real: false
+      - path: /.well-known/ai-plugin.json
+        status: 400
+        real: false
+      - path: /llms.txt
+        status: 400
+        real: false
+findings:
+  security_txt: none
+  openid_configuration: none
+  oauth_authorization_server: none
+  api_catalog: none
+  ai_plugin: none
+  llms_txt: none

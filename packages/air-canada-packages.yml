@@ -1,0 +1,140 @@
+generated: '2026-07-28'
+method: searched
+source: >-
+  npm registry, NuGet, PyPI, pkg.go.dev, GitHub org github.com/aircanada, and the
+  Air Canada NDC developer portal at https://ndc.aircanada.com/ - searched
+  2026-07-28.
+description: >-
+  Air Canada publishes NO first-party client library for its NDC API, in any
+  language. This is the expected shape for an IATA NDC 17.2 carrier surface: the
+  contract is SOAP/XML over a single POST endpoint per message service, there is
+  no OpenAPI to generate a client from, and the airline's onboarding path assumes
+  the seller already operates its own NDC stack or is reached through an
+  aggregator. Two things WERE found and are recorded separately below: a real Air
+  Canada GitHub organisation shipping four small internal .NET utilities to NuGet
+  (not API clients), and a third-party generic NDC ecosystem that can speak to Air
+  Canada but is not published or endorsed by Air Canada.
+
+summary:
+  first_party_api_clients: 0
+  first_party_packages_any_kind: 2
+  third_party_ndc_libraries: 3
+  sdks_pointer_wired: false
+  sdks_pointer_reason: >-
+    The sdk_count check measures API client libraries. Air Canada ships none, so
+    no SDKs pointer is wired. The two first-party NuGet packages below are
+    general-purpose .NET utilities that have nothing to do with the NDC API, and
+    counting them as SDKs would be false.
+
+packages: []
+
+first_party_other:
+  note: >-
+    github.com/aircanada is a genuine Air Canada organisation - "Open-Source
+    projects used by Air Canada developers", 4 public repositories, all C#/.NET,
+    all last touched 2025-08-25. None is an API client. Two of the four are
+    published to NuGet under an Air Canada developer's name with the Air Canada
+    repo as projectUrl.
+  github_organization: https://github.com/aircanada
+  repositories:
+    - name: GuidEx
+      url: https://github.com/aircanada/GuidEx
+      language: C#
+      description: >-
+        Creation of version 5 (name-based) GUIDs from arbitrary strings.
+    - name: Countries
+      url: https://github.com/aircanada/Countries
+      language: C#
+      description: null
+    - name: efcore-temporal-query
+      url: https://github.com/aircanada/efcore-temporal-query
+      language: C#
+      description: >-
+        LINQ extensions to Entity Framework Core 3.1 for SQL Server temporal
+        table querying.
+    - name: TextFieldParserStandard
+      url: https://github.com/aircanada/TextFieldParserStandard
+      language: C#
+      description: TextFieldParser port for .NET Standard.
+  published_packages:
+    - language: csharp
+      registry: nuget
+      name: GuidEx.Standard
+      version: 1.0.2
+      url: https://www.nuget.org/packages/GuidEx.Standard
+      install: dotnet add package GuidEx.Standard
+      project_url: https://github.com/AirCanada/GuidEx
+      authors: Gabriel Kenderessy
+      published: '2019-06-08'
+      total_downloads: 32002
+      official: true
+      api_client: false
+      note: >-
+        First-party by projectUrl (the Air Canada GitHub repo) and author, but a
+        GUID utility - it is not a client for any Air Canada API.
+    - language: csharp
+      registry: nuget
+      name: TextFieldParserStandard
+      version: 1.0.0
+      url: https://www.nuget.org/packages/TextFieldParserStandard
+      install: dotnet add package TextFieldParserStandard
+      project_url: null
+      authors: Dat Chung, Gabriel Kenderesy
+      license: MIT
+      published: '2020-06-15'
+      total_downloads: 1650910
+      official: true
+      api_client: false
+      note: >-
+        Same Air Canada authorship and the source repo lives in the Air Canada
+        org, but the NuGet listing carries no projectUrl, so first-party
+        attribution rests on the author and repo rather than on package metadata.
+
+third_party:
+  note: >-
+    Generic IATA NDC libraries, not Air Canada-specific and not endorsed by Air
+    Canada. They are recorded because they are the closest thing to a client
+    library a seller integrating Air Canada will find, and because a reader
+    should not mistake any of them for an Air Canada release. Each still requires
+    Air Canada-issued credentials, the ACNDC schema dialect and the Air Canada
+    endpoint paths - none of which these libraries know about.
+  libraries:
+    - language: javascript
+      registry: npm
+      name: ndc-client
+      url: https://www.npmjs.com/package/ndc-client
+      latest_version: 0.1.5
+      repository: https://github.com/iata-ndc/ndc-js-sdk
+      description: IATA NDC-compliant API wrapper
+      official: false
+    - language: go
+      registry: github
+      name: ndc-go-sdk
+      url: https://github.com/AirGateway/ndc-go-sdk
+      vendor: AirGateway
+      license: GPL-3.0
+      description: Golang SDK wrapping any NDC-compliant API
+      official: false
+    - language: javascript
+      registry: github
+      name: ndc-js-sdk
+      url: https://github.com/open-ndc/ndc-js-sdk
+      vendor: open-ndc
+      description: NDC JS SDK wrapper
+      official: false
+
+not_found:
+  npm_first_party: none
+  pypi: none
+  maven_central: none
+  rubygems: none
+  packagist: none
+  crates_io: none
+  go_modules: none
+  note: >-
+    No package named for Air Canada, aircanada or acndc was found in any of these
+    registries.
+
+cross_links:
+  conventions: conventions/air-canada-conventions.yml
+  authentication: authentication/air-canada-authentication.yml

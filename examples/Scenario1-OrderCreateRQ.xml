@@ -1,0 +1,138 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ACNDC="https://prod.services.ACNDC.net/ndcexchange/NDC/schema/v1">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <ACNDC:NDCMSG_Envelope>
+            <NDCMSG_Header>
+                <Sender>
+                    <SellerID>*******************</SellerID>
+                </Sender>
+                <Recipient>
+                    <Address>
+                        <Company>AC</Company>
+                    </Address>
+                </Recipient>
+                <SchemaType>NDC</SchemaType>
+                <SchemaVersion>YY.2017.2</SchemaVersion>
+            </NDCMSG_Header>
+            <NDCMSG_Body>
+                <NDCMSG_Payload>
+                    <![CDATA[
+
+<OrderCreateRQ Version="2017.2" xmlns="http://www.iata.org/IATA/EDIST/2017.2">
+	<Document>
+		<Name>ACNDC AGG NDCx 2.0</Name>
+		<ReferenceVersion>IATA NDC 17.2</ReferenceVersion>
+	</Document>
+	
+	<Party>
+		<Sender>
+			<TravelAgencySender>
+				<AgencyID>493</AgencyID>
+			</TravelAgencySender>
+		</Sender>
+	</Party>
+	<Parameters>
+		<Languages>
+			
+			<LanguageCode>en-CA</LanguageCode>
+		</Languages>
+	</Parameters>
+	<Query>
+		<Order>
+			<Offer OfferID="RBYTJB2S56-OfferID-1" Owner="AC" ResponseID="a14ab97f-e915-4120-8221-a67ff2ee6b9b-3518.0484803828995">
+				<TotalOfferPrice Code="USD">440.63</TotalOfferPrice>
+				<OfferItem OfferItemID="NFV0V1ZUZV-OfferItemID-1">
+					<PassengerRefs>Pax1</PassengerRefs>
+				</OfferItem>
+			</Offer>
+
+          <Offer OfferID="EK6PLK0DE1-STRS-OfferID-1" Owner="AC" ResponseID="eabbe3ca-727e-41cf-9726-15e7a302a6f9-8999.134440826556">
+                <OfferItem OfferItemID="MXONBRH073-ASPA-OfferItemID-2">
+                    <PassengerRefs>Pax1</PassengerRefs>
+                    <SeatSelection>
+                     <Row>18</Row>
+                    <Column>C</Column>
+                    </SeatSelection>
+                </OfferItem>
+            </Offer>
+
+		</Order>
+		<Payments>
+			<Payment>
+				<Type>CC</Type>
+				<Method>
+					<PaymentCard>
+						<CardType>1</CardType>
+						<CardCode>VI</CardCode>
+						<CardNumber>4012999999999999</CardNumber>
+						<SeriesCode>737</SeriesCode>
+						<CardHolderName>Test user</CardHolderName>
+						<CardHolderBillingAddress>
+							<Street>100 Avenue</Street>
+							<BuildingRoom>100</BuildingRoom>
+							<CityName>Montreal</CityName>
+							<StateProv>Quebec</StateProv>
+							<PostalCode>H0H0H0</PostalCode>
+							<CountryCode>CA</CountryCode>
+						</CardHolderBillingAddress>
+						<EffectiveExpireDate>
+							<Expiration>1025</Expiration>
+						</EffectiveExpireDate>
+					</PaymentCard>
+				</Method>
+				<Amount>440.63</Amount>
+			</Payment>
+		</Payments>
+		<DataLists>
+			<PassengerList>
+				<Passenger PassengerID="Pax1">
+					<PTC>ADT</PTC>
+					<Birthdate>1973-01-01</Birthdate>
+					<Individual>
+						<Gender>Male</Gender>
+						<NameTitle>Mr</NameTitle>
+						<GivenName>Test</GivenName>
+						<MiddleName>T</MiddleName>
+						<Surname>Account</Surname>
+						<SurnameSuffix>Ph.d</SurnameSuffix>
+					</Individual>
+					<ContactInfoRef>CONTACT_For_TravelerRefNumber1</ContactInfoRef>
+				</Passenger>
+			</PassengerList>
+			<ContactList>
+				<ContactInformation ContactID="CONTACT_For_TravelerRefNumber1">
+					<ContactType>1.PTT</ContactType>
+					<ContactProvided>
+						<EmailAddress>
+							<EmailAddressValue>mohammad.kasim@aircanada.ca</EmailAddressValue>
+                            <EmailAddressValue>mohammad.kasim@aircanada.ca</EmailAddressValue>
+						</EmailAddress>
+					</ContactProvided>
+					<ContactProvided>
+						<Phone>
+							<Label>8.PLT</Label>
+							<CountryDialingCode>1</CountryDialingCode>
+							<AreaCode>514</AreaCode>
+							<PhoneNumber>4225815</PhoneNumber>
+							<Extension>5815</Extension>
+						</Phone>
+					</ContactProvided>
+					<PostalAddress>
+						<CountrySubdivisionName>Quebec</CountrySubdivisionName>
+						<CountryCode>CA</CountryCode>
+						<CityName>Montreal</CityName>
+						<Street>100 Avenue</Street>
+						<PostalCode>H0H0H0</PostalCode>
+					</PostalAddress>
+				</ContactInformation>
+			</ContactList>
+		</DataLists>
+	</Query>
+</OrderCreateRQ>
+
+ ]]>
+</NDCMSG_Payload>
+</NDCMSG_Body>
+</ACNDC:NDCMSG_Envelope>
+</soapenv:Body>
+</soapenv:Envelope>

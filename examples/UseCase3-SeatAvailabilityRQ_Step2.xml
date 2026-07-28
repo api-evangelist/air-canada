@@ -1,0 +1,62 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="https://prod.services.atpco.net/ndcexchange/NDC/schema/v1">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <v1:NDCMSG_Envelope>
+            <NDCMSG_Header>
+                <Sender>
+                    <SellerID>*******************</SellerID>
+                </Sender>
+                <Recipient>
+                    <Address>
+                        <Company>AC</Company>
+                    </Address>
+                </Recipient>
+                <SchemaType>NDC</SchemaType>
+                <SchemaVersion>YY.2017.2</SchemaVersion>
+            </NDCMSG_Header>
+            <NDCMSG_Body>
+                <NDCMSG_Payload>
+                    <![CDATA[
+                    
+<SeatAvailabilityRQ Version="2017.2" xmlns="http://www.iata.org/IATA/EDIST/2017.2">
+	<PointOfSale>
+		<Location>
+			<CountryCode>CA</CountryCode>
+		</Location>
+	</PointOfSale>
+	<Document>
+		<Name>ATPCO AGG NDCx 2.0</Name>
+		<ReferenceVersion>IATA NDC 17.2</ReferenceVersion>
+	</Document>
+	<Party>
+	<Sender>
+		<TravelAgencySender>
+			<IATA_Number>0004230</IATA_Number>
+			<AgencyID>001</AgencyID>
+			<AgentUser>
+				<AgentUserID>ABCD</AgentUserID>
+			</AgentUser>
+		</TravelAgencySender>
+	</Sender>
+    </Party>
+	<Parameters>
+		<Languages>
+			<!-- <LanguageCode> Accepted values are en-CA or fr-CA (en-CA is the default value is omitted -->
+			<LanguageCode>en-CA</LanguageCode>
+		</Languages>
+	</Parameters>
+	<Query>
+		<Offer OfferID="STZUE2-OfferID-1" Owner="AC" ResponseID="b827e4e9-e01e-4f63-bc97-826f41460db7-8709.675726462732">
+            <SegmentID>OKBEWCUDXF-SEG1
+</SegmentID>
+		</Offer>
+	</Query>
+</SeatAvailabilityRQ>
+
+]]>
+
+</NDCMSG_Payload>
+</NDCMSG_Body>
+</v1:NDCMSG_Envelope>
+</soapenv:Body>
+</soapenv:Envelope>

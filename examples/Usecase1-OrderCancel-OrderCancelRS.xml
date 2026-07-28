@@ -1,0 +1,91 @@
+<OrderCancelRS xmlns="http://www.iata.org/IATA/EDIST/2017.2" EchoToken="ET" TimeStamp="2022-12-17T20:52:29.708-05:00" TransactionIdentifier="1" SequenceNmbr="1" Version="17.2">
+    <Document>
+        <Name>ACNDC AGG NDCx 2.0</Name>
+        <ReferenceVersion>IATA NDC 17.2</ReferenceVersion>
+    </Document>
+    <Success/>
+    <Response>
+        <OrderReference>4AXKOX</OrderReference>
+        <TicketDocInfos>
+            <TicketDocInfo>
+                <TicketDocument>
+                    <TicketDocNbr>0142173534107</TicketDocNbr>
+                    <Type>702</Type>
+                    <NumberofBooklets>1</NumberofBooklets>
+                    <CouponInfo>
+                        <CouponNumber>1</CouponNumber>
+                        <Status>FHE</Status>
+                        <CurrentAirlineInfo ObjectKey="PCPMDPWRP0-1">
+                            <Departure>
+                                <AirportCode>YUL</AirportCode>
+                                <Date>2023-12-13</Date>
+                                <Time>00:00</Time>
+                            </Departure>
+                            <MarketingCarrier>
+                                <AirlineID>1A</AirlineID>
+                                <FlightNumber>OPEN</FlightNumber>
+                            </MarketingCarrier>
+                            <Status>HK</Status>
+                        </CurrentAirlineInfo>
+                    </CouponInfo>
+                    <ReportingType>Airline</ReportingType>
+                </TicketDocument>
+            </TicketDocInfo>
+        </TicketDocInfos>
+    </Response>
+    <DataLists>
+        <PassengerList>
+            <Passenger PassengerID="BA7Z4X3KBX-TravelerRefNumber1">
+                <PTC>ADT</PTC>
+                <Individual>
+                    <Birthdate>1973-01-01</Birthdate>
+                    <Gender>Male</Gender>
+                    <GivenName>TEST</GivenName>
+                    <Surname>ACCOUNT</Surname>
+                </Individual>
+                <IdentityDocument>
+                    <IdentityDocumentNumber/>
+                    <IdentityDocumentType/>
+                    <Birthdate>1973-01-01</Birthdate>
+                    <Gender>Male</Gender>
+                    <GivenName>TEST</GivenName>
+                    <Surname>ACCOUNT</Surname>
+                </IdentityDocument>
+                <ContactInfoRef>VO29O61LOO-CID-1</ContactInfoRef>
+                <InfantRef>false</InfantRef>
+            </Passenger>
+        </PassengerList>
+        <ContactList>
+            <ContactInformation ContactID="VO29O61LOO-CID-1">
+                <PostalAddress>
+                    <Street>100 AVENUE</Street>
+                    <PostalCode>H0H0H0</PostalCode>
+                    <CityName>MONTREAL</CityName>
+                    <CountrySubdivisionName>QUEBEC</CountrySubdivisionName>
+                    <CountryCode>CA</CountryCode>
+                </PostalAddress>
+                <ContactProvided>
+                    <EmailAddress>
+                        <EmailAddressValue>[MOHAMMAD.KASIM@AIRCANADA.CA, MOHAMMAD.KASIM@AIRCANADA.CA]</EmailAddressValue>
+                    </EmailAddress>
+                </ContactProvided>
+                <ContactProvided>
+                    <EmailAddress>
+                        <EmailAddressValue>MOHAMMAD.KASIM@AIRCANADA.CA</EmailAddressValue>
+                    </EmailAddress>
+                </ContactProvided>
+                <ContactProvided>
+                    <EmailAddress>
+                        <EmailAddressValue>E+MOHAMMAD.KASIM@AIRCANADA.CA/EN/F</EmailAddressValue>
+                    </EmailAddress>
+                </ContactProvided>
+                <ContactProvided>
+                    <Phone>
+                        <Label>5</Label>
+                        <PhoneNumber>1-587-4225815</PhoneNumber>
+                    </Phone>
+                </ContactProvided>
+            </ContactInformation>
+        </ContactList>
+    </DataLists>
+</OrderCancelRS>

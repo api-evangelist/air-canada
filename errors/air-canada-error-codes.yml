@@ -1,0 +1,684 @@
+generated: '2026-07-28'
+method: searched
+source: >-
+  https://ndc.aircanada.com/api/documentation/ndcapis - the per-service "Error Codes"
+  pages of the Air Canada NDC developer portal. The portal is a React SPA that serves
+  its documentation from the client bundle
+  (https://ndc.aircanada.com/static/js/main.c265d76f.js); the tables below were read
+  from that published bundle verbatim on 2026-07-28. Nothing is inferred.
+format: iata-ndc-edist-error-element
+description: >-
+  Air Canada NDC does not use HTTP problem details. Business and technical failures are
+  returned inside the IATA NDC 17.2 message itself, in the Errors element (a collection
+  of errors that occurred during the processing of a message), carrying a numeric Code
+  and a text message. Codes are NOT namespaced per service - the same numeric code
+  appears on several message services, and the low-numbered 1xxx-3xxxx codes are
+  Amadeus host errors surfaced through the NDC layer (the record-locator errors name
+  the 1A system explicitly), while the 89xxx/99xxx/199xxx codes are Air Canada NDC
+  platform codes.
+envelope:
+  element: Errors/Error
+  attributes: [Code, ShortText, Type, Owner]
+  note: >-
+    Errors are carried in the NDC response payload (inside the CDATA IATA_NDC_Message),
+    not in the HTTP status line. A missing or invalid apikey is the documented
+    exception - Air Canada states that produces an HTTP 400 Bad Request.
+ranges:
+  - range: 1000-36999
+    origin: Amadeus (1A) host / PNR, ticketing and EMD errors surfaced through NDC
+  - range: 89000-89999
+    origin: Air Canada NDC platform - fare/offer warnings, several documented as ignorable
+  - range: 99000-99999
+    origin: Air Canada NDC platform - offer, order and transformation errors
+  - range: 199000-199999
+    origin: Air Canada NDC platform - seller authentication / accreditation errors
+service_pages:
+  - service: AirShopping
+    url: https://ndc.aircanada.com/api/documentation/airshopping/errorcodes
+  - service: OfferPrice
+    url: https://ndc.aircanada.com/api/documentation/offerprice/errorcodes
+  - service: ServiceList
+    url: https://ndc.aircanada.com/api/documentation/servicelist/errorcodes
+  - service: SeatAvailability
+    url: https://ndc.aircanada.com/api/documentation/seatavailability/errorcodes
+  - service: OrderCreate
+    url: https://ndc.aircanada.com/api/documentation/ordercreate/errorcodes
+  - service: OrderRetrieve
+    url: https://ndc.aircanada.com/api/documentation/orderretrieve/errorcodes
+  - service: OrderReshop
+    url: https://ndc.aircanada.com/api/documentation/orderreshop/errorcodes
+  - service: OrderCancel
+    url: https://ndc.aircanada.com/api/documentation/ordercancel/errorcodes
+counts:
+  distinct_code_message_pairs: 297
+  distinct_codes: 289
+  payment_authorization_codes: 141
+  non_payment_codes: 156
+  note: >-
+    The payment-authorization subset is catalogued separately in
+    errors/air-canada-decline-codes.yml.
+errors:
+  - code: 100
+    message: "Invalid Place of Departure Code."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 100
+    message: "SEATMAP NOT AVAILABLE, REQUEST SEAT AT CHECK-IN"
+    services: [SeatAvailability]
+    sections: ["Seat Availability"]
+  - code: 101
+    message: "Invalid Place of Destination Code."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 102
+    message: "Invalid Departure Date."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 102
+    message: "UNABLE TO PROCESS"
+    services: [SeatAvailability]
+    sections: ["Seat Availability"]
+  - code: 104
+    message: "Invalid Reservation Booking Designator."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 105
+    message: "Invalid Reservation Booking Modifier."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 107
+    message: "Invalid Airline Designator/Vendor Supplier."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 108
+    message: "SC Check fails"
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes"]
+  - code: 109
+    message: "Invalid Country Code."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 114
+    message: "Invalid Flight Number."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 118
+    message: "System Unable to Process."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 121
+    message: "Invalid Number in Party."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 123
+    message: "E-ticket(s) not eligible to ATC"
+    services: [ServiceList]
+    sections: ["Other Possible Error Codes"]
+  - code: 129
+    message: "No PNR Match Found."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 132
+    message: "Exceeds Maximum Number of Segments."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 143
+    message: "Invalid or Ineligible Passenger Type Code."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 144
+    message: "Invalid Requester Identification."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 145
+    message: "Number in Party Exceeds Maximum."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 146
+    message: "CHECK - CALL SUPERVISOR"
+    services: [OrderCancel]
+    sections: ["Cancel Request Validation - Error Codes"]
+  - code: 149
+    message: "Surname too Long."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 150
+    message: "Given Name/Title too Long."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 151
+    message: "Surname Mandatory."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 152
+    message: "Given Name/Title Mandatory."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 153
+    message: "Name Mismatch."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 154
+    message: "Message Function Invalid."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 155
+    message: "Message Function Not Supported"
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 200
+    message: "Advance Seat Selection Not Available for this Flight."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 236
+    message: "SEATMAP NOT AVAILABLE AS FLIGHT OPERATED BY ANOTHER CARRIER"
+    services: [SeatAvailability]
+    sections: ["Seat Availability"]
+  - code: 260
+    message: "Invalid Frequent Traveler Number."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 301
+    message: "Application Suspended."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 304
+    message: "System Temporarily Unavailable."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 317
+    message: "Contact element (phone and/or address) invalid."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 327
+    message: "Invalid Data in Itinerary"
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 348
+    message: "Invalid flight status."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 350
+    message: "Flight under airport control."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 364
+    message: "Invalid ticket number."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 367
+    message: "Invalid OnD"
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 367
+    message: "No active itinerary."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 368
+    message: "Not authorized."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 381
+    message: "Record locator required."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 384
+    message: "Multiple Name Matches."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 386
+    message: "MCT Check fails"
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 391
+    message: "PNR contains non air segments."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 393
+    message: "Block sell restricted-request block name change."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 394
+    message: "Segment not valid for electronic ticketing."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 395
+    message: "Already ticketed."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 396
+    message: "Invalid ticket/coupon status."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 397
+    message: "Maximum ticket limit reached."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 398
+    message: "Advance Boarding Pass already exists."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 399
+    message: "Duplicate Name."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 400
+    message: "Duplicate ticket number."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 401
+    message: "Document number not found."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 408
+    message: "No More Data Available."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 418
+    message: "Flight has Departed."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 437
+    message: "Flight Segment not found"
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 440
+    message: "Void request on already voided or printed coupons."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 448
+    message: "Contact Service Provider directly."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 450
+    message: "All electronic ticket coupons have been printed."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 451
+    message: "Only individual seat request allowed at this time."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 453
+    message: "Bulk fare(s) not supported."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 461
+    message: "Ineligible for Requested Action -Group PNR not allowed."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 464
+    message: "Unable to ticket due to fare calculation too large."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 466
+    message: "Form of payment missing or invalid for electronic ticketing."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 467
+    message: "Flight segment not found in carrier's PNR."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 600
+    message: "PRICING ERROR - PRICING ON MULTI-LEG FLIGHTS IS NOT ALLOWED"
+    services: [SeatAvailability]
+    sections: ["Seat Availability"]
+  - code: 601
+    message: "ERROR DURING PRICING PROCESS"
+    services: [SeatAvailability]
+    sections: ["Seat Availability"]
+  - code: 602
+    message: "ERROR DURING PRICING PROCESS"
+    services: [SeatAvailability]
+    sections: ["Seat Availability"]
+  - code: 603
+    message: "NOT ALL CHARGEABLE SEATS HAVE BEEN PRICED"
+    services: [SeatAvailability]
+    sections: ["Seat Availability"]
+  - code: 604
+    message: "CHARGEABLE SEATS HAVE NOT BEEN PRICED (NO MATCHING)"
+    services: [SeatAvailability]
+    sections: ["Seat Availability"]
+  - code: 605
+    message: "PRICING ERROR + error number returned by pricing + ' - ' + Text message returned by pricing"
+    services: [SeatAvailability]
+    sections: ["Seat Availability"]
+  - code: 606
+    message: "SEATMAP WITH PRICE NOT SUPPORTED - 9 PASSENGERS MAX"
+    services: [SeatAvailability]
+    sections: ["Seat Availability"]
+  - code: 620
+    message: "Flight Not Operational"
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 630
+    message: "Date is outside the system range"
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 704
+    message: "Invalid Tour Identification."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 705
+    message: "Invalid or missing Coupon/Booklet Number."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 706
+    message: "Invalid Certificate Number."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 707
+    message: "Invalid or missing baggage details."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 708
+    message: "Incorrect credit card information."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 709
+    message: "Invalid and/or missing frequent traveler information."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 710
+    message: "Free text qualifier error."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 711
+    message: "Invalid Fare Calculation Status Code."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 712
+    message: "Missing and/or invalid monetary information."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 713
+    message: "Invalid Price Type Qualifier."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 714
+    message: "Missing and/or invalid Date of Issue."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 715
+    message: "Invalid fare basis."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 716
+    message: "Missing and/or invalid reservation control information."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 717
+    message: "Missing and/or invalid travel agent and/or system identification."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 718
+    message: "Invalid document type."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 744
+    message: "Missing or invalid airport check-in identification (FOID)."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 759
+    message: "Multiple forms of payment not allowed."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 793
+    message: "Fare/tax amount too long."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 817
+    message: "Invalid Airline Code"
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 901
+    message: "Communications Line Unavailable."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 911
+    message: "Unable to call OnD Service"
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 911
+    message: "Unable to process - system error."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 912
+    message: "Incomplete message - data missing in query."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 913
+    message: "Item/data not found or data not existing in processing host."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 918
+    message: "CT Check fails"
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes"]
+  - code: 919
+    message: "Itinerary contains a Backtracking"
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 953
+    message: "Unable to process - Edifact error."
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 1112
+    message: "INVALID ITINERARY"
+    services: [ServiceList]
+    sections: ["Other Possible Error Codes"]
+  - code: 1533
+    message: "INVALID OFFICE IDENTIFICATION CODE"
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 1914
+    message: "OFFICE RESTRICTED"
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Cancel Request Validation - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 1932
+    message: "NO ELEMENT FOUND"
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 1958
+    message: "AXR DOES NOT EXIST"
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 1978
+    message: "RESTRICTED PRIOR TO EOT"
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 2241
+    message: "ACCESS DENIED"
+    services: [OrderCancel]
+    sections: ["Cancel Request Validation - Error Codes"]
+  - code: 2367
+    message: "NO OP ON GIVEN DATE"
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 2574
+    message: "AIRLINE CODE REQUIRED"
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 3608
+    message: "CHECK BOARDING OR DISEMBARKATION POINT"
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 7811
+    message: "INVALID CARRIER CODE"
+    services: [ServiceList]
+    sections: ["Other Possible Error Codes"]
+  - code: 9305
+    message: "NO NAME OR SECURED"
+    services: [OrderCancel, OrderCreate, OrderRetrieve]
+    sections: ["Cancel & Refund - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "OrderView - Error Codes", "Retrieve PNR Errors"]
+  - code: 16008
+    message: "NO FARE FOR BOOKING CODE-TRY OTHER PRICING OPTIONS"
+    services: [ServiceList]
+    sections: ["Other Possible Error Codes"]
+  - code: 21706
+    message: "FARE CALCULATION NOT VALID FOR ATC TRANSACTION"
+    services: [OrderCancel]
+    sections: ["Cancel Request Validation - Error Codes"]
+  - code: 23244
+    message: "MULTIPLE REFERENCE TO A TICKET/SEGMENT"
+    services: [OrderCancel]
+    sections: ["Cancel Request Validation - Error Codes"]
+  - code: 23803
+    message: "MIXED TICKET TYPES NOT ALLOWED"
+    services: [OrderCancel]
+    sections: ["Cancel Request Validation - Error Codes"]
+  - code: 25677
+    message: "ATC REFUND NOT AUTHORIZED"
+    services: [OrderCancel]
+    sections: ["Cancel Request Validation - Error Codes"]
+  - code: 25679
+    message: "INVALID COUPON STATUS FOR ATC TRANSACTION"
+    services: [OrderCancel]
+    sections: ["Cancel Request Validation - Error Codes"]
+  - code: 25680
+    message: "OPTION NOT COMBINABLE WITH ATC REFUND"
+    services: [OrderCancel]
+    sections: ["Cancel Request Validation - Error Codes"]
+  - code: 25715
+    message: "FARE SERVER TEMPORARY DOWN - PLEASE RETRY IN 2MIN"
+    services: [OrderCancel]
+    sections: ["Cancel Request Validation - Error Codes"]
+  - code: 25846
+    message: "INVALID TICKET DATA"
+    services: [OrderCancel]
+    sections: ["Cancel Request Validation - Error Codes"]
+  - code: 27520
+    message: "TRANSACTION NOT ALLOWED/REFUND MANUALLY"
+    services: [OrderCancel]
+    sections: ["Cancel Request Validation - Error Codes"]
+  - code: 31707
+    message: "MAXIMUM NUMBER OF SEGMENTS EXCEEDED"
+    services: [ServiceList]
+    sections: ["Other Possible Error Codes"]
+  - code: 32960
+    message: "EXCHANGED E-TICKET NOT FOUND"
+    services: [OrderCancel]
+    sections: ["Cancel Request Validation - Error Codes"]
+  - code: 32961
+    message: "ATC REFUND AFTER MULTIPLE INVOL. EXCHANGES NOT SUPPORTED"
+    services: [OrderCancel]
+    sections: ["Cancel Request Validation - Error Codes"]
+  - code: 32992
+    message: "REJECTED-SEVERAL REISSUES HAVE BEEN PERFORMED ON EXCHANGED ETKT"
+    services: [OrderCancel]
+    sections: ["Cancel Request Validation - Error Codes"]
+  - code: 32993
+    message: "REFUND NOT POSSIBLE AFTER INVOLUNTARY EXCH. OF MULTIPLE TICKET"
+    services: [OrderCancel]
+    sections: ["Cancel Request Validation - Error Codes"]
+  - code: 36954
+    message: "MISSING TICKET DATA FOR ATC EXCHANGE, REISSUE MANUALLY"
+    services: [ServiceList]
+    sections: ["Other Possible Error Codes"]
+  - code: 89975
+    message: "The validation of OfficeID and credentials has resulted in failure and hence, cannot proceed with the shopping search"
+    services: [AirShopping, OrderReshop]
+    sections: ["OrderReshop - Error Codes", "Shopping Errors"]
+  - code: 89981
+    message: "Further processing cannot be done, as more than one GUID for fare has been found to be valid"
+    services: [AirShopping, OrderReshop, SeatAvailability]
+    sections: ["OrderReshop - Error Codes", "Seat Availability", "Shopping Errors"]
+  - code: 89987
+    message: "No Ancillary AAMID"
+    services: [AirShopping]
+    sections: ["Warnings to be ignored"]
+  - code: 89989
+    message: "No Account Code found for CCN/CSN"
+    services: [AirShopping]
+    sections: ["Warnings to be ignored"]
+  - code: 89990
+    message: "No Fare AMMID was found"
+    services: [AirShopping]
+    sections: ["Warnings to be ignored"]
+  - code: 89991
+    message: "No Fare offer was found"
+    services: [AirShopping]
+    sections: ["Warnings to be ignored"]
+  - code: 89992
+    message: "No Fare enrollment offer was found"
+    services: [AirShopping]
+    sections: ["Warnings to be ignored"]
+  - code: 89993
+    message: "Fare GUID is invalid or was not found"
+    services: [AirShopping]
+    sections: ["Warnings to be ignored"]
+  - code: 89997
+    message: "Ancillary services are present on the flights being modified"
+    services: [ServiceList]
+    sections: ["Other Possible Error Codes"]
+  - code: 99476
+    message: "Internal Transformation error occurred"
+    services: [SeatAvailability]
+    sections: ["Seat Availability"]
+  - code: 99956
+    message: "Request can not progress due to technical or business error"
+    services: [AirShopping, OrderReshop, SeatAvailability]
+    sections: ["OrderReshop - Error Codes", "Seat Availability", "Shopping Errors"]
+  - code: 99957
+    message: "Request is invalid since one or more offers is already locked"
+    services: [AirShopping, OrderReshop, SeatAvailability]
+    sections: ["OrderReshop - Error Codes", "Seat Availability", "Shopping Errors"]
+  - code: 99959
+    message: "PN is not valid"
+    services: [AirShopping, OrderReshop, SeatAvailability]
+    sections: ["OrderReshop - Error Codes", "Seat Availability", "Shopping Errors"]
+  - code: 99960
+    message: "Offer is already locked"
+    services: [AirShopping, OrderReshop, SeatAvailability]
+    sections: ["OrderReshop - Error Codes", "Seat Availability", "Shopping Errors"]
+  - code: 99965
+    message: "Fare GUID is not locked"
+    services: [AirShopping, OrderReshop, SeatAvailability]
+    sections: ["OrderReshop - Error Codes", "Seat Availability", "Shopping Errors"]
+  - code: 99970
+    message: "No Fare offer was found"
+    services: [AirShopping, OrderReshop, SeatAvailability]
+    sections: ["OrderReshop - Error Codes", "Seat Availability", "Shopping Errors"]
+  - code: 99972
+    message: "Fare GUID is invalid or was not found"
+    services: [AirShopping, OrderReshop, SeatAvailability]
+    sections: ["OrderReshop - Error Codes", "Seat Availability", "Shopping Errors"]
+  - code: 99973
+    message: "Ancillary services are present on the flights being modified"
+    services: [ServiceList]
+    sections: ["Other Possible Error Codes"]
+  - code: 99973
+    message: "The NTP promo code in RQ is found to be invalid, hence pricing RQ cannot be processed further"
+    services: [OfferPrice, OrderReshop]
+    sections: ["Offer Price Errors", "OrderReshop - Price"]
+  - code: 99974
+    message: "Missing 'ac-channel' in the header, so promo codes could not be validated and processed further"
+    services: [AirShopping, OrderReshop, SeatAvailability]
+    sections: ["OrderReshop - Error Codes", "Seat Availability", "Shopping Errors"]
+  - code: 99975
+    message: "Multiple Fare NTP promo codes are found to be valid, hence pricing RQ cannot be processed further"
+    services: [AirShopping, OrderReshop, SeatAvailability]
+    sections: ["OrderReshop - Error Codes", "Seat Availability", "Shopping Errors"]
+  - code: 99976
+    message: "Internal Transformation error occurred"
+    services: [OrderCancel, OrderCreate, OrderRetrieve]
+    sections: ["Cancel & Refund - Error Codes", "Cancel Request Validation - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "OrderView - Error Codes", "Retrieve PNR Errors"]
+  - code: 99977
+    message: "Missing Traveler details"
+    services: [ServiceList]
+    sections: ["ServiceList Errors"]
+  - code: 99983
+    message: "NO MATCH FOR RECORD LOCATOR - NAME"
+    services: [OrderCancel, OrderCreate]
+    sections: ["Cancel & Refund - Error Codes", "Cancel Request Validation - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "Retrieve PNR Errors"]
+  - code: 99990
+    message: "Unable to determine 1A record locator"
+    services: [OrderCancel, OrderCreate, OrderRetrieve]
+    sections: ["Cancel & Refund - Error Codes", "Cancel Request Validation - Error Codes", "Create PNR - Error Codes", "Issuing Documents - Error Codes", "OrderView - Error Codes", "Retrieve PNR Errors"]
+  - code: 199994
+    message: "CompanyShortName is not supported"
+    services: [AirShopping, OfferPrice, OrderCancel, OrderCreate, OrderReshop, OrderRetrieve, SeatAvailability, ServiceList]
+    sections: ["Agency Authentication", "Agency Authentication Errors", "Authenticate - Error Codes", "Authentication - Error Codes", "Authentication Errors"]
+  - code: 199999
+    message: "IATA not allowed"
+    services: [AirShopping, OfferPrice, OrderCancel, OrderCreate, OrderReshop, OrderRetrieve, SeatAvailability, ServiceList]
+    sections: ["Agency Authentication", "Agency Authentication Errors", "Authenticate - Error Codes", "Authentication - Error Codes", "Authentication Errors"]

@@ -1,0 +1,74 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="https://prod.services.ACNDC.net/ndcexchange/NDC/schema/v1">
+	<soapenv:Header/>
+	<soapenv:Body>
+		<v1:NDCMSG_Envelope>
+			<NDCMSG_Header>
+				<Sender>
+					<SellerID>*******************</SellerID>
+				</Sender>
+				<Recipient>
+					<Address>
+						<Company>AC</Company>
+					</Address>
+				</Recipient>
+				<SchemaType>NDC</SchemaType>
+				<SchemaVersion>YY.2017.2</SchemaVersion>
+			</NDCMSG_Header>
+			<NDCMSG_Body>
+				<NDCMSG_Payload>
+<![CDATA[
+
+<AirShoppingRQ Version="2017.2" xmlns="http://www.iata.org/IATA/EDIST/2017.2">
+	<!-- //<PointOfSale> is mandatory for consumer flows (no IATA number provided) -->
+	<PointOfSale>
+		<Location>
+			<CountryCode>CA</CountryCode>
+		</Location>
+	</PointOfSale>
+	<Document>
+		<Name>ACNDC AGG NDCx 2.0</Name>
+		<ReferenceVersion>IATA NDC 17.2</ReferenceVersion>
+	</Document>
+	<Party>
+		<Sender>
+			<TravelAgencySender>
+				<AgencyID>493</AgencyID>
+			</TravelAgencySender>
+		</Sender>
+	</Party>
+	<Parameters>
+		<Languages>
+			
+			<LanguageCode>en-CA</LanguageCode>
+		</Languages>
+	</Parameters>
+	<CoreQuery>
+		
+		
+		<OriginDestinations>
+			<OriginDestination>
+				<Departure>
+					<AirportCode>YUL</AirportCode>
+					<Date>2023-06-05</Date>
+				</Departure>
+				<Arrival>
+					<AirportCode>YVR</AirportCode>
+				</Arrival>
+			</OriginDestination>
+		</OriginDestinations>
+	</CoreQuery>
+	
+	<DataLists>
+		<PassengerList>
+			<Passenger PassengerID="Pax1">
+				<PTC>ADT</PTC>
+			</Passenger>
+		</PassengerList>
+	</DataLists>
+</AirShoppingRQ>
+
+]]></NDCMSG_Payload>
+			</NDCMSG_Body>
+		</v1:NDCMSG_Envelope>
+	</soapenv:Body>
+</soapenv:Envelope>

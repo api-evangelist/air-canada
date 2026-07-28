@@ -1,0 +1,64 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="https://prod.services.atpco.net/ndcexchange/NDC/schema/v1">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <v1:NDCMSG_Envelope>
+            <NDCMSG_Header>
+                <Sender>
+                    <SellerID>*******************</SellerID>
+                </Sender>
+                <Recipient>
+                    <Address>
+                        <Company>AC</Company>
+                    </Address>
+                </Recipient>
+                <SchemaType>NDC</SchemaType>
+                <SchemaVersion>YY.2017.2</SchemaVersion>
+            </NDCMSG_Header>
+            <NDCMSG_Body>
+                <NDCMSG_Payload>
+<![CDATA[
+
+<ServiceListRQ Version="17.2" xmlns="http://www.iata.org/IATA/EDIST/2017.2">
+	<Document>
+		<Name>ATPCO AGG NDCx 2.0</Name>
+		<ReferenceVersion>IATA NDC 17.2</ReferenceVersion>
+	</Document>
+	<Party>
+		<Sender>
+			<TravelAgencySender>
+				<IATA_Number>0004561</IATA_Number>
+				<AgencyID>001</AgencyID>
+				<AgentUser>
+					<AgentUserID>ABCD</AgentUserID>
+				</AgentUser>
+			</TravelAgencySender>
+		</Sender>
+	</Party>
+	<Parameters>
+		<Languages>
+			<LanguageCode>en-CA</LanguageCode>
+		</Languages>
+	</Parameters>
+	<ShoppingResponseID>
+		<ResponseID>8a225ea0-0088-4fa4-b151-7505d09a4b0c-6872.889750235254</ResponseID>
+	</ShoppingResponseID>
+	<Query>
+		<Offers>
+			<Offer>
+				<OfferID Owner="AC">ZNO4NF-OfferID-1</OfferID>
+				<OfferItemIDs>
+					<OfferItemID Owner="AC">DHODF4MHON-OfferItemID-1</OfferItemID>
+					<OfferItemID Owner="AC">EFK4VWRKL9-OfferItemID-2</OfferItemID>
+				</OfferItemIDs>
+			</Offer>
+		</Offers>
+	</Query>
+</ServiceListRQ>
+
+
+]]>
+</NDCMSG_Payload>
+</NDCMSG_Body>
+</v1:NDCMSG_Envelope>
+</soapenv:Body>
+</soapenv:Envelope>

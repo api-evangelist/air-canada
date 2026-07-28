@@ -1,0 +1,98 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="https://prod.services.atpco.net/ndcexchange/NDC/schema/v1">
+ <soapenv:Header/>
+ <soapenv:Body>
+ <v1:NDCMSG_Envelope>
+ <NDCMSG_Header>
+ <Sender>
+ <SellerID>*******************</SellerID>
+ </Sender>
+ <Recipient>
+ <Address>
+ <Company>AC</Company>
+ </Address>
+ </Recipient>
+ <SchemaType>NDC</SchemaType>
+ <SchemaVersion>YY.2017.2</SchemaVersion>
+ </NDCMSG_Header>
+<NDCMSG_Body>
+ <NDCMSG_Payload>
+ <![CDATA[
+
+<OfferPriceRQ EchoToken="12345" PrimaryLangID="en-us" SequenceNmbr="1" Target="Production" TimeStamp="2011-04-28T12:48:00Z" TransactionIdentifier="daadf3d1d87245a1871c64fdbba9b235" Version="17.2" xmlns="http://www.iata.org/IATA/EDIST/2017.2">
+ <PointOfSale>
+ <Location>
+ <CountryCode>US</CountryCode>
+ </Location>
+ </PointOfSale>
+ <Document>
+ <Name>ATPCO AGG NDCx 2.0</Name>
+ <ReferenceVersion>IATA NDC 17.2</ReferenceVersion>
+ </Document>
+ 
+ <Party>
+ <Sender>
+<TravelAgencySender> 
+<IATA_Number></IATA_Number>
+<AgencyID></AgencyID>
+ </TravelAgencySender>
+ </Sender>
+ </Party>
+ 
+ <Parameters>
+ <Languages>
+ <LanguageCode>en-CA</LanguageCode>
+ </Languages>
+ 
+ </Parameters>
+ <Query>
+ <!--Price outbound -->
+<Offer OfferID="SGCNW7-OfferID-1" Owner="AC" ResponseID="584d1590-418b-499e-a7f9-c46825d99f12-570.0609806015633">
+<OfferItem OfferItemID="YBBHJXUICG-OfferItemID-1"/>
+<OfferItem OfferItemID="SKYOGCAQ60-OfferItemID-2"/>
+</Offer>
+
+<!--Price inbound -->
+<Offer OfferID="OHYNNG-OfferID-1" Owner="AC" ResponseID="584d1590-418b-499e-a7f9-c46825d99f12-570.0609806015633">
+<OfferItem OfferItemID="YVU6INEQ5A-OfferItemID-1"/>
+<OfferItem OfferItemID="NU2BDVC4HS-OfferItemID-2"/>
+</Offer>
+
+<!-- Seat Offer outbound -->
+<Offer OfferID="URSYK7Y6QD-STRS-OfferID-1" Owner="AC" ResponseID="dece0ad1-f456-425a-99fa-dd6aa9a9a391-6875.631404720247">
+<OfferItem OfferItemID="MMFF6IB3B5-ASPW-OfferItemID-1">
+<PassengerRefs>Pax01</PassengerRefs>
+</OfferItem>
+</Offer>
+
+<!-- Seat Offer Inbound -->
+<Offer OfferID="XNLP4Y3JCN-STRS-OfferID-1" Owner="AC" ResponseID="4f240693-6a46-4996-856e-4fd9eb3a1aab-4933.3702934705425">
+<OfferItem OfferItemID="CUCUKLB1M7-ASPW-OfferItemID-1">
+<PassengerRefs>Pax01</PassengerRefs>
+</OfferItem>
+</Offer>
+
+</Query>
+ 
+<DataLists>
+<PassengerList>
+	<Passenger PassengerID="Pax01">
+    <PTC>ADT</PTC>
+	</Passenger>
+</PassengerList>
+
+<PassengerList>
+	<Passenger PassengerID="Pax02">
+    <PTC>INF</PTC>
+	</Passenger>
+</PassengerList>
+
+
+</DataLists>
+</OfferPriceRQ>
+ 
+]]>
+</NDCMSG_Payload>
+</NDCMSG_Body>
+</v1:NDCMSG_Envelope>
+</soapenv:Body>
+</soapenv:Envelope>

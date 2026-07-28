@@ -1,0 +1,207 @@
+generated: '2026-07-28'
+method: searched
+source: >-
+  https://ndc.aircanada.com/api/gettingstarted/apisetup and
+  https://ndc.aircanada.com/api/gettingstarted/apisorchestration - the
+  cross-cutting request/response semantics that apply to every Air Canada NDC
+  message service, read verbatim from the published developer portal.
+description: >-
+  How the Air Canada NDC API behaves across every message service: transport,
+  envelope, authentication style, request tracing, versioning, error envelope,
+  the mandatory message-orchestration order, and what the platform does NOT
+  offer. This is a SOAP/XML interface built on IATA NDC 17.2 (EDIST), not a REST
+  API - several conventions the rating normally looks for (idempotency keys,
+  cursor pagination, RFC 9457 problem details, rate-limit headers) genuinely do
+  not exist here, and that is recorded as an absence rather than invented.
+
+api_style: SOAP 1.1 envelope over HTTPS POST, XML request and response
+spec_standard: IATA NDC 17.2 (EDIST), namespace http://www.iata.org/IATA/EDIST/2017.2
+machine_readable_contract:
+  openapi: false
+  wsdl: false
+  xsd_download: false
+  note: >-
+    Air Canada documents the message elements in HTML tables and ships sample
+    XML, but does not redistribute the IATA EDIST schemas. See review.yml for the
+    evidence that it runs an Air Canada-specific fork of them
+    (NDC2017.2-schemas-edist-ACNDC).
+
+base_urls:
+  production: https://ndcpartners.aircanada.com/
+  sandbox_gold: https://gold-ndcpartners.aircanada.com/
+  test_tpz: https://tpz-ndcpartners.aircanada.com/
+endpoints:
+  note: >-
+    Verbatim from the API Setup page. Two gateways: ipg-gw for shopping and
+    servicing, aps-gw for the two messages that carry form of payment ("Uses PCI
+    gateway").
+  production:
+    - {service: AirShopping,      path: ipg-gw/ndc/17.2/v1/AirShopping}
+    - {service: OfferPrice,       path: ipg-gw/ndc/17.2/v1/OfferPrice}
+    - {service: ServiceList,      path: ipg-gw/ndc/17.2/v1/ServiceList}
+    - {service: SeatAvailability, path: ipg-gw/ndc/17.2/v1/SeatAvailability}
+    - {service: OrderCreate,      path: aps-gw/ndc/17.2/v1/OrderCreate, gateway: PCI}
+    - {service: OrderRetrieve,    path: ipg-gw/ndc/17.2/v1/OrderRetrieve}
+    - {service: OrderReshop,      path: ipg-gw/ndc/17.2/v1/OrderReshop}
+    - {service: OrderCancel,      path: ipg-gw/ndc/17.2/v1/OrderCancel}
+    - {service: OrderChange,      path: aps-gw/ndc/17.2/v1/OrderChange, gateway: PCI}
+
+authentication:
+  scheme: apikey HTTP header, issued by Air Canada
+  in_payload: SellerID in the NDC envelope; IATA_Number + AgencyID for agency flows
+  failure: missing/invalid apikey returns HTTP 400 Bad Request
+  detail: authentication/air-canada-authentication.yml
+
+request_headers:
+  - name: apikey
+    required: true
+    description: Air Canada-issued authorization key.
+  - name: Content-Type
+    required: true
+    value: application/xml
+  - name: Accept
+    value: "*/*"
+  - name: Accept-Encoding
+    value: gzip, deflate, br
+  - name: orc-debug
+    value: "true"
+    description: >-
+      Turns on tracing. Air Canada asks sellers to set it so the response carries
+      a transaction id that support can follow.
+  - name: TP-Proxy-Key
+    required: false
+    status: retired
+  - name: Tx-http-timeout
+    required: false
+    status: retired
+    former_value: "120"
+
+envelope:
+  soap:
+    element: NDCMSG_Envelope
+    header:
+      SchemaType: NDC
+      SchemaVersion: YY.2017.2
+      Sender.SellerID: seller key
+      Recipient.Address.Company: AC
+    body: NDCMSG_Body/NDCMSG_Payload wrapping the IATA NDC message in a CDATA section
+    note: >-
+      The soapenv:Header is documented as "Empty, used for schema compatibility".
+      The published samples carry the aggregation namespace
+      https://prod.services.atpco.net/ndcexchange/NDC/schema/v1 (and an ACNDC
+      variant), which is the ATPCO NDC Exchange aggregation layer.
+  iata_message:
+    Version: "17.2"
+    Document.Name: e.g. ACNDC AGG NDCx 2.0
+    Document.ReferenceVersion: IATA NDC 17.2
+    optional_echo_fields: [EchoToken, TimeStamp, TransactionIdentifier, SequenceNmbr]
+    note: EchoToken, TransactionIdentifier and SequenceNmbr are optional and echoed back in the response.
+  defaults:
+    LanguageCode: en-CA (accepted values en-CA or fr-CA)
+    currency: CurrCodes/FilledInCurrency/CurrCode, e.g. CAD
+
+request_tracing:
+  supported: true
+  request_header: "orc-debug: true"
+  response_header: orc-transaction-id
+  example: "orc-transaction-id: 2739dd6a9a8add8ad245353dd7553f51-1674866977.275"
+  usage: >-
+    Verbatim: "When retrieving the responses for tech support, capture the value
+    of 'HTTP header orc-transaction-id' value and insert in the Transaction
+    ID/Trace field in the ticket."
+
+idempotency:
+  supported: false
+  published: false
+  note: >-
+    Air Canada publishes no idempotency key, no replay semantics and no
+    de-duplication contract. The closest documented behaviour is the opposite of
+    idempotency: on a price change during OrderCreate the seller is told to
+    re-run OfferPriceRQ and then re-submit OrderCreateRQ with the new
+    OfferIDs/OfferItemIDs. No Idempotency pointer is wired in apis.yml because
+    the capability does not exist.
+
+pagination:
+  supported: false
+  note: >-
+    No paging construct exists in the documented message set. AirShoppingRS
+    returns the whole offer set in one response (the published samples run to
+    several megabytes), sorted by ascending fare attribute and then by price
+    within each fare.
+
+versioning:
+  scheme: uri-path + in-payload schema version
+  current: 17.2
+  uri_segment: /ndc/17.2/v1/
+  payload: SchemaVersion YY.2017.2, message attribute Version="2017.2"
+  frozen: >-
+    IATA froze 17.2 in 2017 and has since moved to Offers-and-Orders schemas.
+    Air Canada encourages developing against 17.2 verbatim on aircanada.com/ndc.html.
+  detail: lifecycle/air-canada-lifecycle.yml
+
+error_envelope:
+  style: in-payload
+  element: Errors/Error with a numeric Code and text message
+  http_status_semantics: >-
+    Business failures are returned as HTTP 200 with an Errors element in the NDC
+    payload. HTTP status is used for transport-level failures only; a missing
+    apikey is documented as HTTP 400.
+  rfc9457: false
+  detail: errors/air-canada-error-codes.yml
+
+rate_limits:
+  published: false
+  note: >-
+    No rate limit, quota or throttling header is published. Capacity is agreed
+    per seller at onboarding instead: the seller registration form asks for the
+    seller's AirShopping and OrderCreate response time-out windows, average TPS
+    and peak TPS, the percentage of calls that will be AirShopping, and whether
+    the seller runs automated robots. Air Canada's own worked example, verbatim:
+    "If you are sending 300,000 AirShopping RQ in 24 hours (86400 seconds), then
+    calculate 300,000/86400 to determine your TPS of 3.5."
+  source: https://ndc.aircanada.com/seller-registration-form
+
+orchestration:
+  description: >-
+    Air Canada publishes a mandatory message order. These are not suggestions -
+    OfferPrice is required before OrderCreate, and identifiers must be carried
+    forward across calls or the request fails.
+  rules:
+    - "OfferPriceRQ is mandatory before OrderCreateRQ."
+    - "Carry account code, frequent flyer information, promotional code or fare class from AirShopping through OrderCreate."
+    - "Take flight-related OfferIDs from OfferPriceRS, ancillary OfferIDs from ServiceListRS and seat OfferIDs from SeatAvailabilityRS when executing OrderCreateRQ."
+    - "Multiple Offers cannot be included in one SeatAvailabilityRQ - request outbound and inbound separately."
+    - "On a price change at OrderCreate, re-run OfferPriceRQ and resubmit OrderCreateRQ with the updated ids."
+    - "Cancelling is two steps: OrderReshop for the eligible cancellation methods and amounts, then OrderCancel. If no method is selected, OrderCancel retains for future use rather than refunding. AC recommends always calling OrderCancel after OrderReshop."
+    - "A booking is eligible for cancellation only if OrderViewRS contains a FreeFormInstruction with the remark 'MODIFICATIONS ALLOWED = CL : CANCEL_PNR'."
+  flows:
+    - AirShopping > OfferPrice > OrderCreate
+    - AirShopping > SeatAvailability > OfferPrice > OrderCreate
+    - AirShopping > ServiceList > OfferPrice > OrderCreate
+    - AirShopping > OfferPrice > SeatAvailability > ServiceList > OfferPrice > OrderCreate
+    - AirShopping > SeatAvailability > ServiceList > OfferPrice > OrderCreate > OrderReshop > OrderCancel
+  source: https://ndc.aircanada.com/api/gettingstarted/apisorchestration
+
+identifiers:
+  session_scoped: [OfferID, OfferItemID, ResponseID, Fare GUID]
+  durable: [OrderID (airline-assigned, e.g. ORDER-c98c-4759-a20b), Air Canada record locator]
+  note: >-
+    OrderIDs are Air Canada-minted and opaque; there is no list or search
+    operation, so a seller must persist every OrderID it creates. See review.yml
+    (exitPath) for the full switching-cost reading.
+
+not_supported:
+  - Bulk export or an OrderList operation
+  - Filtering OrderRetrieve to sections of an Order
+  - Retrieving a cancelled Order, a GDS booking or a redemption booking
+  - Order version history
+  - Webhook signature verification (not published)
+
+cross_links:
+  authentication: authentication/air-canada-authentication.yml
+  errors: errors/air-canada-error-codes.yml
+  decline_codes: errors/air-canada-decline-codes.yml
+  lifecycle: lifecycle/air-canada-lifecycle.yml
+  sandbox: sandbox/air-canada-sandbox.yml
+  webhooks: asyncapi/air-canada-ocn-webhooks.yml
+  examples: examples/_index.yml

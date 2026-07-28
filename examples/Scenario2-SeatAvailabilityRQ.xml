@@ -1,0 +1,67 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="https://prod.services.ACNDC.net/ndcexchange/NDC/schema/v1">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <v1:NDCMSG_Envelope>
+            <NDCMSG_Header>
+                <Sender>
+                    <SellerID>*******************</SellerID>
+                </Sender>
+                <Recipient>
+                    <Address>
+                        <Company>AC</Company>
+                    </Address>
+                </Recipient>
+                <SchemaType>NDC</SchemaType>
+                <SchemaVersion>YY.2017.2</SchemaVersion>
+            </NDCMSG_Header>
+            <NDCMSG_Body>
+                <NDCMSG_Payload>
+                    <![CDATA[
+                    
+<SeatAvailabilityRQ Version="2017.2" xmlns="http://www.iata.org/IATA/EDIST/2017.2">
+	<PointOfSale>
+		<Location>
+			<CountryCode>CA</CountryCode>
+		</Location>
+	</PointOfSale>
+	<Document>
+		<Name>ACNDC AGG NDCx 2.0</Name>
+		<ReferenceVersion>IATA NDC 17.2</ReferenceVersion>
+	</Document>
+	<Party>
+		<Sender>
+			<TravelAgencySender>
+				<AgencyID>493</AgencyID>
+			</TravelAgencySender>
+		</Sender>
+	</Party>
+	<Parameters>
+		<Languages>
+			<!-- <LanguageCode> Accepted values are en-CA or fr-CA (en-CA is the default value is omitted -->
+			<LanguageCode>en-CA</LanguageCode>
+		</Languages>
+	</Parameters>
+	<Query>
+		<Offer OfferID="AFJUB9-OfferID-1" Owner="AC" ResponseID="8fbd3b51-e0ce-4b12-81c2-d77af86aceb2-7830.947131301455">
+        </Offer>
+	</Query>
+    <DataLists>
+		<PassengerList>
+			<Passenger PassengerID="Pax1">
+				<PTC>ADT</PTC>
+                <LoyaltyProgramAccount>
+				<ProgramCode>AC</ProgramCode>
+				<AccountNumber>600160667</AccountNumber>
+			    </LoyaltyProgramAccount>
+            </Passenger>
+		</PassengerList>
+	</DataLists>
+</SeatAvailabilityRQ>
+
+]]>
+
+</NDCMSG_Payload>
+</NDCMSG_Body>
+</v1:NDCMSG_Envelope>
+</soapenv:Body>
+</soapenv:Envelope>

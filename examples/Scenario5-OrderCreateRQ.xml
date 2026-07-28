@@ -1,0 +1,196 @@
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="https://prod.services.ACNDC.net/ndcexchange/NDC/schema/v1">
+<soapenv:Header/>
+<soapenv:Body>
+<v1:NDCMSG_Envelope>
+<NDCMSG_Header>
+<Sender>
+<SellerID>*******************</SellerID>
+</Sender>
+<Recipient>
+<Address>
+<Company>AC</Company>
+</Address>
+</Recipient>
+<SchemaType>NDC</SchemaType>
+<SchemaVersion>YY.2017.2</SchemaVersion>
+</NDCMSG_Header>
+<NDCMSG_Body>
+<NDCMSG_Payload>
+
+<![CDATA[
+
+
+<OrderCreateRQ Version="2017.2" PrimaryLangID="EN">
+<PointOfSale>
+<Location>
+<CountryCode>US</CountryCode>
+</Location>
+</PointOfSale>
+<Document>
+<Name>ACNDC AGG NDCx 2.0</Name>
+<ReferenceVersion>IATA NDC 17.2</ReferenceVersion>
+</Document>
+<Party>
+<Sender>
+<TravelAgencySender> 
+<IATA_Number></IATA_Number> <AgencyID></AgencyID>
+
+</TravelAgencySender>
+</Sender>
+</Party>
+<Parameters>
+<Languages>
+<LanguageCode>en-CA</LanguageCode>
+</Languages>
+<CurrCodes>
+<FiledInCurrency>
+<CurrCode>USD</CurrCode>
+</FiledInCurrency>
+</CurrCodes>
+</Parameters>
+<Query>
+<Order>
+<Offer OfferID="MX29OPRFD6-OfferID-1" Owner="AC" ResponseID="25902053-6020-4a23-b3e8-01e3613fccca-3121.8054788952263">
+<TotalOfferPrice Code="USD">0</TotalOfferPrice>
+<OfferItem OfferItemID="AHHNYENNOH-OfferItemID-1">
+</OfferItem>
+<OfferItem OfferItemID="UXBBYH7CZA-OfferItemID-2">
+</OfferItem>
+</Offer>
+
+
+<!-- Seat outbound Offer -->		        
+<Offer OfferID="URSYK7Y6QD-STRS-OfferID-1" Owner="AC" ResponseID="dece0ad1-f456-425a-99fa-dd6aa9a9a391-6875.631404720247">		
+<OfferItem OfferItemID="MMFF6IB3B5-ASPW-OfferItemID-1">
+<PassengerRefs>Pax01</PassengerRefs>	    
+<SeatSelection>
+<Row>18</Row>
+<Column>A</Column>                  
+</SeatSelection>          
+</OfferItem>
+</Offer>
+
+<!-- Seat inbound Offer -->		        
+<Offer OfferID="XNLP4Y3JCN-STRS-OfferID-1" Owner="AC" ResponseID="4f240693-6a46-4996-856e-4fd9eb3a1aab-4933.3702934705425">		
+<OfferItem OfferItemID="CUCUKLB1M7-ASPW-OfferItemID-1">
+<PassengerRefs>Pax01</PassengerRefs>	    
+<SeatSelection>
+<Row>18</Row>
+<Column>A</Column>                  
+</SeatSelection>          
+</OfferItem>
+</Offer>
+
+</Order>
+<Payments>
+<Payment> <Type>CC</Type> <Method> <PaymentCard> <CardType>1</CardType> <CardCode>VI</CardCode> <CardNumber>4012999999999999</CardNumber> <SeriesCode>737</SeriesCode> <CardHolderName>Sandra White</CardHolderName> <CardHolderBillingAddress> <Street>111 Avenue</Street> <BuildingRoom>45005</BuildingRoom> <CityName>Montreal</CityName> <StateProv>Quebec</StateProv> <PostalCode>h2j3k4</PostalCode> <CountryCode>CA</CountryCode> </CardHolderBillingAddress> <EffectiveExpireDate> <Expiration>1025</Expiration> </EffectiveExpireDate> </PaymentCard> </Method> <Amount>0</Amount> </Payment>
+</Payments>
+
+<DataLists>
+
+<PassengerList>
+<Passenger PassengerID="Pax01">
+<PTC>ADT</PTC>
+<Birthdate>1972-10-23</Birthdate>
+<Individual>
+<Gender>Male</Gender>
+<NameTitle>Mr</NameTitle>
+<GivenName>PFSEATS</GivenName>
+<MiddleName>PATIL</MiddleName>
+<Surname>ADULTONE</Surname>
+<SurnameSuffix>Mister</SurnameSuffix>
+</Individual>
+<IdentityDocument>
+<Birthdate>1972-10-23</Birthdate>
+<IdentityDocumentNumber>CF12325W</IdentityDocumentNumber>
+<Gender>Male</Gender>
+</IdentityDocument>
+<InfantRef>Pax02</InfantRef>
+<ContactInfoRef>CONTACT_For_TravelerRefNumber1</ContactInfoRef>
+</Passenger>
+
+<Passenger PassengerID="Pax02">
+<PTC>INF</PTC>
+<Birthdate>2022-01-14</Birthdate>
+<Individual>
+<Gender>Male</Gender>
+<NameTitle>Mr</NameTitle>
+<GivenName>PFSEATS</GivenName>
+<MiddleName>PATIL</MiddleName>
+<Surname>ADULTONE</Surname>
+<SurnameSuffix>Mister</SurnameSuffix>
+</Individual>
+<IdentityDocument>
+<Birthdate>2022-01-14</Birthdate>
+<IdentityDocumentNumber>CF12325W</IdentityDocumentNumber>
+<Gender>Male</Gender>
+</IdentityDocument>
+<ContactInfoRef>CONTACT_For_TravelerRefNumber2</ContactInfoRef>
+</Passenger>
+
+</PassengerList>
+
+<ContactList>
+<ContactInformation ContactID="CONTACT_For_TravelerRefNumber1">
+<ContactType>1.PTT</ContactType>
+<ContactProvided>
+<EmailAddress>
+<EmailAddressValue>abc@aircanada.ca</EmailAddressValue>    
+</EmailAddress>
+</ContactProvided>
+<ContactProvided>
+<Phone>
+<Label>8.PLT</Label>
+<CountryDialingCode>1</CountryDialingCode>
+<AreaCode>512</AreaCode>
+<PhoneNumber>4998785</PhoneNumber>
+<Extension>1258</Extension>
+</Phone>
+</ContactProvided>
+<PostalAddress>
+<CountrySubdivisionName>Quebec</CountrySubdivisionName>
+<CountryCode>CA</CountryCode>
+<CityName>Montreal</CityName>
+<Street>111 Avenue</Street>
+<PostalCode>h2j3k4</PostalCode>
+</PostalAddress>
+</ContactInformation>
+
+<ContactInformation ContactID="CONTACT_For_TravelerRefNumber2">
+<ContactType>1.PTT</ContactType>
+<ContactProvided>
+<EmailAddress>
+<EmailAddressValue>abc@aircanada.ca</EmailAddressValue>    
+</EmailAddress>
+</ContactProvided>
+<ContactProvided>
+<Phone>
+<Label>8.PLT</Label>
+<CountryDialingCode>1</CountryDialingCode>
+<AreaCode>512</AreaCode>
+<PhoneNumber>4998785</PhoneNumber>
+<Extension>1258</Extension>
+</Phone>
+</ContactProvided>
+<PostalAddress>
+<CountrySubdivisionName>Quebec</CountrySubdivisionName>
+<CountryCode>CA</CountryCode>
+<CityName>Montreal</CityName>
+<Street>111 Avenue</Street>
+<PostalCode>h2j3k4</PostalCode>
+</PostalAddress>
+</ContactInformation>
+
+</ContactList>
+
+</DataLists>
+</Query>
+</OrderCreateRQ>
+
+]]>
+</NDCMSG_Payload>
+</NDCMSG_Body>
+</v1:NDCMSG_Envelope>
+</soapenv:Body>
+</soapenv:Envelope>

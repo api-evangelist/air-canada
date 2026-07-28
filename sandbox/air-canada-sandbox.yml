@@ -1,0 +1,159 @@
+generated: '2026-07-28'
+method: searched
+source: >-
+  https://ndc.aircanada.com/api/gettingstarted/testdata and
+  https://ndc.aircanada.com/api/gettingstarted/apisetup - published without a
+  login on the Air Canada NDC developer portal. Every value below is Air
+  Canada's own published test data, copied verbatim. Nothing is invented.
+description: >-
+  Air Canada runs a named non-production environment ("GOLD") behind the same
+  gateway shape as production, and publishes a full set of magic test values for
+  it: test IATA numbers and points of sale, corporate account codes, Air Canada
+  for Business account numbers by tier, Aeroplan frequent-flyer profiles, test
+  credit cards including a separate 3DS set, promotional codes, and Flight Pass
+  products. The documentation is ungated; the environment is not - GOLD access
+  is granted during onboarding, after a commercial agreement.
+
+environments:
+  - name: GOLD
+    role: sandbox / certification
+    base_url: https://gold-ndcpartners.aircanada.com/
+    certification_endpoint: https://gold-ndcpartners.aircanada.com/agg/ndc/17.2/v1/AirShopping
+    console: https://gold-ndc-sandbox.aircanada.com/login
+    console_note: The NDC Sandbox is a login wall, not a self-serve playground.
+    self_serve: false
+  - name: TPZ (test)
+    role: test gateway used in the published endpoint table
+    base_url: https://tpz-ndcpartners.aircanada.com/
+    endpoints:
+      - https://tpz-ndcpartners.aircanada.com/ipg-gw/ndc/17.2/v1/AirShopping
+      - https://tpz-ndcpartners.aircanada.com/ipg-gw/ndc/17.2/v1/OfferPrice
+      - https://tpz-ndcpartners.aircanada.com/ipg-gw/ndc/17.2/v1/ServiceList
+      - https://tpz-ndcpartners.aircanada.com/ipg-gw/ndc/17.2/v1/SeatAvailability
+      - https://tpz-ndcpartners.aircanada.com/ipg-gw/ndc/17.2/v1/OrderRetrieve
+      - https://tpz-ndcpartners.aircanada.com/ipg-gw/ndc/17.2/v1/OrderReshop
+      - https://tpz-ndcpartners.aircanada.com/ipg-gw/ndc/17.2/v1/OrderCancel
+      - https://tpz-ndcpartners.aircanada.com/aps-gw/ndc/17.2/v1/OrderCreate
+      - https://tpz-ndcpartners.aircanada.com/aps-gw/ndc/17.2/v1/OrderChange
+  - name: PROD
+    role: production
+    base_url: https://ndcpartners.aircanada.com/
+
+test_vs_live:
+  separation: separate hostnames and separate API keys, not a key prefix or a mode flag
+  production_rule: >-
+    Verbatim: "In production, sellers must pass their accredited IATA codes only"
+    and "Do not use any IATA codes that are used in examples."
+  guidance: >-
+    Verbatim (Flight Pass section): "Please avoid using identical date and route
+    combination when testing in GOLD."
+
+corporate_contract_numbers:
+  description: >-
+    "Corporate contracts providing access to private corporate fares that are
+    given to the corporations and can be booked by eligible Travel Agencies."
+  values:
+    - account_code: ACAB999C
+      test_iata_pos_ca: '0000101'
+      test_iata_pos_us: '0004604'
+
+air_canada_for_business_accounts:
+  description: >-
+    "An account number given to companies enrolled in the Air Canada for
+    Business (ACB) loyalty program for small and mid-size businesses, which
+    provides access to special offers."
+  values:
+    - {account: PN1475138, tier: No Tier}
+    - {account: PN1475437, tier: 20K Account}
+    - {account: PN1475438, tier: 150K Account}
+    - {account: PN1475439, tier: 300K Account}
+
+frequent_flyer_profiles:
+  description: Individual test account numbers for the Air Canada Aeroplan loyalty program.
+  values:
+    - {name: CANADIAN/Elite, number: '354395774', tier: 50K}
+    - {name: STATIER/JONATHAN, number: '199303074', tier: 50K}
+    - {name: TEST/JACQUES, number: '362500399', tier: 100K}
+    - {name: ITALY/Stella, number: '349391086', tier: 100K}
+
+test_credit_cards:
+  note: >-
+    Published test card numbers. These are Air Canada's documented sandbox
+    values and are not usable for real authorisation.
+  cards:
+    - {type: CA, number: '5555 4444 3333 1111', expiry: 10/25, cvv: '737'}
+    - {type: TP, number: '1354 1001 4004 955', expiry: 05/26, cvv: '737'}
+    - {type: VI, number: '4012 9999 9999 9999', expiry: 01/30, cvv: '737 (optional)'}
+    - {type: AX, number: '3780 0000 0000 004', expiry: 10/25, cvv: '7373'}
+    - {type: DC, number: '3894 0000 0000 03', expiry: 01/30, cvv: '737'}
+    - {type: CA, number: '5555 5555 5555 4444', expiry: 03/30, cvv: '737 (optional)'}
+  three_d_secure:
+    note: >-
+      Verbatim: "For 3DS, credit cards used to create the Order must be Air
+      Canada's, from the following."
+    cards:
+      - {type: VI, number: '4000000000001091', expiry: 01/30, cvv: '123'}
+      - {type: CA, number: '5200000000001096', expiry: 01/30, cvv: '123'}
+      - {type: AX, number: '340000000001098', expiry: 01/30, cvv: '1234'}
+    billing_address:
+      lines: ['111 Avenue', '45005', 'Montreal', 'QC', 'h2j3k4', 'CA']
+      rules:
+        - PostalCode must follow standard US and CA format.
+        - StateProv must be a two-letter code, e.g. QC, ON.
+
+promo_codes:
+  description: >-
+    "Non Tariff Product (NTP) Promo Codes - Promotional codes with discounts
+    applied to fares or ancillaries, or both."
+  values:
+    - {code: MUWZFF31, effect: Fare Discount 10%}
+    - {code: PCVW2DB1, effect: Fare Discount $10}
+  conditions: >-
+    Verbatim: "For all markets. Does not work for codeshare flights. Booking end
+    date is 31/dec/2024 and travel end date is 31/dec/2025."
+  caveat: >-
+    Those published booking/travel end dates have passed; the test promo codes
+    are recorded as published but may no longer be live in GOLD.
+
+flight_pass:
+  description: Flight Pass test products and passenger information for multiple scenarios.
+  products:
+    - scenario: With only credit, no amount to pay (1 passenger)
+      product_name: Oil Regional - Flex
+      product_id: 216PC000039999
+      flight_pass_name: Oil Regional Flex 6 Month Unlimited 9999
+      reference: '0140851673661'
+      owner: MR. Franklin Marrasa
+      aeroplan_number: '601091440'
+      start_date: 09 May 2024
+      expiry_date: 09 November 2024
+      status: Active
+      credits_used: 0
+      remaining_credits: 9999
+    - scenario: With credit and amount to pay (1 passenger)
+      product_name: Oil Regional - Flex
+      product_id: 216PC000039999
+      reference: '0140851673661'
+      blackout_period: 25 September 2024 - 30 September 2024
+    - scenario: Multi-passenger
+      product_name: Oil Continental - Flex
+      product_id: 319PC00011200
+      flight_pass_name: Flexible Benefit Oil Continental Flex 20
+      reference: '0140851673660'
+      owner: MR. Franklin Marrasa
+      aeroplan_number: '601091440'
+
+fixtures:
+  sample_messages: examples/
+  index: examples/_index.yml
+  note: >-
+    Air Canada publishes 100+ downloadable request/response XML samples covering
+    six use cases and five end-to-end scenarios. The small ones are committed to
+    examples/; the multi-megabyte AirShopping and SeatAvailability responses are
+    indexed by URL.
+
+not_published:
+  - Test clocks or time simulation
+  - Fixture/trigger tooling to force a specific error or decline
+  - Self-service sandbox credentials
+  - A test-mode key prefix or mode flag

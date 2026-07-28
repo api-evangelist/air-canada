@@ -1,0 +1,593 @@
+<OrderViewRS xmlns="http://www.iata.org/IATA/EDIST/2017.2" Version="2017.2">
+   <Document>
+      <Name>AC NDC 17.2</Name>
+      <ReferenceVersion>IATA NDC 17.2</ReferenceVersion>
+   </Document>
+   <Success/>
+   <Warnings>
+      <Warning Code="4360">UNABLE TO PROCESS ADVANCE SEAT REQUEST</Warning>
+      <Warning Code="39">[From: ac-pss-sbok4-uat-cac1] NO MATCH FOR NAME</Warning>
+      <Warning Code="1892">INVALID FORMAT/NOT ENTERED/</Warning>
+      <Warning Code="13279">SPECIFIC SEAT REQUESTED NOT AVAILABLE - RESTRICTED</Warning>
+   </Warnings>
+   <Response>
+      <Order OrderID="39VMBK" Owner="AC">
+         <BookingReferences>
+            <BookingReference>
+               <Type>PNR</Type>
+               <ID>39VMBK</ID>
+               <AirlineID Name="AirCanada">AC</AirlineID>
+            </BookingReference>
+         </BookingReferences>
+         <TotalOrderPrice>
+            <DetailCurrencyPrice>
+               <Total Code="CAD">285.30</Total>
+               <Details>
+                  <Detail>
+                     <SubTotal Code="CAD">285.30</SubTotal>
+                     <Application>ItinTotalFare</Application>
+                  </Detail>
+                  <Detail>
+                     <SubTotal Code="CAD">0.00</SubTotal>
+                     <Application>AncillaryTotalFare</Application>
+                  </Detail>
+               </Details>
+            </DetailCurrencyPrice>
+         </TotalOrderPrice>
+         <Payments>
+            <Payment refs="IQCGKUQWWF-TravelerRefNumber-2">
+               <Type>CC</Type>
+               <Status>
+                  <StatusCode>charge</StatusCode>
+               </Status>
+               <Amount>
+                  <SimpleCurrencyPrice>285.3</SimpleCurrencyPrice>
+               </Amount>
+               <Method>
+                  <PaymentCardMethod>
+                     <CardType>1</CardType>
+                     <CardCode>VI</CardCode>
+                     <MaskedCardNumber>XXXXXXXXXXXX9999</MaskedCardNumber>
+                     <CardHolderName>Test user</CardHolderName>
+                     <EffectiveExpireDate>
+                        <Expiration>1025</Expiration>
+                     </EffectiveExpireDate>
+                  </PaymentCardMethod>
+               </Method>
+            </Payment>
+            <Payment refs="IQCGKUQWWF-TravelerRefNumber-2">
+               <Type>CC</Type>
+               <Status>
+                  <StatusCode>charge</StatusCode>
+               </Status>
+               <Amount>
+                  <SimpleCurrencyPrice>0</SimpleCurrencyPrice>
+               </Amount>
+               <Method/>
+            </Payment>
+         </Payments>
+         <OrderItems>
+            <OrderItem OrderItemID="AJ14XGSOOP-PassengerFare-TravelerRefNumber-2">
+               <PriceDetail>
+                  <TotalAmount>
+                     <SimpleCurrencyPrice Code="CAD">285.3</SimpleCurrencyPrice>
+                  </TotalAmount>
+                  <BaseAmount Code="CAD">180.0</BaseAmount>
+                  <Taxes>
+                     <Total Code="CAD">105.3</Total>
+                     <Breakdown>
+                        <Tax>
+                           <Amount Code="CAD">14.25</Amount>
+                           <TaxCode>CA</TaxCode>
+                           <Description>Air Travellers Security Charge - Canada</Description>
+                        </Tax>
+                        <Tax>
+                           <Amount Code="CAD">1.25</Amount>
+                           <TaxCode>XG</TaxCode>
+                           <Description>Goods and Services Tax - Canada - 100092287 RT0001</Description>
+                        </Tax>
+                        <Tax>
+                           <Amount Code="CAD">29.8</Amount>
+                           <TaxCode>RC</TaxCode>
+                           <Description>Harmonized Sales Tax - Canada - 100092287 RT0001</Description>
+                        </Tax>
+                        <Tax>
+                           <Amount Code="CAD">60.0</Amount>
+                           <TaxCode>SQ</TaxCode>
+                           <Description>Airport Improvement Fee - Canada</Description>
+                        </Tax>
+                     </Breakdown>
+                  </Taxes>
+                  <Fees>
+                     <Total>0.0</Total>
+                     <Breakdown>
+                        <Fee>
+                           <Amount Code="CAD">0.0</Amount>
+                           <Designator>Q</Designator>
+                           <Description>Surcharges</Description>
+                        </Fee>
+                     </Breakdown>
+                  </Fees>
+               </PriceDetail>
+               <Service ServiceID="VDLLZDB1UB-103">
+                  <PassengerRef>IQCGKUQWWF-TravelerRefNumber-2</PassengerRef>
+                  <SegmentRef>FBMJ85KMPH-ODKey-BOUND-1</SegmentRef>
+               </Service>
+               <Service ServiceID="SYFGBBWOHT-104">
+                  <PassengerRef>IQCGKUQWWF-TravelerRefNumber-2</PassengerRef>
+                  <SegmentRef>Z533P7DQNU-ODKey-BOUND-2</SegmentRef>
+               </Service>
+               <OrderItemDetails>
+                  <OrderItemDetail>
+                     <OrderInstructions>
+                        <FreeFormTextInstruction>
+                           <Remark>0142173676950</Remark>
+                        </FreeFormTextInstruction>
+                     </OrderInstructions>
+                  </OrderItemDetail>
+               </OrderItemDetails>
+               <FareDetail>
+                  <Price>
+                     <BaseAmount Code="CAD">180.0</BaseAmount>
+                  </Price>
+                  <FareComponent>
+                     <FareBasis>
+                        <FareBasisCode>
+                           <Code>GW2NZCBA</Code>
+                        </FareBasisCode>
+                        <CabinType>
+                           <CabinTypeCode>M</CabinTypeCode>
+                           <CabinTypeName>Economy</CabinTypeName>
+                        </CabinType>
+                     </FareBasis>
+                     <PriceClassRef>OXMQQK2DHA-Basic-G-103</PriceClassRef>
+                     <SegmentRefs>QRMLNN0XDN-FlightSegmentRPH-1</SegmentRefs>
+                  </FareComponent>
+                  <FareComponent>
+                     <FareBasis>
+                        <FareBasisCode>
+                           <Code>GK2NZCBA</Code>
+                        </FareBasisCode>
+                        <CabinType>
+                           <CabinTypeCode>M</CabinTypeCode>
+                           <CabinTypeName>Economy</CabinTypeName>
+                        </CabinType>
+                     </FareBasis>
+                     <PriceClassRef>RERAYKYAEC-Basic-G-104</PriceClassRef>
+                     <SegmentRefs>TQAD2FAYW1-FlightSegmentRPH-2</SegmentRefs>
+                  </FareComponent>
+               </FareDetail>
+            </OrderItem>
+         </OrderItems>
+      </Order>
+      <TicketDocInfos>
+         <TicketDocInfo>
+            <TicketDocument ExchTicketNbrInd="false">
+               <TicketDocNbr>0142173676950</TicketDocNbr>
+               <Type>702</Type>
+               <NumberofBooklets>2</NumberofBooklets>
+               <DateOfIssue>2023-01-09</DateOfIssue>
+               <Remark>TKD</Remark>
+               <ReportingType>Airline</ReportingType>
+            </TicketDocument>
+            <PassengerReference>IQCGKUQWWF-TravelerRefNumber-2</PassengerReference>
+         </TicketDocInfo>
+      </TicketDocInfos>
+      <DataLists>
+         <PassengerList>
+            <Passenger PassengerID="IQCGKUQWWF-TravelerRefNumber-2">
+               <PTC>ADT</PTC>
+               <Individual>
+                  <Birthdate>1973-01-01</Birthdate>
+                  <Gender>Male</Gender>
+                  <GivenName>TEST</GivenName>
+                  <MiddleName>T</MiddleName>
+                  <Surname>ACCOUNT</Surname>
+               </Individual>
+               <IdentityDocument>
+                  <IdentityDocumentNumber/>
+                  <IdentityDocumentType/>
+                  <Birthdate>1973-01-01</Birthdate>
+                  <Gender>Male</Gender>
+                  <GivenName>TEST</GivenName>
+                  <Surname>ACCOUNT</Surname>
+               </IdentityDocument>
+               <ContactInfoRef>DCVTUYNARH-CONTACT_For_IQCGKUQWWF-TravelerRefNumber-2</ContactInfoRef>
+            </Passenger>
+         </PassengerList>
+         <ContactList>
+            <ContactInformation ContactID="DCVTUYNARH-CONTACT_For_IQCGKUQWWF-TravelerRefNumber-2">
+               <PostalAddress>
+                  <Street>100 AVENUE</Street>
+                  <PostalCode>H0H0H0</PostalCode>
+                  <CityName>MONTREAL</CityName>
+                  <CountrySubdivisionName>QUEBEC</CountrySubdivisionName>
+                  <CountryCode>CA</CountryCode>
+               </PostalAddress>
+               <ContactProvided>
+                  <EmailAddress>
+                     <EmailAddressValue>[MOHAMMAD.KASIM@AIRCANADA.CA, MOHAMMAD.KASIM@@AIRCANADA.CA]</EmailAddressValue>
+                  </EmailAddress>
+               </ContactProvided>
+               <ContactProvided>
+                  <EmailAddress>
+                     <EmailAddressValue>UMAMAHESHWARRAO.GOLAKARM@AMADEUS.COM</EmailAddressValue>
+                  </EmailAddress>
+               </ContactProvided>
+               <ContactProvided>
+                  <EmailAddress>
+                     <EmailAddressValue>E+UMAMAHESHWARRAO.GOLAKARM@AMADEUS.COM/EN/F</EmailAddressValue>
+                  </EmailAddress>
+               </ContactProvided>
+               <ContactProvided>
+                  <Phone>
+                     <Label>8.PLT</Label>
+                     <CountryDialingCode>1</CountryDialingCode>
+                     <AreaCode>514</AreaCode>
+                     <PhoneNumber>4225815</PhoneNumber>
+                  </Phone>
+               </ContactProvided>
+            </ContactInformation>
+         </ContactList>
+         <BaggageAllowanceList>
+            <BaggageAllowance BaggageAllowanceID="DAGALDRYFG-CARRY_ON_ALLOWANCE-STANDARD_ARTICLE">
+               <BaggageCategory>CARRY ON</BaggageCategory>
+               <AllowanceDescription>
+                  <ApplicableParty>Traveler</ApplicableParty>
+                  <Descriptions>
+                     <Description>
+                        <Text>Oversized carry-on bags are not permitted on our aircraft, and may cause flight delays for all passengers. Please ensure your carry-on bags are inside the maximum allowed size as indicated below; they are required to fit in the double-size verification device at check-in or boarding time. Items which fall within the 2-piece carry on allowance include: One (1) carry-on bag or suitcase (wheels and handles includes in the size) and one (1) personal article like a briefcase, laptop computer, diaper bag, camera case, cartons or other similar item. Learn more about Carry-on Baggage restrictions. Your carry-on baggage must be light enough that you can store it in the overhead bin unassisted. See http://www.aircanada.com/EN/travelinfo/airport/baggage/carry-on.html</Text>
+                     </Description>
+                  </Descriptions>
+               </AllowanceDescription>
+               <PieceAllowance>
+                  <ApplicableParty>Traveler</ApplicableParty>
+                  <TotalQuantity>1</TotalQuantity>
+                  <PieceMeasurements Quantity="1">
+                     <PieceDimensionAllowance>
+                        <DimensionUOM>Centimeter</DimensionUOM>
+                        <MaxLinear>23cm*40cm*55cm</MaxLinear>
+                        <MinLinear>9*15.5*21.5</MinLinear>
+                     </PieceDimensionAllowance>
+                  </PieceMeasurements>
+               </PieceAllowance>
+            </BaggageAllowance>
+            <BaggageAllowance BaggageAllowanceID="EKQBSXH07Y-CARRY_ON_ALLOWANCE-PERSONAL_ARTICLE">
+               <BaggageCategory>CARRY ON</BaggageCategory>
+               <PieceAllowance>
+                  <ApplicableParty>Traveler</ApplicableParty>
+                  <TotalQuantity>1</TotalQuantity>
+                  <PieceMeasurements Quantity="1">
+                     <PieceDimensionAllowance>
+                        <DimensionUOM>Centimeter</DimensionUOM>
+                        <MaxLinear>16cm*33cm*43cm</MaxLinear>
+                        <MinLinear>6*13*17</MinLinear>
+                     </PieceDimensionAllowance>
+                  </PieceMeasurements>
+               </PieceAllowance>
+            </BaggageAllowance>
+            <BaggageAllowance BaggageAllowanceID="LIKTZMMCHK-CHECKED_BAG_ALLOWANCE-ECONOMY_CLASS">
+               <BaggageCategory>CHECKED</BaggageCategory>
+               <AllowanceDescription>
+                  <ApplicableParty>Traveler</ApplicableParty>
+                  <Descriptions>
+                     <Description>
+                        <Text>Ensure your checked bags are properly identified . Please do not pack valuables in your checked baggage. The baggage allowance rules stated herein do not apply to passengers who have specifically declined the checked baggage option. Learn more about checked baggage.</Text>
+                     </Description>
+                  </Descriptions>
+               </AllowanceDescription>
+               <PieceAllowance>
+                  <ApplicableParty>Traveler</ApplicableParty>
+                  <TotalQuantity>1</TotalQuantity>
+                  <PieceMeasurements Quantity="1">
+                     <PieceWeightAllowance>
+                        <MaximumWeight>
+                           <Value>23</Value>
+                           <UOM>KG</UOM>
+                        </MaximumWeight>
+                     </PieceWeightAllowance>
+                     <PieceWeightAllowance>
+                        <MaximumWeight>
+                           <Value>50</Value>
+                           <UOM>LB</UOM>
+                        </MaximumWeight>
+                     </PieceWeightAllowance>
+                     <PieceDimensionAllowance>
+                        <DimensionUOM>Centimeter</DimensionUOM>
+                        <MaxLinear>158cm</MaxLinear>
+                        <MinLinear>62</MinLinear>
+                        <Descriptions>
+                           <Description>
+                              <Text>Length+Width+Height</Text>
+                           </Description>
+                        </Descriptions>
+                     </PieceDimensionAllowance>
+                  </PieceMeasurements>
+               </PieceAllowance>
+            </BaggageAllowance>
+            <BaggageAllowance BaggageAllowanceID="MKS7GPFK81-CHECKED_BAG_ALLOWANCE-EXECUTIVE_CLASS">
+               <BaggageCategory>CHECKED</BaggageCategory>
+               <PieceAllowance>
+                  <ApplicableParty>Traveler</ApplicableParty>
+                  <TotalQuantity>2</TotalQuantity>
+                  <PieceMeasurements Quantity="2">
+                     <PieceWeightAllowance>
+                        <MaximumWeight>
+                           <Value>32</Value>
+                           <UOM>KG</UOM>
+                        </MaximumWeight>
+                     </PieceWeightAllowance>
+                     <PieceWeightAllowance>
+                        <MaximumWeight>
+                           <Value>70</Value>
+                           <UOM>LB</UOM>
+                        </MaximumWeight>
+                     </PieceWeightAllowance>
+                     <PieceDimensionAllowance>
+                        <DimensionUOM>Centimeter</DimensionUOM>
+                        <MaxLinear>158cm</MaxLinear>
+                        <MinLinear>62</MinLinear>
+                        <Descriptions>
+                           <Description>
+                              <Text>Length+Width+Height</Text>
+                           </Description>
+                        </Descriptions>
+                     </PieceDimensionAllowance>
+                  </PieceMeasurements>
+               </PieceAllowance>
+            </BaggageAllowance>
+         </BaggageAllowanceList>
+         <DisclosureList>
+            <Disclosures ListKey="IMPORTANT_INFORMATION_OF_CONFIRMATION_PAGE">
+               <Description ObjectKey="CALL_INFORMATION">
+                  <Text>Please review this itinerary/receipt and should you have any questions, please call 1-888-247-2262 within 24 hours of receipt of this itinerary/receipt. IMPORTANT: Entry requirements
+Ensure you are in compliance with the entry requirements of your destination. For the latest information on COVID-19 testing, entry requirements, flexible change and cancellation policies, and biosafety measures please visit aircanada.com/covid19updates.
+</Text>
+               </Description>
+               <Description ObjectKey="TRAVEL_DOCUMENTS">
+                  <Text>For air travel within Canada, Air Canada is required by federal government regulations to check identification at the departure gate for all passengers who appear to be 18 years of age or older. The name on the identification must match the name used on the Itinerary/receipt. The passenger must present: one (1) piece of government-issued ID with photo or two (2) pieces of government-issued ID without photo. For air travel between Canada and the United States, all passengers including Canadian and U.S. citizens, are required to present a valid passport or other valid travel document. In addition, passengers must present this Itinerary/receipt to immigration authorities upon request. For air travel to a foreign country, passengers must ensure that they have all necessary travel documents such as a passport or visa, as directed by embassies and consulates. All passengers are advised to view the Travel documentation page for important information on identification required for travel.</Text>
+               </Description>
+               <Description ObjectKey="FLIGHT_CONFIRMATION">
+                  <Text>Although reconfirmation of flights is not required, we strongly recommend that you check your flight status online at aircanada.com or by calling our flight information system at 1-888-422-7533 prior to your departure.</Text>
+               </Description>
+               <Description ObjectKey="SCHEDULE_CHANGE">
+                  <Text>If a schedule change occurs more than 48 hours prior to departure, the main contact will be notified by email. If a schedule change occurs within 48 hours of departure, the main contact will be notified by phone.</Text>
+               </Description>
+               <Description ObjectKey="TRAVEL_INSURANCE">
+                  <Text>Protect your travel investment and also protect yourself against the high cost of medical expenses while out of province. Purchase travel insurance offered by Air Canada and underwritten by RBC Travel Insurance Company by calling 1-866-610-7102. Enjoy your trip knowing you are properly protected. Travel insurance purchased is solely and directly offered, provided and underwritten by RBC Travel Insurance Company ("RBC"). Air Canada expressly disclaims any responsibility in regard to any travel insurance purchased by the customer from RBC Insurance. Travel insurance is offered and administered solely and directly by RBC Insurance. Air Canada expressly disclaims any responsibility in regard to any travel insurance purchased by the customer from RBC Insurance.</Text>
+               </Description>
+               <Description ObjectKey="INFORMATION_AND_SERVICES">
+                  <Text>Visit our Information and Services section at aircanada.com to find all the information you will need to plan your trip. Learn more about travel documents, baggage information, health tips, Maple LeafTM Lounges and a preview of onboard meals and entertainment.</Text>
+               </Description>
+               <Description ObjectKey="CARRIAGE_OF_PETS">
+                  <Text>Please read important information regarding carriage of pets in the Travelling with your Pet section at aircanada.com.</Text>
+               </Description>
+               <Description ObjectKey="CHECKINandBOARDINGTIMES">
+                  <Text>You must obtain your boarding pass and check in any baggage by the check-in cut-off time shown below. We recommend allowing plenty of time at the airport for check-in, especially if you have baggage and for security checks. You must also be available for boarding at the boarding gate by the cut-off time shown below. Failure to meet the boarding gate cut-off time may result in the loss of your assigned seat, the cancellation of your reservation, and your ineligibility for denied boarding compensation. Check-in online ... and get your boarding pass. Itinerary Check-in Boarding When you should check in Baggage drop-off ends Gate closes</Text>
+               </Description>
+               <Description refs="CHECKINandBOARDINGTIMES">
+                  <Text>90 minutes</Text>
+                  <MarkupStyle>45 minutes*</MarkupStyle>
+                  <Link>30 minutes</Link>
+                  <Media>
+                     <MediaLink>Within Canada</MediaLink>
+                  </Media>
+               </Description>
+               <Description refs="CHECKINandBOARDINGTIMES">
+                  <Text>120 minutes</Text>
+                  <MarkupStyle>60 minutes</MarkupStyle>
+                  <Link>30 minutes</Link>
+                  <Media>
+                     <MediaLink>To/From The U.S.</MediaLink>
+                  </Media>
+               </Description>
+               <Description refs="CHECKINandBOARDINGTIMES">
+                  <Text>120 minutes</Text>
+                  <MarkupStyle>60 minutes</MarkupStyle>
+                  <Link>30 minutes</Link>
+                  <Media>
+                     <MediaLink>International (including Mexico and the Caribbean)</MediaLink>
+                  </Media>
+               </Description>
+               <Description refs="CHECKINandBOARDINGTIMES">
+                  <Text>180 minutes</Text>
+                  <MarkupStyle>60 minutes</MarkupStyle>
+                  <Link>30 minutes</Link>
+                  <Media>
+                     <MediaLink>From Algiers (Algeria), Casablanca (Morocco) and Tel Aviv (Israel)</MediaLink>
+                  </Media>
+               </Description>
+               <Description refs="CHECKINandBOARDINGTIMES">
+                  <Media>
+                     <MediaLink>To the U.S. From Toronto Pearson: For departures before 10 am, wait times are longer than usual at U.S Customs and Border Protection (CBP) and Canadian Air Transport Security Association (CATSA) pre-board screening. You should arrive at the airport three (3) hours before your flight's scheduled departure time. Pre-board security screening for departures to the U.S. opens at 4:00 AM.</MediaLink>
+                  </Media>
+               </Description>
+               <Description refs="CHECKINandBOARDINGTIMES">
+                  <Media>
+                     <MediaLink>* Exception: 20 minutes for flights departing from Toronto City Airport (YTZ).</MediaLink>
+                  </Media>
+               </Description>
+            </Disclosures>
+         </DisclosureList>
+         <FlightSegmentList>
+            <FlightSegment SecureFlight="true" SegmentKey="QRMLNN0XDN-FlightSegmentRPH-1">
+               <Departure>
+                  <AirportCode>YYZ</AirportCode>
+                  <Date>2023-05-19</Date>
+                  <Time>08:00</Time>
+                  <Terminal>
+                     <Name>1</Name>
+                  </Terminal>
+               </Departure>
+               <Arrival>
+                  <AirportCode>YVR</AirportCode>
+                  <Date>2023-05-19</Date>
+                  <Time>09:51</Time>
+                  <Terminal>
+                     <Name>M</Name>
+                  </Terminal>
+               </Arrival>
+               <MarketingCarrier>
+                  <AirlineID>AC</AirlineID>
+                  <Name>AIR CANADA</Name>
+                  <FlightNumber>103</FlightNumber>
+                  <ResBookDesigCode>G</ResBookDesigCode>
+               </MarketingCarrier>
+               <OperatingCarrier>
+                  <AirlineID>AC</AirlineID>
+                  <Name>AIR CANADA</Name>
+                  <ResBookDesigCode>G</ResBookDesigCode>
+               </OperatingCarrier>
+               <Equipment>
+                  <AircraftCode>789</AircraftCode>
+               </Equipment>
+               <ClassOfService>
+                  <Code>G</Code>
+               </ClassOfService>
+               <FlightDetail>
+                  <FlightSegmentType>I</FlightSegmentType>
+                  <FlightDuration>
+                     <Value>PT04H51M</Value>
+                  </FlightDuration>
+                  <Stops>
+                     <StopQuantity>0</StopQuantity>
+                  </Stops>
+               </FlightDetail>
+            </FlightSegment>
+            <FlightSegment SecureFlight="true" SegmentKey="TQAD2FAYW1-FlightSegmentRPH-2">
+               <Departure>
+                  <AirportCode>YVR</AirportCode>
+                  <Date>2023-05-25</Date>
+                  <Time>08:00</Time>
+                  <Terminal>
+                     <Name>M</Name>
+                  </Terminal>
+               </Departure>
+               <Arrival>
+                  <AirportCode>YYZ</AirportCode>
+                  <Date>2023-05-25</Date>
+                  <Time>15:20</Time>
+                  <Terminal>
+                     <Name>1</Name>
+                  </Terminal>
+               </Arrival>
+               <MarketingCarrier>
+                  <AirlineID>AC</AirlineID>
+                  <Name>AIR CANADA</Name>
+                  <FlightNumber>104</FlightNumber>
+                  <ResBookDesigCode>G</ResBookDesigCode>
+               </MarketingCarrier>
+               <OperatingCarrier>
+                  <AirlineID>AC</AirlineID>
+                  <Name>AIR CANADA</Name>
+                  <ResBookDesigCode>G</ResBookDesigCode>
+               </OperatingCarrier>
+               <Equipment>
+                  <AircraftCode>77W</AircraftCode>
+               </Equipment>
+               <ClassOfService>
+                  <Code>G</Code>
+               </ClassOfService>
+               <FlightDetail>
+                  <FlightSegmentType>I</FlightSegmentType>
+                  <FlightDuration>
+                     <Value>PT04H20M</Value>
+                  </FlightDuration>
+                  <Stops>
+                     <StopQuantity>0</StopQuantity>
+                  </Stops>
+               </FlightDetail>
+            </FlightSegment>
+         </FlightSegmentList>
+         <OriginDestinationList>
+            <OriginDestination OriginDestinationKey="FBMJ85KMPH-ODKey-BOUND-1" refs="QRMLNN0XDN-FlightSegmentRPH-1">
+               <DepartureCode>YYZ</DepartureCode>
+               <ArrivalCode>YVR</ArrivalCode>
+            </OriginDestination>
+            <OriginDestination OriginDestinationKey="Z533P7DQNU-ODKey-BOUND-2" refs="TQAD2FAYW1-FlightSegmentRPH-2">
+               <DepartureCode>YVR</DepartureCode>
+               <ArrivalCode>YYZ</ArrivalCode>
+            </OriginDestination>
+         </OriginDestinationList>
+         <InstructionsList>
+            <Instruction ListKey="LPN2HUY67I-TicketAdvisory-01">
+               <FreeFormTextInstruction>
+                  <Remark>MODIFICATIONS ALLOWED = SS : SEAT_SELECTION</Remark>
+                  <Remark>MODIFICATIONS ALLOWED = UF : UPDATE_FQTV</Remark>
+                  <Remark>MODIFICATIONS ALLOWED = CL : CANCEL_PNR</Remark>
+                  <Remark>MODIFICATIONS ALLOWED = OS : OPTIONS_SELECTION</Remark>
+               </FreeFormTextInstruction>
+            </Instruction>
+         </InstructionsList>
+         <PriceClassList>
+            <PriceClass PriceClassID="OXMQQK2DHA-Basic-G-103">
+               <Name>Basic</Name>
+               <ClassOfService refs="QRMLNN0XDN-FlightSegmentRPH-1">
+                  <Code>G</Code>
+               </ClassOfService>
+            </PriceClass>
+            <PriceClass PriceClassID="RERAYKYAEC-Basic-G-104">
+               <Name>Basic</Name>
+               <ClassOfService refs="TQAD2FAYW1-FlightSegmentRPH-2">
+                  <Code>G</Code>
+               </ClassOfService>
+            </PriceClass>
+         </PriceClassList>
+         <TermsList ListKey="NOTES" refs="NOTES">
+            <Term>
+               <Descriptions>
+                  <Description>
+                     <Text>Checked Baggage Allowance and Fee on Air Canada from YYZ To YVR:</Text>
+                  </Description>
+                  <Description>
+                     <Text>1st bag: CAD 33.9* for Non-member, Air Canada Basic members; Complimentary for Air Canada Prestige or Star Alliance Gold members; Complimentary for Air Canada Super Elite, Elite members.</Text>
+                  </Description>
+                  <Description>
+                     <Text>2nd bag: CAD 56.5* for Non-member, Air Canada Basic or Star Alliance Silver &amp; Gold members; Complimentary for Air Canada Prestige members; Complimentary for Air Canada Super Elite, Elite members.</Text>
+                  </Description>
+                  <Description>
+                     <Text>1 extra bag: Complimentary for Star Alliance Gold members.</Text>
+                  </Description>
+               </Descriptions>
+            </Term>
+            <Term>
+               <Descriptions>
+                  <Description>
+                     <Text>Checked Baggage Allowance and Fee on Air Canada from YVR To YYZ:</Text>
+                  </Description>
+                  <Description>
+                     <Text>1st bag: CAD 33.9* for Non-member, Air Canada Basic members; Complimentary for Air Canada Prestige or Star Alliance Gold members; Complimentary for Air Canada Super Elite, Elite members.</Text>
+                  </Description>
+                  <Description>
+                     <Text>2nd bag: CAD 56.5* for Non-member, Air Canada Basic or Star Alliance Silver &amp; Gold members; Complimentary for Air Canada Prestige members; Complimentary for Air Canada Super Elite, Elite members.</Text>
+                  </Description>
+                  <Description>
+                     <Text>1 extra bag: Complimentary for Star Alliance Gold members.</Text>
+                  </Description>
+               </Descriptions>
+            </Term>
+         </TermsList>
+      </DataLists>
+      <Metadata>
+         <Other>
+            <OtherMetadata>
+               <CurrencyMetadatas>
+                  <CurrencyMetadata MetadataKey="CurrencyMetadata-DecimalPlaces">
+                     <Decimals>2</Decimals>
+                  </CurrencyMetadata>
+               </CurrencyMetadatas>
+            </OtherMetadata>
+            <OtherMetadata>
+               <RuleMetadatas>
+                  <RuleMetadata MetadataKey="EHPA264E5Q">
+                     <RuleID>QYNPGKGMLJ</RuleID>
+                     <Remarks>
+                        <Remark>YTO AC YVR76.00GW2NZCBA AC YTO104.00GK2NZCBA CAD180.00END</Remark>
+                     </Remarks>
+                  </RuleMetadata>
+               </RuleMetadatas>
+            </OtherMetadata>
+         </Other>
+      </Metadata>
+   </Response>
+</OrderViewRS>

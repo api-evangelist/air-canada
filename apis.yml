@@ -22,7 +22,7 @@ description: >-
   machine-readable contract, no bulk export operation, and Air Canada publishes
   that it may revoke NDC programme access at its sole discretion. Public docs,
   gated access, no exit path.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/groq.png
+image: https://www.aircanada.com/favicon.ico
 tags:
 - Travel
 - Canada
@@ -231,12 +231,50 @@ apis:
     url: https://ndc.aircanada.com/api/documentation/orderchangenotification
   - type: APIReference
     url: https://ndc.aircanada.com/api/documentation/ndcapis
+  - type: Webhooks
+    url: asyncapi/air-canada-ocn-webhooks.yml
 common:
+- type: DomainSecurity
+  url: security/air-canada-domain-security.yml
+- type: Authentication
+  url: authentication/air-canada-authentication.yml
+- type: Conventions
+  url: conventions/air-canada-conventions.yml
+- type: ErrorCatalog
+  url: errors/air-canada-error-codes.yml
+- type: DeclineCodes
+  url: errors/air-canada-decline-codes.yml
+- type: Webhooks
+  url: asyncapi/air-canada-ocn-webhooks.yml
+- type: Sandbox
+  url: sandbox/air-canada-sandbox.yml
+- type: Lifecycle
+  url: lifecycle/air-canada-lifecycle.yml
+- type: ChangeLog
+  url: changelog/air-canada-changelog.yml
+- type: Conformance
+  url: conformance/air-canada-conformance.yml
+- type: DataModel
+  url: data-model/air-canada-data-model.yml
+- type: Vocabulary
+  url: vocabulary/air-canada-vocabulary.yml
+- type: AgenticAccess
+  url: agentic-access/air-canada-agentic-access.yml
+- type: Packages
+  url: packages/air-canada-packages.yml
+- type: Examples
+  url: examples/_index.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/air-canada-llms.txt
 - type: Website
   url: https://www.aircanada.com/
 - type: DeveloperPortal
   url: https://ndc.aircanada.com/
 - type: Documentation
+  url: https://ndc.aircanada.com/api/documentation/ndcapis
+- type: APIReference
   url: https://ndc.aircanada.com/api/documentation/ndcapis
 - type: GettingStarted
   url: https://ndc.aircanada.com/api/gettingstarted/gettingstarted
@@ -264,6 +302,10 @@ common:
   url: https://ndc.aircanada.com/support
 - type: FAQ
   url: https://ndc.aircanada.com/support/faq
+- type: Documentation
+  url: https://ndc.aircanada.com/support/knownissues
+- type: GitHubOrganization
+  url: https://github.com/aircanada
 - type: StatusPage
   url: https://ndc.aircanada.com/support/statusMonitoring
 - type: ChangeLog

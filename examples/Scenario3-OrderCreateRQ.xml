@@ -1,0 +1,154 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:atpco="https://prod.services.atpco.net/ndcexchange/NDC/schema/v1">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <atpco:NDCMSG_Envelope>
+            <NDCMSG_Header>
+                <Sender>
+                    <SellerID>*******************</SellerID>
+                </Sender>
+                <Recipient>
+                    <Address>
+                        <Company>AC</Company>
+                    </Address>
+                </Recipient>
+                <SchemaType>NDC</SchemaType>
+                <SchemaVersion>YY.2017.2</SchemaVersion>
+            </NDCMSG_Header>
+            <NDCMSG_Body>
+                <NDCMSG_Payload>
+                    <![CDATA[
+
+<OrderCreateRQ Version="2017.2" xmlns="http://www.iata.org/IATA/EDIST/2017.2">
+	<Document>
+		<Name>ATPCO AGG NDCx 2.0</Name>
+		<ReferenceVersion>IATA NDC 17.2</ReferenceVersion>
+	</Document>
+	<Party>
+	<Sender>
+			<TravelAgencySender>
+				<IATA_Number>2222222</IATA_Number>
+				<AgencyID>000</AgencyID>
+				<AgentUser>
+					<AgentUserID>ABCD</AgentUserID>
+				</AgentUser>
+			</TravelAgencySender>
+	</Sender>
+    </Party>
+
+	<Parameters>
+		<Languages>
+			<LanguageCode>en-CA</LanguageCode>
+		</Languages>
+	</Parameters>
+	<Query>
+		<Order>
+			<Offer OfferID="BRS838WWDY-OfferID-1" Owner="AC" ResponseID="b6da3fe7-98e7-49d3-aed6-3723eb280bca-5627.007607079163">
+            	<OfferItem OfferItemID="AGII9MI6KV-OfferItemID-1">
+					<PassengerRefs>Pax1</PassengerRefs>
+				</OfferItem>
+			</Offer>
+
+          <Offer OfferID="OD6QWDVPA5-STRS-OfferID-1" Owner="AC" ResponseID="b4b6a927-36d1-42a3-8111-f4fbffe84137-971.4076673000071">
+                <OfferItem OfferItemID="TE9SGRPX60-ASPW-OfferItemID-1">
+                    <PassengerRefs>Pax1</PassengerRefs>
+                    <SeatSelection>
+                     <Row>20</Row>
+                    <Column>A</Column>
+                    </SeatSelection>
+                </OfferItem>
+            </Offer>
+            <Offer OfferID="OH8ZG7ZNZB-STRS-OfferID-1" Owner="AC" ResponseID="b4b6a927-36d1-42a3-8111-f4fbffe84137-971.4076673000071">
+                <OfferItem OfferItemID="BXAWMLVUUD-ASPW-OfferItemID-1">
+                    <PassengerRefs>Pax1</PassengerRefs>
+                    <SeatSelection>
+                     <Row>21</Row>
+                    <Column>A</Column>
+                    </SeatSelection>
+                </OfferItem>
+            </Offer>
+
+		</Order>
+		<Payments>
+			<Payment>
+				<Type>CC</Type>
+				<Method>
+					<PaymentCard>
+						<CardType>1</CardType>
+						<CardCode>VI</CardCode>
+						<CardNumber>4012999999999999</CardNumber>
+						<SeriesCode>737</SeriesCode>
+						<CardHolderName>Test user</CardHolderName>
+						<CardHolderBillingAddress>
+							<Street>100 Avenue</Street>
+							<BuildingRoom>100</BuildingRoom>
+							<CityName>Montreal</CityName>
+							<StateProv>Quebec</StateProv>
+							<PostalCode>H0H0H0</PostalCode>
+							<CountryCode>CA</CountryCode>
+						</CardHolderBillingAddress>
+						<EffectiveExpireDate>
+							<Expiration>1025</Expiration>
+						</EffectiveExpireDate>
+					</PaymentCard>
+				</Method>
+				<Amount>285.3</Amount>
+			</Payment>
+		</Payments>
+        		
+		<DataLists>
+			<PassengerList>
+				<Passenger PassengerID="Pax1">
+					<PTC>ADT</PTC>
+                    <LoyaltyProgramAccount>
+				<ProgramCode>AC</ProgramCode>
+				<AccountNumber>600160667</AccountNumber>
+			    </LoyaltyProgramAccount>
+					<Birthdate>1973-01-01</Birthdate>
+					<Individual>
+						<Gender>Male</Gender>
+						<NameTitle>Mr</NameTitle>
+						<GivenName>Test</GivenName>
+						<MiddleName>T</MiddleName>
+						<Surname>Account</Surname>
+						<SurnameSuffix>Ph.d</SurnameSuffix>
+					</Individual>
+					<ContactInfoRef>CONTACT_For_TravelerRefNumber1</ContactInfoRef>
+				</Passenger>
+			</PassengerList>
+			<ContactList>
+				<ContactInformation ContactID="CONTACT_For_TravelerRefNumber1">
+					<ContactType>1.PTT</ContactType>
+					<ContactProvided>
+						<EmailAddress>
+							<EmailAddressValue>mohammad.kasim@aircanada.ca</EmailAddressValue>
+                            <EmailAddressValue>mohammad.kasim@@aircanada.ca</EmailAddressValue>
+						</EmailAddress>
+					</ContactProvided>
+					<ContactProvided>
+						<Phone>
+							<Label>8.PLT</Label>
+							<CountryDialingCode>1</CountryDialingCode>
+							<AreaCode>514</AreaCode>
+							<PhoneNumber>4225815</PhoneNumber>
+							<Extension>5815</Extension>
+						</Phone>
+					</ContactProvided>
+					<PostalAddress>
+						<CountrySubdivisionName>Quebec</CountrySubdivisionName>
+						<CountryCode>CA</CountryCode>
+						<CityName>Montreal</CityName>
+						<Street>100 Avenue</Street>
+						<PostalCode>H0H0H0</PostalCode>
+					</PostalAddress>
+				</ContactInformation>
+			</ContactList>
+		</DataLists>
+	</Query>
+</OrderCreateRQ>
+
+ ]]>
+</NDCMSG_Payload>
+</NDCMSG_Body>
+</atpco:NDCMSG_Envelope>
+</soapenv:Body>
+</soapenv:Envelope>

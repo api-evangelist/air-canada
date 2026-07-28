@@ -1,0 +1,106 @@
+generated: '2026-07-28'
+method: searched
+source: https://ndc.aircanada.com/api/gettingstarted/apisetup
+docs: https://ndc.aircanada.com/api/gettingstarted/apisetup
+description: >-
+  Air Canada's NDC API is authenticated by a single opaque API key issued by Air
+  Canada, carried in an "apikey" HTTP header on every SOAP request, plus an
+  in-payload identity chain that the platform authorises against: the SellerID
+  in the aggregation envelope and, for agency flows, the accredited IATA number
+  and Agency ID inside the IATA NDC message itself. There is no OAuth, no
+  OpenID Connect and no self-service key issuance on the inbound path - keys are
+  handed out only after a commercial agreement and certification. OAuth appears
+  in exactly one place, and it is outbound: when a seller registers a webhook to
+  receive OrderChangeNotification messages, Air Canada supports OAuth as the
+  authentication method it will use when calling the seller's endpoint.
+summary:
+  types: [apiKey]
+  api_key_in: [header]
+  oauth2_flows: []
+  self_service_issuance: false
+  gate: commercial agreement + display certification + accredited IATA/ARC codes
+schemes:
+  - name: apikey
+    type: apiKey
+    in: header
+    parameter_name: apikey
+    description: >-
+      "The API key is a unique authorization key issued by Air Canada. To access
+      the Air Canada NDC Platform API, each seller should provide the 'apikey' in
+      the HTTP header." (verbatim, API Setup page)
+    failure_mode: >-
+      "Please be sure to add this or you will experience an authentication error
+      (i.e., 400 Bad Request)." (verbatim)
+    environments:
+      - name: gold (sandbox / certification)
+        base_url: https://gold-ndcpartners.aircanada.com/
+      - name: production
+        base_url: https://ndcpartners.aircanada.com/
+    sources: [https://ndc.aircanada.com/api/gettingstarted/apisetup]
+  - name: TP-Proxy-Key
+    type: apiKey
+    in: header
+    parameter_name: TP-Proxy-Key
+    status: retired
+    description: >-
+      Formerly required alongside apikey on OrderCreateRQ and OrderChangeRQ. Air
+      Canada now states verbatim: "NOTE: You no longer need to submit the two
+      additional parameters given below, when sending an OrderCreateRQ or
+      OrderChangeRQ" (TP-Proxy-Key and Tx-http-timeout).
+    sources: [https://ndc.aircanada.com/api/gettingstarted/apisetup]
+in_payload_identity:
+  description: >-
+    Authorisation is not carried by the API key alone. The NDC aggregation
+    envelope and the IATA message both carry identity elements that Air Canada
+    validates, and error code 89975 ("The validation of OfficeID and credentials
+    has resulted in failure") is returned when they do not line up.
+  elements:
+    - element: NDCMSG_Header/Sender/SellerID
+      required: true
+      description: The seller's key in the aggregation (SOAP) envelope. Example value in the docs is ac.gndc.Test.
+    - element: NDCMSG_Header/Recipient/Address/Company
+      required: true
+      description: Offer owner airline designator; AC for Air Canada.
+    - element: Party/Sender/TravelAgencySender/IATA_Number
+      required: for agency bookings
+      description: >-
+        The seller's accredited 8-digit IATA number (or TIDS). Air Canada
+        documents "In production, sellers must pass their accredited IATA codes
+        only" and "Do not use any IATA codes that are used in examples."
+    - element: Party/Sender/TravelAgencySender/AgencyID
+      required: true
+      description: Agency identifier provided by Air Canada. Example value in the docs is 493.
+    - element: Party/Sender/TravelAgencySender/PseudoCity
+      required: false
+    - element: Party/Sender/TravelAgencySender/AgentUser/AgentUserID
+      required: false
+    - element: PointOfSale/Location/CountryCode
+      required: mandatory for direct consumer flows, optional for agency bookings
+outbound_callback_auth:
+  surface: OrderChangeNotification (OCN) webhook
+  description: >-
+    Sellers registering to receive OCN messages must supply, verbatim: "Webhook
+    host, Webhook URL, Authentication method (OAuth), AT system credentials, PRD
+    system credentials, OAuthTokenURL (if OAuth is the authentication method),
+    OAuthScope (if OAuth is the authentication method), Any headers required in
+    the request."
+  registration_contact: ACDirectconnectNDC@aircanada.ca
+  detail: asyncapi/air-canada-ocn-webhooks.yml
+authentication_errors_detail: errors/air-canada-error-codes.yml
+authentication_errors:
+  - code: 89975
+    message: The validation of OfficeID and credentials has resulted in failure and hence, cannot proceed with the shopping search
+  - code: 199994
+    message: CompanyShortName is not supported
+  - code: 199999
+    message: IATA not allowed
+  - code: 1533
+    message: INVALID OFFICE IDENTIFICATION CODE
+  - code: 1914
+    message: OFFICE RESTRICTED
+not_supported:
+  - oauth2 (inbound)
+  - openIdConnect
+  - mutualTLS (not documented)
+  - http basic / bearer
+  - self-service key generation or rotation portal

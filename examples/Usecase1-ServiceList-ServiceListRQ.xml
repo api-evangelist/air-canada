@@ -1,0 +1,70 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="https://prod.services.ACNDC.net/ndcexchange/NDC/schema/v1">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <v1:NDCMSG_Envelope>
+            <NDCMSG_Header>
+                <Sender>
+                    <SellerID>*******************</SellerID>
+                </Sender>
+                <Recipient>
+                    <Address>
+                        <Company>AC</Company>
+                    </Address>
+                </Recipient>
+                <SchemaType>NDC</SchemaType>
+                <SchemaVersion>YY.2017.2</SchemaVersion>
+            </NDCMSG_Header>
+            <NDCMSG_Body>
+                <NDCMSG_Payload>
+<![CDATA[
+
+<ServiceListRQ Version="17.2" xmlns="http://www.iata.org/IATA/EDIST/2017.2">
+	<PointOfSale>
+		<Location>
+			<CountryCode>CA</CountryCode>
+		</Location>
+	</PointOfSale>
+	<Document>
+		<Name>ACNDC AGG NDCx 2.0</Name>
+		<ReferenceVersion>IATA NDC 17.2</ReferenceVersion>
+	</Document>
+	<Party>
+		<Sender>
+			<TravelAgencySender>
+				<AgencyID>493</AgencyID>
+			</TravelAgencySender>
+		</Sender>
+	</Party>
+	<Parameters>
+		<Languages>
+			<LanguageCode>en-CA</LanguageCode>
+		</Languages>
+	</Parameters>
+	<ShoppingResponseID>
+		<ResponseID>80758e95-1d90-4c4b-b09d-5ba5e8ff7a29-6795.435443056075</ResponseID>
+	</ShoppingResponseID>
+	<Query>
+		<Offers>
+			<Offer>
+				<OfferID Owner="AC">RXZXEU-OfferID-1</OfferID>
+				<OfferItemIDs>
+					<OfferItemID Owner="AC">RGTWUH89LJ-OfferItemID-1</OfferItemID>
+				</OfferItemIDs>
+			</Offer>
+		</Offers>
+	</Query>
+    	<DataLists>
+		<PassengerList>
+		<Passenger PassengerID="Pax1">
+				<PTC>ADT</PTC>
+			</Passenger>
+		</PassengerList>
+	</DataLists>
+</ServiceListRQ>
+
+]]>
+</NDCMSG_Payload>
+</NDCMSG_Body>
+</v1:NDCMSG_Envelope>
+</soapenv:Body>
+</soapenv:Envelope>

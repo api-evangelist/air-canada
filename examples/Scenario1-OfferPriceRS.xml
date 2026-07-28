@@ -1,0 +1,329 @@
+<OfferPriceRS EchoToken="ET" TimeStamp="2022-12-20T11:39:51.653-05:00" Version="2017.2" TransactionIdentifier="1" SequenceNmbr="1" xmlns="http://www.iata.org/IATA/EDIST/2017.2">
+    <Document>
+        <Name>ACNDC AGG NDCx 2.0</Name>
+        <ReferenceVersion>IATA NDC 17.2</ReferenceVersion>
+    </Document>
+    <Success/>
+    <ShoppingResponseID>
+        <ResponseID>a14ab97f-e915-4120-8221-a67ff2ee6b9b-3518.0484803828995</ResponseID>
+    </ShoppingResponseID>
+    <PricedOffer OfferID="RBYTJB2S56-OfferID-1" Owner="AC" >
+        <TotalPrice>
+            <DetailCurrencyPrice>
+                <Total Code="USD">440.63</Total>
+                <Details>
+                    <Detail>
+                        <SubTotal Code="USD">329.1</SubTotal>
+                        <Application>ItinTotalFare</Application>
+                    </Detail>
+                    <Detail>
+                        <SubTotal Code="USD">111.53</SubTotal>
+                        <Application>AncillaryTotalFare</Application>
+                    </Detail>
+                </Details>
+            </DetailCurrencyPrice>
+        </TotalPrice>
+        <OfferItem OfferItemID="NFV0V1ZUZV-OfferItemID-1">
+            <TotalPriceDetail>
+                <TotalAmount>
+                    <DetailCurrencyPrice>
+                        <Total Code="USD">329.1</Total>
+                    </DetailCurrencyPrice>
+                </TotalAmount>
+                <BaseAmount Code="USD">219.09</BaseAmount>
+                <Surcharges>
+                    <Surcharge>
+                        <Total Code="USD" >21.91</Total>
+                        <Breakdown>
+                            <Fee>
+                                <Amount>21.91</Amount>
+                                <Designator>Q</Designator>
+                                <Description>Surcharges</Description>
+                            </Fee>
+                        </Breakdown>
+                    </Surcharge>
+                </Surcharges>
+                <Taxes>
+                    <Total>88.1</Total>
+                    <Breakdown>
+                        <Tax CollectionInd="false" >
+                            <Amount>18.08</Amount>
+                            <Nation>LO</Nation>
+                            <TaxCode>US</TaxCode>
+                            <Description>Transportation International/Domestic Tax - United States</Description>
+                        </Tax>
+                        <Tax CollectionInd="false" >
+                            <Amount>13.33</Amount>
+                            <Nation>DP</Nation>
+                            <TaxCode>XG</TaxCode>
+                            <Description>Goods and Services Tax - Canada - 100092287 RT0001</Description>
+                        </Tax>
+                        <Tax CollectionInd="false" >
+                            <Amount>26.59</Amount>
+                            <Nation>GO</Nation>
+                            <TaxCode>XQ</TaxCode>
+                            <Description>Quebec Sales Tax - Canada - 1000043172 TQ1991</Description>
+                        </Tax>
+                        <Tax CollectionInd="false" >
+                            <Amount>25.6</Amount>
+                            <Nation>AD</Nation>
+                            <TaxCode>SQ</TaxCode>
+                            <Description>Airport Improvement Fee - Canada</Description>
+                        </Tax>
+                        <Tax CollectionInd="false" >
+                            <Amount>4.5</Amount>
+                            <Nation>VO</Nation>
+                            <TaxCode>ZP</TaxCode>
+                            <Description>Flight Segment Tax - United States</Description>
+                        </Tax>
+                    </Breakdown>
+                </Taxes>
+            </TotalPriceDetail>
+            <Service ServiceID="EKLWKDYM3C-ServiceID-1">
+                <PassengerRefs> CLHPZ7X63U-PaxID-1</PassengerRefs>
+                <FlightRefs>LZBJCTIS2A-OD-1</FlightRefs>
+            </Service>
+            <FareDetail>
+                <Price>
+                    <BaseAmount Code="USD">219.09</BaseAmount>
+                </Price>
+                <FareComponent>
+                    <FareBasis>
+                        <FareBasisCode>
+                            <Code>TZ6LZCBA</Code>
+                        </FareBasisCode>
+                        <RBD>T</RBD>
+                        <CabinType>
+                            <CabinTypeCode>M</CabinTypeCode>
+                            <CabinTypeName>Economy</CabinTypeName>
+                        </CabinType>
+                    </FareBasis>
+                    <PriceClassRef>WVIIAHNCCO-Basic</PriceClassRef>
+                    <SegmentRefs>XSOHK6LB9P-SEG-1</SegmentRefs>
+                </FareComponent>
+            </FareDetail>
+        </OfferItem>
+    </PricedOffer>
+    <OtherOffers>
+        <ALaCarteOffer OfferID="ZFVFDUY1SU-SRVC-OfferID-1" Owner="AC">
+            <ALaCarteOfferItem OfferItemID="ABH83NV9JS-SRVC-OfferItemID-1">
+                <Eligibility>
+                    <PassengerRefs>CLHPZ7X63U-PaxID-1</PassengerRefs>
+                    <SegmentRefs>XSOHK6LB9P-SEG-1</SegmentRefs>
+                </Eligibility>
+                <UnitPriceDetail>
+                    <TotalAmount>
+                        <DetailCurrencyPrice>
+                            <Total Code="USD">111.53</Total>
+                        </DetailCurrencyPrice>
+                    </TotalAmount>
+                    <BaseAmount>97.0</BaseAmount>
+                    <Taxes>
+                        <Total>14.53</Total>
+                        <Breakdown>
+                            <Tax>
+                                <Amount>4.85</Amount>
+                                <Nation>XX</Nation>
+                                <TaxCode>XG</TaxCode>
+                                <Description>Goods and Services Tax - Canada - 100092287 RT0001</Description>
+                            </Tax>
+                            <Tax>
+                                <Amount>9.68</Amount>
+                                <Nation>XX</Nation>
+                                <TaxCode>XQ</TaxCode>
+                                <Description>Quebec Sales Tax - Canada - 1000043172 TQ1991</Description>
+                            </Tax>
+                        </Breakdown>
+                    </Taxes>
+                </UnitPriceDetail>
+                <Service ServiceID="E9IUPVKFNX-ServiceID-1">
+                    <ServiceDefinitionRef>DM5XQ5A10O-ServiceDefinition-1</ServiceDefinitionRef>
+                </Service>
+            </ALaCarteOfferItem>
+        </ALaCarteOffer>
+    </OtherOffers>
+    <DataLists>
+        <PassengerList>
+            <Passenger PassengerID="CLHPZ7X63U-PaxID-1">
+                <PTC>ADT</PTC>
+            </Passenger>
+        </PassengerList>
+        <FlightSegmentList>
+            <FlightSegment ElectronicTicketInd="true" SegmentKey="XSOHK6LB9P-SEG-1">
+                <Departure>
+                    <AirportCode>YUL</AirportCode>
+                    <Date>2023-06-19</Date>
+                    <Time>07:25</Time>
+                </Departure>
+                <Arrival>
+                    <AirportCode>YVR</AirportCode>
+                    <Date>2023-06-19</Date>
+                    <Time>09:55</Time>
+                </Arrival>
+                <MarketingCarrier>
+                    <AirlineID>AC</AirlineID>
+                    <Name>AIR CANADA</Name>
+                    <FlightNumber>301</FlightNumber>
+                    <ResBookDesigCode>T</ResBookDesigCode>
+                </MarketingCarrier>
+                <OperatingCarrier>
+                    <AirlineID>AC</AirlineID>
+                    <Name>AIR CANADA</Name>
+                    <Disclosures>
+                        <Description ObjectKey="FKLFYDH4W4-Breakpoint-1" >
+                            <Text>true</Text>
+                        </Description>
+                    </Disclosures>
+                </OperatingCarrier>
+                <Equipment>
+                    <AircraftCode>333</AircraftCode>
+                </Equipment>
+                <ClassOfService>
+                    <Code>T</Code>
+                    <FareBasisCode>TZ6LZCBA</FareBasisCode>
+                </ClassOfService>
+                <FlightDetail>
+                    <Stops>
+                        <StopQuantity>0</StopQuantity>
+                    </Stops>
+                </FlightDetail>
+            </FlightSegment>
+        </FlightSegmentList>
+        <OriginDestinationList>
+            <OriginDestination OriginDestinationKey="LZBJCTIS2A-OD-1">
+                <DepartureCode>YUL</DepartureCode>
+                <ArrivalCode>YVR</ArrivalCode>
+                <FlightReferences>XSOHK6LB9P-SEG-1</FlightReferences>
+            </OriginDestination>
+        </OriginDestinationList>
+        <PriceClassList>
+            <PriceClass PriceClassID="WVIIAHNCCO-Basic">
+                <Name>Basic</Name>
+                <Descriptions>
+                    <Description>
+                        <Text>Changes:</Text>
+                    </Description>
+                    <Description>
+                        <Text>Cancellations:</Text>
+                    </Description>
+                    <Description>
+                        <Text>Tickets are non-refundable and non-transferable.</Text>
+                    </Description>
+                    <Description>
+                        <Text>Cancellations are permitted (for a limited time)</Text>
+                    </Description>
+                    <Description>
+                        <Text>Please notify us immediately if you do not plan on taking your scheduled flight(s). If you are unable to change or cancel your booking online, you can reach Air Canada Reservations at 1-888-247-2262 (for international and other numbers, visit www.aircanada.com/othernumbers). If you do not show up for your flight, the rest of your itinerary will automatically be cancelled.
+Air Canada will provide a full refund without penalty when you cancel a new ticket (i.e. when a new booking is made and you are assigned a booking reference) within 24 hours of purchase.</Text>
+                    </Description>
+                    <Description>
+                        <Text>Checked Baggage Allowance and Fee on Air Canada:</Text>
+                    </Description>
+                    <Description>
+                        <Text>1st bag: ${25.18} for Non-member, Air Canada Basic members; Complimentary for Air Canada Prestige or Star Alliance Gold members; Complimentary for Air Canada Super Elite, Elite members.</Text>
+                    </Description>
+                    <Description>
+                        <Text>2nd bag: ${41.97} for Non-member, Air Canada Basic or Star Alliance Silver &amp;; Gold members; Complimentary for Air Canada Prestige members; Complimentary for Air Canada Super Elite, Elite members.</Text>
+                    </Description>
+                    <Description>
+                        <Text>1 extra bag: Complimentary for Star Alliance Gold members.</Text>
+                    </Description>
+                    <Description>
+                        <Text>Other fare rules:</Text>
+                    </Description>
+                    <Description>
+                        <Text>Advance seat selection on Air Canada Rouge flights, Air Canada flights and Air Canada Express (operated by Jazz) for a fee</Text>
+                    </Description>
+                    <Description>
+                        <Text>10% Aeroplan points on flights operated by Air Canada, Air Canada Rouge and Air Canada Express (Jazz)</Text>
+                    </Description>
+                    <Description>
+                        <Text>Flights operated by Air Canada Rouge: earn 100 Air Canada Status Miles.</Text>
+                    </Description>
+                    <Description>
+                        <Text>Read complete fare rules applicable to this fare.</Text>
+                    </Description>
+                </Descriptions>
+                <FareBasisCode>
+                    <Code>TZ6LZCBA</Code>
+                </FareBasisCode>
+                <ClassOfService>
+                    <Code>T</Code>
+                </ClassOfService>
+            </PriceClass>
+        </PriceClassList>
+        <ServiceDefinitionList>
+            <ServiceDefinition ServiceDefinitionID="DM5XQ5A10O-ServiceDefinition-1" Owner="AC">
+                <Name>RQST</Name>
+                <Encoding>
+                    <Type>0B5</Type>
+                </Encoding>
+                <Descriptions>
+                    <Description>
+                        <Text>Preferred Seat - Aisle</Text>
+                    </Description>
+                </Descriptions>
+            </ServiceDefinition>
+        </ServiceDefinitionList>
+        <TermsList ListKey="XYDVLBCZNK">
+            <Term>
+                <Descriptions>
+                    <Description>
+                        <Text>The grand total shown includes all taxes, fees, fuel surcharges where applicable and other charges. Fares shown are the best available uniform rates at this time for the number of tickets requested and the selected travel times and dates. Fares are not guaranteed until you purchase your ticket.</Text>
+                    </Description>
+                    <Description>
+                        <Text>United States federal law forbids the carriage of hazardous materials aboard the aircraft in your baggage or on your person. A violation can result in five years imprisonment and penalties of $250,000 or more.</Text>
+                    </Description>
+                    <Description>
+                        <Text>Hazardous materials include explosives (e.g. fireworks), compressed gases (e.g. oxygen bottles or tear gas), flammable liquids or solids (e.g. paints and lighter fluid), corrosive or oxidizing materials, poisons, and radioactive materials such as radio-pharmaceuticals.</Text>
+                    </Description>
+                    <Description>
+                        <Text>Special exceptions are made for small quantities (up to 2 L/70 fl. oz. total) of medicinal products and toiletry items that are carried in your baggage, as well as for certain smoking products carried on your person</Text>
+                    </Description>
+                    <Description>
+                        <Text>http://www.aircanada.com/en/travelinfo/airport/baggage/security.html</Text>
+                    </Description>
+                    <Description>
+                        <Text>Air Passenger Protection Regulations Notice: If you are denied boarding, your flight is cancelled or delayed for at least two hours, or your baggage is lost or damaged, you may be entitled to certain standards of treatment and compensation under the Air Passenger Protection Regulations. For more information about your passenger rights please contact your air carrier or visit the Canadian Transportation Agency&#39;s website.</Text>
+                    </Description>
+                    <Description>
+                        <Text>General terms and conditions pertaining to flight delays, cancellations, denied boarding, seating of children and lost or damaged baggage can be found in Air Canada&#39;s General Conditions of Carriage and Tariffs.</Text>
+                    </Description>
+                    <Description>
+                        <Text>https://www.aircanada.com/ca/en/aco/home/legal/conditions-carriage-tariffs.html</Text>
+                    </Description>
+                </Descriptions>
+            </Term>
+        </TermsList>
+        <SeatDefinitionList>
+            <SeatDefinition SeatDefinitionID="TQWFSOVD1T-SeatCharacteristic-1">
+                <Description>
+                    <Text refs="XSOHK6LB9P-SEG-1"> </Text>
+                </Description>
+                <SeatCharacteristicCode>A</SeatCharacteristicCode>
+                <SeatCharacteristicCode>CH</SeatCharacteristicCode>
+                <SeatCharacteristicCode>O</SeatCharacteristicCode>
+            </SeatDefinition>
+        </SeatDefinitionList>
+    </DataLists>
+    <Metadata>
+        <Shopping>
+            <ShopMetadataGroup>
+                <Qualifier>
+                    <ProgramQualifiers>
+                        <ProgramQualifier>
+                            <IncentiveProgramQualifier>
+                                <Name>AC2U</Name>
+                                <AccountID/>
+                                <AirlineID>AC</AirlineID>
+                            </IncentiveProgramQualifier>
+                            <ProgramStatusQualifier>
+                                <ProgramStatus/>
+                            </ProgramStatusQualifier>
+                        </ProgramQualifier>
+                    </ProgramQualifiers>
+                </Qualifier>
+            </ShopMetadataGroup>
+        </Shopping>
+    </Metadata>
+</OfferPriceRS>

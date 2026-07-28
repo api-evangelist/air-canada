@@ -1,0 +1,56 @@
+generated: '2026-07-28'
+method: searched
+source: https://ndc.aircanada.com/api/releasenotes/latestrelease
+docs: https://ndc.aircanada.com/api/releasenotes/latestrelease
+description: >-
+  Air Canada publishes a dated release-notes page for the NDC API, filterable by
+  date range and by impacted API. The page is rendered client-side and its entry
+  data is loaded from a portal content API that is not anonymously readable, so
+  the individual release rows could not be harvested; what is recorded here is
+  the changelog's shape, its published navigation entries, and its freshness.
+  No release content is invented.
+
+scheme: dated releases with per-release API impact
+current_version: '17.2'
+table_columns:
+  - Release Date
+  - Release & Summary
+  - Implementation Requirement
+  - API(s) affected
+filters:
+  - date range
+  - impacted API
+empty_state: >-
+  Verbatim: "There is no release notes for the selected filters. Please adjust
+  date range or impacted API"
+
+entries:
+  - label: 2023 Release Notes
+    url: https://ndc.aircanada.com/api/releasenotes/latestrelease
+    note: The only release-notes collection published in the portal navigation.
+  - label: 09 Jan 23
+    date: '2023-01-09'
+    url: https://ndc.aircanada.com/api/releasenotes/latestrelease
+    note: >-
+      The only dated release entry exposed in the published navigation tree.
+      Its body is served by the gated portal content API and was not harvested.
+
+harvest_note: >-
+  The release-notes page is a React route in the SPA at
+  https://ndc.aircanada.com/static/js/main.c265d76f.js. The navigation, labels
+  and empty-state strings are in the client bundle; the release rows are not.
+  Anonymous requests to the portal's data hosts
+  (ndcportal-api.digital.aircanada.com) return HTTP 403.
+
+freshness:
+  latest_dated_entry: '2023-01-09'
+  observed: '2026-07-28'
+  assessment: >-
+    No release has been published through the public changelog in over three
+    years, consistent with every documentation page carrying a January or
+    February 2023 modifiedDate.
+
+related:
+  lifecycle: lifecycle/air-canada-lifecycle.yml
+  roadmap: https://ndc.aircanada.com/api/roadmap
+  known_issues: https://ndc.aircanada.com/support/knownissues

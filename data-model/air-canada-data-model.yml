@@ -1,0 +1,240 @@
+generated: '2026-07-28'
+method: derived
+source: >-
+  examples/*.xml - the 67 Air Canada-published NDC 17.2 sample messages committed
+  to this repo, cross-read against the element tables on
+  https://ndc.aircanada.com/api/documentation/ndcapis. Air Canada publishes no
+  OpenAPI, WSDL or XSD, so the entity graph below is derived from the identifier
+  attributes and *Ref/*Refs elements that actually appear on the wire in Air
+  Canada's own samples, not from a schema.
+description: >-
+  The Air Canada NDC 17.2 (EDIST) entity-relationship graph. NDC is a
+  reference-graph format rather than a nested-document format: shared entities are
+  hoisted into DataLists and every message body points into them by opaque key, so
+  the same Passenger, FlightSegment or ServiceDefinition is defined once per
+  message and referenced many times. Understanding that indirection is the single
+  hardest part of integrating NDC, and it is what this file records. Every entity,
+  key attribute and reference element listed below was observed in Air Canada's
+  published sample XML; nothing is inferred from the IATA schema.
+
+conventions:
+  key_style: >-
+    Opaque, Air Canada-minted, per-response strings. Most keys carry a
+    ten-character random prefix followed by a human-readable suffix describing
+    what the key is, e.g. PassengerID="FISLALT56P-TravelerRefNumber-2",
+    OrderItemID="FI2QZKFZH2-PassengerFare-TravelerRefNumber-2",
+    PriceClassID="SL0E40DQ3E-Basic-T-311",
+    BaggageAllowanceID="AHQQGXURCA-CARRY_ON_ALLOWANCE-STANDARD_ARTICLE".
+    The suffix is descriptive but must not be parsed - only the whole string is
+    the key.
+  reference_style: >-
+    Singular *Ref elements carry one key; plural *Refs elements carry a
+    space-separated or repeated list. References are resolved inside the same
+    message against DataLists.
+  scope:
+    session_scoped: [OfferID, OfferItemID, ResponseID, PassengerID, ContactID,
+      ServiceID, ServiceDefinitionID, PriceClassID, SeatDefinitionID,
+      BaggageAllowanceID, FlightSegment SegmentKey]
+    durable: [OrderID, OrderItemID, BookingReference ID (PNR record locator),
+      TicketDocNbr]
+  durability_note: >-
+    Only the Order-side identifiers survive the response that minted them. Offer
+    and OfferItem keys expire with the shopping session, which is why Air Canada
+    documents that OfferPriceRQ must be re-run and OrderCreateRQ re-submitted with
+    fresh ids when a price changes. See conventions/air-canada-conventions.yml.
+
+containers:
+  description: >-
+    DataLists is the shared dictionary carried on most request and response
+    messages. Observed list containers, with the count of sample files each
+    appears in.
+  data_lists:
+    - {list: PassengerList, holds: Passenger, files: 62}
+    - {list: OriginDestinationList, holds: OriginDestination, files: 17}
+    - {list: FlightSegmentList, holds: FlightSegment, files: 17}
+    - {list: TermsList, holds: Terms, files: 14}
+    - {list: PriceClassList, holds: PriceClass, files: 14}
+    - {list: ContactList, holds: ContactInformation, files: 13}
+    - {list: ServiceDefinitionList, holds: ServiceDefinition, files: 11}
+    - {list: SeatDefinitionList, holds: SeatDefinition, files: 8}
+    - {list: InstructionsList, holds: Instruction, files: 6}
+    - {list: DisclosureList, holds: Disclosures, files: 6}
+    - {list: BaggageAllowanceList, holds: BaggageAllowance, files: 6}
+
+entities:
+  - name: Order
+    key: OrderID
+    key_example: ORDER-c98c-4759-a20b
+    also_observed: 'OrderID="4AXKOX" (record-locator-shaped in the UseCase1 sample)'
+    owner_attribute: Owner (IATA airline designator, always AC)
+    produced_by: OrderCreate (OrderViewRS)
+    read_by: OrderRetrieve
+    domain: orders
+    note: >-
+      The only durable, commercially meaningful key Air Canada mints. There is no
+      OrderList or search operation, so a seller must persist every OrderID it
+      creates. See review.yml exitPath.
+  - name: OrderItem
+    key: OrderItemID
+    parent: Order
+    domain: orders
+    carries: [PriceDetail, FareDetail, Service, OrderItemDetails]
+  - name: BookingReference
+    key: ID
+    parent: Order
+    domain: orders
+    note: 'Type=PNR with AirlineID AC - the Air Canada record locator.'
+  - name: Payment
+    key: null
+    parent: Order
+    domain: payment
+    note: >-
+      Identified only by its refs attribute pointing at a PassengerID. Carries
+      Type (CC), Status/StatusCode (charge), Amount and Method/PaymentCardMethod
+      with a MaskedCardNumber. Present only on the two PCI-gateway messages
+      (OrderCreate, OrderChange).
+  - name: TicketDocument
+    key: TicketDocNbr
+    domain: orders
+    note: >-
+      13-digit ticket number (airline code + form code + serial). Carried under
+      TicketDocInfos/TicketDocInfo alongside a PassengerReference.
+  - name: Offer
+    key: OfferID
+    domain: shopping
+    produced_by: [AirShopping, OfferPrice, ServiceList, SeatAvailability, OrderReshop]
+    note: >-
+      Session-scoped. Flight OfferIDs come from OfferPriceRS, ancillary OfferIDs
+      from ServiceListRS and seat OfferIDs from SeatAvailabilityRS - all three
+      must be carried into OrderCreateRQ.
+  - name: OfferItem
+    key: OfferItemID
+    parent: Offer
+    domain: shopping
+  - name: Passenger
+    key: PassengerID
+    domain: traveler
+    carries: [PTC, Individual, IdentityDocument, LoyaltyProgramAccount]
+    note: PTC values observed in the corpus - ADT, CHD, INF, INS, YTH.
+  - name: ContactInformation
+    key: ContactID
+    domain: traveler
+    carries: [PostalAddress, ContactProvided/EmailAddress, ContactProvided/Phone]
+  - name: OriginDestination
+    key: OriginDestinationKey
+    domain: flight
+  - name: FlightSegment
+    key: SegmentKey
+    domain: flight
+    note: >-
+      Referenced as SegmentRef (singular) from Service and as SegmentRefs
+      (plural) from FareComponent and OfferItem.
+  - name: PriceClass
+    key: PriceClassID
+    domain: pricing
+    note: >-
+      The branded fare family (observed suffixes include -Basic). Referenced from
+      FareComponent/PriceClassRef.
+  - name: Service
+    key: ServiceID
+    parent: OrderItem
+    domain: ancillary
+    note: A priced instance binding one Passenger to one FlightSegment.
+  - name: ServiceDefinition
+    key: ServiceDefinitionID
+    domain: ancillary
+    note: >-
+      The catalogue description of an ancillary (Maple Leaf Lounge access, Air
+      Canada Bistro voucher, baggage). Referenced from Service via
+      ServiceDefinitionRef.
+  - name: SeatDefinition
+    key: SeatDefinitionID
+    domain: seats
+    note: Referenced from Seat via SeatDefinitionRefs on SeatAvailabilityRS.
+  - name: Seat
+    key: null
+    domain: seats
+    note: Positional (Row/Column) rather than keyed; points at SeatDefinition.
+  - name: BaggageAllowance
+    key: BaggageAllowanceID
+    domain: ancillary
+    note: BaggageCategory values observed - "CARRY ON" and "CHECKED".
+  - name: Terms
+    key: null
+    domain: pricing
+    note: Fare rules and penalty terms carried in TermsList.
+  - name: Disclosures
+    key: ListKey
+    domain: disclosure
+    note: >-
+      Carries the display text Air Canada requires sellers to render, e.g.
+      ListKey IMPORTANT_INFORMATION_OF_CONFIRMATION_PAGE. Rendering these is a
+      display-certification obligation, not optional. See review.yml.
+  - name: Response
+    key: ResponseID
+    domain: shopping
+    note: Correlates a shopping response so its offers can be re-priced.
+
+relationships:
+  - {from: Order, to: OrderItem, type: has_many, via: OrderItems/OrderItem}
+  - {from: Order, to: Payment, type: has_many, via: Payments/Payment}
+  - {from: Order, to: BookingReference, type: has_many, via: BookingReferences/BookingReference}
+  - {from: OrderItem, to: Service, type: has_many, via: "Service (keyed by ServiceID attribute)"}
+  - {from: OrderItem, to: PriceClass, type: belongs_to, via: FareDetail/FareComponent/PriceClassRef}
+  - {from: OrderItem, to: FlightSegment, type: has_many, via: FareDetail/FareComponent/SegmentRefs}
+  - {from: Service, to: Passenger, type: belongs_to, via: PassengerRef}
+  - {from: Service, to: FlightSegment, type: belongs_to, via: SegmentRef}
+  - {from: Service, to: ServiceDefinition, type: belongs_to, via: ServiceDefinitionRef}
+  - {from: Payment, to: Passenger, type: belongs_to, via: "@refs attribute"}
+  - {from: TicketDocument, to: Passenger, type: belongs_to, via: PassengerReference}
+  - {from: Offer, to: OfferItem, type: has_many, via: "OfferItem (keyed by OfferItemID attribute)"}
+  - {from: OfferItem, to: Passenger, type: has_many, via: PassengerRefs}
+  - {from: OfferItem, to: FlightSegment, type: has_many, via: SegmentRefs}
+  - {from: OfferItem, to: ServiceDefinition, type: belongs_to, via: Service/ServiceDefinitionRef}
+  - {from: Passenger, to: ContactInformation, type: has_one, via: ContactInfoRef}
+  - {from: Passenger, to: Passenger, type: has_one, via: InfantRef, note: adult-to-infant association}
+  - {from: OriginDestination, to: FlightSegment, type: has_many, via: FlightReferences/FlightRefs}
+  - {from: Seat, to: SeatDefinition, type: has_many, via: SeatDefinitionRefs}
+  - {from: PriceClass, to: FlightSegment, type: has_many, via: ClassOfService/SegmentRefs}
+
+reference_element_frequency:
+  note: >-
+    Count of occurrences across the 67 committed sample files - a direct measure
+    of which references an integration must resolve most often.
+  counts:
+  - {element: PassengerRefs, count: 69}
+  - {element: SegmentRefs, count: 54}
+  - {element: ServiceDefinitionRef, count: 35}
+  - {element: PriceClassRef, count: 26}
+  - {element: PassengerRef, count: 19}
+  - {element: SeatDefinitionRefs, count: 18}
+  - {element: SegmentRef, count: 17}
+  - {element: ContactInfoRef, count: 17}
+  - {element: FlightRefs, count: 11}
+  - {element: InfantRef, count: 3}
+
+id_prefixes:
+  published: false
+  note: >-
+    Unlike a REST API with typed id prefixes (cus_, ord_), NDC keys carry no
+    stable type prefix. The only stable, parseable shape is OrderID's documented
+    example form ORDER-xxxx-xxxx-xxxx, and even that is not guaranteed - the
+    UseCase1 OrderViewRS sample returns OrderID="4AXKOX", a six-character record
+    locator. Do not pattern-match on key shape.
+
+domains:
+  shopping: [Offer, OfferItem, Response, PriceClass]
+  orders: [Order, OrderItem, BookingReference, TicketDocument]
+  traveler: [Passenger, ContactInformation]
+  flight: [OriginDestination, FlightSegment]
+  ancillary: [Service, ServiceDefinition, BaggageAllowance]
+  seats: [Seat, SeatDefinition]
+  pricing: [PriceClass, Terms]
+  payment: [Payment]
+  disclosure: [Disclosures]
+
+cross_links:
+  examples: examples/_index.yml
+  conventions: conventions/air-canada-conventions.yml
+  errors: errors/air-canada-error-codes.yml
+  skills: skills/_index.yml

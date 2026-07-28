@@ -1,0 +1,227 @@
+generated: '2026-07-28'
+method: derived
+source: >-
+  examples/*.xml (Air Canada's own 67 committed sample messages) cross-read
+  against the element tables published at
+  https://ndc.aircanada.com/api/documentation/ndcapis. Air Canada documents its
+  data elements against named IATA PADIS code lists in HTML tables but publishes
+  no machine-readable vocabulary, XSD or code-list download, so the values below
+  are the ones observed on the wire in Air Canada's own published samples.
+description: >-
+  The controlled vocabulary of the Air Canada NDC 17.2 (EDIST) interface: which
+  external standards supply which code list, and which values of each list
+  actually appear in Air Canada's published sample traffic. Air Canada's data
+  vocabulary is almost entirely borrowed - IATA and ISO own nearly every code on
+  the wire, which is the reason NDC is portable at the field level even where it
+  is not portable at the identifier level. The exceptions are recorded in
+  air_canada_specific below and they are exactly the commercially interesting
+  ones.
+
+completeness_note: >-
+  A value being absent from observed_values means it was not present in the
+  published sample corpus, NOT that Air Canada rejects it. The samples cover
+  Canadian point-of-sale economy itineraries with one adult, so lists such as
+  cabin type and card code are represented by a single value. Air Canada's
+  documentation tables are the authority for the full domain; this file is the
+  evidence of what is actually exercised.
+
+standards_referenced:
+  - id: iata-padis
+    name: IATA PADIS code lists
+    elements: ['1001', '1153', '4405', '9888', '9972']
+    source: https://ndc.aircanada.com/api/documentation/ndcapis
+  - id: iata-resolution-762
+    name: IATA airline designators
+    applies_to: [AirlineID, Owner, Order/@Owner]
+  - id: iata-resolution-763
+    name: IATA location identifiers
+    applies_to: [AirportCode, CityCode]
+  - id: iso-3166-1
+    name: ISO 3166-1 alpha-2 country codes
+    applies_to: [PointOfSale/Location/CountryCode, PostalAddress/CountryCode]
+  - id: iso-4217
+    name: ISO 4217 currency codes
+    applies_to: [CurrCode, SimpleCurrencyPrice/@Code, Total/@Code]
+  - id: iso-8601
+    name: ISO 8601 dates and timestamps
+    applies_to: [TimeStamp, Date, DateOfIssue, Birthdate, Expiration]
+  - id: bcp-47
+    name: Language tags
+    applies_to: [LanguageCode]
+
+code_lists:
+  - name: PassengerTypeCode
+    element: Passenger/PTC
+    authority: IATA PADIS
+    observed_values:
+      - {code: ADT, meaning: Adult}
+      - {code: CHD, meaning: Child}
+      - {code: INF, meaning: Infant, note: infant in lap, associated to an adult via InfantRef}
+      - {code: INS, meaning: Infant with seat}
+      - {code: YTH, meaning: Youth}
+
+  - name: CabinTypeCode
+    element: CabinType/CabinTypeCode
+    authority: IATA PADIS
+    observed_values:
+      - {code: M, meaning: Economy, source_element: CabinTypeName}
+
+  - name: BaggageCategory
+    element: BaggageAllowance/BaggageCategory
+    authority: IATA NDC EDIST
+    observed_values:
+      - {code: 'CARRY ON', meaning: Carry-on allowance}
+      - {code: CHECKED, meaning: Checked baggage allowance}
+
+  - name: PaymentCardCode
+    element: PaymentCardMethod/CardCode
+    authority: IATA PADIS
+    observed_values:
+      - {code: VI, meaning: Visa}
+    note: >-
+      The only card brand appearing in the published corpus, alongside the
+      published test card 4012999999999999. See sandbox/air-canada-sandbox.yml.
+
+  - name: PaymentStatusCode
+    element: Payment/Status/StatusCode
+    authority: IATA NDC EDIST
+    observed_values:
+      - {code: charge, meaning: Amount charged to the form of payment}
+
+  - name: PaymentType
+    element: Payment/Type
+    authority: IATA PADIS
+    observed_values:
+      - {code: CC, meaning: Credit card, basis: co-occurs with PaymentCardMethod and MaskedCardNumber}
+
+  - name: PriceApplication
+    element: DetailCurrencyPrice/Details/Detail/Application
+    authority: IATA NDC EDIST
+    observed_values:
+      - {code: ItinTotalFare, meaning: Itinerary total fare component}
+      - {code: AncillaryTotalFare, meaning: Ancillary total fare component}
+      - code: R
+        meaning: null
+        note: >-
+          Observed in the corpus with no accompanying description and no entry in
+          Air Canada's published element tables. Recorded as seen rather than
+          guessed.
+
+  - name: TaxCode
+    element: Taxes/Breakdown/Tax/TaxCode
+    authority: IATA PADIS / national tax authorities
+    observed_values:
+      - {code: CA, meaning: Air Travellers Security Charge - Canada}
+      - {code: XG, meaning: Goods and Services Tax - Canada}
+      - {code: XQ, meaning: Quebec Sales Tax - Canada}
+      - {code: SQ, meaning: Airport Improvement Fee - Canada}
+      - {code: RC, meaning: Harmonized Sales Tax - Canada}
+      - {code: US, meaning: Transportation International/Domestic Tax - United States}
+      - {code: ZP, meaning: Flight Segment Tax - United States}
+    note: >-
+      Every meaning above is the verbatim text of the Description element that
+      accompanies that TaxCode in Air Canada's own samples. Nothing here is
+      inferred from an external tax table.
+
+  - name: FeeDesignator
+    element: Fees/Breakdown/Fee/Designator
+    authority: IATA PADIS
+    observed_values:
+      - {code: Q, meaning: Surcharges}
+
+  - name: RFIC
+    element: ServiceDefinition/Encoding/RFIC
+    authority: IATA Reason For Issuance Code
+    observed_values:
+      - {code: A, meaning: null, basis: 'carried on ServiceDefinitions named RQST (seat request)'}
+      - {code: G, meaning: null, basis: 'carried on ServiceDefinitions named MEAL'}
+    note: >-
+      Air Canada's samples carry the code but no expansion, and the portal
+      element tables reference the IATA list rather than reproducing it. The
+      meanings are deliberately left null rather than filled in from an external
+      IATA table that was not fetched.
+
+  - name: TicketDocumentType
+    element: TicketDocument/Type
+    authority: IATA
+    observed_values:
+      - {code: '702', meaning: null, basis: 'observed alongside a 13-digit TicketDocNbr and Remark TKD'}
+
+  - name: ReportingType
+    element: TicketDocument/ReportingType
+    observed_values:
+      - {code: Airline, meaning: Airline-reported document}
+
+  - name: LanguageCode
+    element: LanguageCode
+    authority: BCP 47
+    observed_values:
+      - {code: en-CA, meaning: Canadian English, note: default when omitted}
+      - {code: fr-CA, meaning: Canadian French}
+      - {code: EN, meaning: English, note: bare form also observed in some samples}
+    documented_domain: >-
+      Verbatim from the samples - "Accepted values are en-CA or fr-CA (en-CA is
+      the default value if omitted)".
+
+  - name: CurrencyCode
+    element: CurrCodes/FilledInCurrency/CurrCode
+    authority: ISO 4217
+    observed_values:
+      - {code: CAD, meaning: Canadian dollar}
+
+  - name: AirlineDesignator
+    element: AirlineID
+    authority: IATA Resolution 762
+    observed_values:
+      - {code: AC, meaning: Air Canada}
+
+  - name: BookingReferenceType
+    element: BookingReference/Type
+    observed_values:
+      - {code: PNR, meaning: Passenger Name Record / record locator}
+
+air_canada_specific:
+  note: >-
+    Vocabulary Air Canada owns rather than borrows. These are the terms that do
+    not travel to another carrier's NDC implementation.
+  branded_fare_families:
+    element: PriceClass/Name
+    observed_values: [Basic, Standard, Flex, Latitude]
+    note: >-
+      Air Canada's branded economy fare ladder as it appears in the published
+      samples. Rendering these correctly is a display-certification obligation -
+      see review.yml contractualLockIn.
+  document_names:
+    element: Document/Name
+    observed_values:
+      - 'AC NDC 17.2'
+      - 'ACNDC AGG NDCx 2.0'
+      - 'ACNDC NDCx 2.0'
+      - 'ATPCO AGG NDCx 2.0'
+      - 'NDC-Exchange'
+    note: >-
+      The ACNDC-prefixed document names are the wire evidence of the Air
+      Canada-specific schema fork (NDC2017.2-schemas-edist-ACNDC) recorded in
+      review.yml specHarvest; the ATPCO ones are the NDC Exchange aggregation
+      layer.
+  loyalty:
+    program_code: AC
+    program_name: Aeroplan
+    elements:
+      - Passenger/LoyaltyProgramAccount/AccountNumber
+      - eUpgrade GroupCode / SubGroupCode / MembershipID / LoyalLevel / ProgramID
+    note: >-
+      Air Canada layers Aeroplan and eUpgrade semantics onto standard NDC
+      elements passed through the AirShopping service-filter section. A seller
+      that codes to these has not thereby coded to another airline's loyalty
+      surface.
+  disclosure_keys:
+    element: Disclosures/@ListKey
+    observed_values:
+      - IMPORTANT_INFORMATION_OF_CONFIRMATION_PAGE
+    note: Keys the seller UI must key off to render mandated disclosure text.
+
+cross_links:
+  data_model: data-model/air-canada-data-model.yml
+  conformance: conformance/air-canada-conformance.yml
+  examples: examples/_index.yml

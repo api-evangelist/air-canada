@@ -115,6 +115,33 @@ Recorded in full in [review.yml](review.yml). Summary:
 | Distribution model | `gds-intermediated`, with a real `ndc-direct` option |
 | NDC posture | IATA NDC 17.2 published and documented; Air Canada claims NDC@Scale certification on its own site |
 
+## Artifacts
+
+Harvested from Air Canada's own public NDC developer portal on 2026-07-28. The portal is a React SPA that ships its documentation inside the client bundle, so the tables below were read from that published bundle verbatim. Nothing here is invented.
+
+| Artifact | What it holds |
+| --- | --- |
+| [`authentication/`](authentication/air-canada-authentication.yml) | The `apikey` header plus the in-payload SellerID / IATA number / AgencyID identity chain |
+| [`conventions/`](conventions/air-canada-conventions.yml) | SOAP envelope, endpoints per gateway, `orc-transaction-id` tracing, versioning, mandatory orchestration order — and the absent idempotency, pagination and rate-limit contracts |
+| [`errors/`](errors/air-canada-error-codes.yml) | 156 published non-payment error codes across the ten message services |
+| [`errors/` (declines)](errors/air-canada-decline-codes.yml) | 141 published payment-authorization codes from the OrderCreate PCI path |
+| [`asyncapi/`](asyncapi/air-canada-ocn-webhooks.yml) | The OrderChangeNotification webhook surface and its 19 published status codes |
+| [`sandbox/`](sandbox/air-canada-sandbox.yml) | GOLD/TPZ environments, test IATA numbers, ACB accounts, Aeroplan profiles, test cards (incl. 3DS), promo codes, Flight Pass fixtures |
+| [`lifecycle/`](lifecycle/air-canada-lifecycle.yml) | Versioning, release notes, roadmap, status page, support desk — and the absent deprecation policy and SLA |
+| [`changelog/`](changelog/air-canada-changelog.yml) | The release-notes surface and its freshness (last dated entry 2023-01-09) |
+| [`conformance/`](conformance/air-canada-conformance.yml) | What this API conforms to (NDC 17.2, PADIS, ISO, SOAP, ATPCO) and what it does not (OpenAPI, REST, RFC 9457, OAuth, security.txt) |
+| [`examples/`](examples/_index.yml) | 67 committed sample request/response XML messages, plus 29 multi-megabyte responses indexed by URL |
+| [`skills/`](skills/_index.yml) | Three packaged agent skills: shop-and-book, cancel-and-refund, handle-disruption-notifications |
+| [`security/`](security/air-canada-domain-security.yml) | TLS/HSTS/DNSSEC/CAA/SPF/DMARC probe |
+| [`well-known/`](well-known/air-canada-well-known.yml) | The `/.well-known/` probe — nothing is published; the SPA's 200s are false positives |
+| [`llms/`](llms/air-canada-llms.txt) | Generated llms.txt (Air Canada publishes none) |
+| [`data-model/`](data-model/air-canada-data-model.yml) | The NDC entity graph derived from the sample corpus — 20 entities, 20 relationships, and why NDC keys are a reference graph rather than a nested document |
+| [`vocabulary/`](vocabulary/air-canada-vocabulary.yml) | The controlled vocabulary actually exercised on the wire: PADIS/ISO code lists with observed values, plus the Air Canada-specific terms (branded fare families, ACNDC document names, Aeroplan/eUpgrade) |
+| [`agentic-access/`](agentic-access/air-canada-agentic-access.yml) | A recommended `x-agentic-access` contract for the ten message services — read/write/physical consequence, TTL ceilings, and the operations an agent should never hold a standing credential for |
+| [`packages/`](packages/air-canada-packages.yml) | The SDK search result: zero first-party API clients, two first-party .NET utilities on NuGet from `github.com/aircanada`, and the third-party generic NDC ecosystem |
+
+Not present, because Air Canada does not publish them: OpenAPI/WSDL/XSD, a first-party API client library, a CLI, an MCP server, OAuth scopes, a vulnerability disclosure programme, a trust centre, a deprecation policy, or an idempotency contract.
+
 ## Common Properties
 
 - [Website](https://www.aircanada.com/)
@@ -130,6 +157,8 @@ Recorded in full in [review.yml](review.yml). Summary:
 - [Release Notes](https://ndc.aircanada.com/api/releasenotes/latestrelease)
 - [Roadmap](https://ndc.aircanada.com/api/roadmap)
 - [NDC Display Requirements (PDF)](https://www.aircanada.com/content/dam/aircanada/portal/documents/PDF/ndc-displayRequirements-en.pdf)
+- [Known Issues](https://ndc.aircanada.com/support/knownissues)
+- [GitHub Organization](https://github.com/aircanada)
 - [Terms of Use](https://www.aircanada.com/ca/en/aco/home/legal/terms-of-use.html)
 - [Privacy Policy](https://www.aircanada.com/ca/en/aco/home/legal/privacy-policy.html)
 - [LinkedIn](https://www.linkedin.com/company/air-canada)
