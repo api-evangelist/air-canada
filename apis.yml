@@ -35,7 +35,7 @@ tags:
 - Loyalty
 created: '2026-07-28'
 modified: '2026-07-28'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: air-canada:air-canada-ndc-airshopping-api
   name: Air Canada NDC AirShopping API
