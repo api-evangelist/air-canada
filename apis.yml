@@ -124,6 +124,10 @@ apis:
   baseURL: https://ndcpartners.aircanada.com
   tags:
   - NDC
+  - Order
+  - Booking
+  tags_raw:
+  - NDC
   - Orders
   - Booking
   properties:
@@ -143,6 +147,10 @@ apis:
   baseURL: https://ndcpartners.aircanada.com
   tags:
   - NDC
+  - Order
+  - Servicing
+  tags_raw:
+  - NDC
   - Orders
   - Servicing
   properties:
@@ -160,6 +168,10 @@ apis:
   humanURL: https://ndc.aircanada.com/api/documentation/orderchange
   baseURL: https://ndcpartners.aircanada.com
   tags:
+  - NDC
+  - Order
+  - Servicing
+  tags_raw:
   - NDC
   - Orders
   - Servicing
@@ -188,6 +200,10 @@ apis:
   baseURL: https://ndcpartners.aircanada.com
   tags:
   - NDC
+  - Order
+  - Reshop
+  tags_raw:
+  - NDC
   - Orders
   - Reshop
   properties:
@@ -207,6 +223,10 @@ apis:
   baseURL: https://ndcpartners.aircanada.com
   tags:
   - NDC
+  - Order
+  - Cancellation
+  tags_raw:
+  - NDC
   - Orders
   - Cancellation
   properties:
@@ -223,6 +243,10 @@ apis:
   humanURL: https://ndc.aircanada.com/api/documentation/orderchangenotification
   baseURL: https://ndcpartners.aircanada.com
   tags:
+  - NDC
+  - Order
+  - Notification
+  tags_raw:
   - NDC
   - Orders
   - Notifications
