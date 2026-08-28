@@ -22,6 +22,17 @@ description: >-
   machine-readable contract, no bulk export operation, and Air Canada publishes
   that it may revoke NDC programme access at its sole discretion. Public docs,
   gated access, no exit path.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://www.aircanada.com/favicon.ico
 tags:
 - Travel
