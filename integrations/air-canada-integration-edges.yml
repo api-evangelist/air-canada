@@ -1,0 +1,29 @@
+edges:
+- partner_name: Duffel
+  partner: duffel
+  partner_match: aggregator
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: carrier-coverage
+  evidence: https://duffel.com/flights/airlines
+  detected_by: sweep-travel.py
+  first_seen: '2026-10-14'
+  iata_codes:
+  - AC
+  ndc_direct: true
+  content_source:
+  - air_canada
+  - travelport
+  features_in_production:
+  - baggage allowance
+  - cancellation
+  - hold order, pay later
+  - loyalty programme
+  - offer and order conditions
+  - void
+generated: '2026-10-14'
+method: searched
+checked:
+- https://duffel.com/flights/airlines
+source: https://duffel.com/flights/airlines
