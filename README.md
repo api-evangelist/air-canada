@@ -1,0 +1,232 @@
+# Air Canada (air-canada)
+
+<!-- API-EVANGELIST-PROVENANCE:BEGIN -->
+> ### About this repository
+>
+> **This is not our API.** This repository is an independent, third-party profile of a company's
+> **publicly available** API surface, maintained by [API Evangelist](https://apievangelist.com).
+> API Evangelist does not operate, host, resell, or support this company's APIs, and is not
+> affiliated with or endorsed by the company unless stated on the profile.
+>
+> **Where the information came from.** Everything here is assembled from material a member of the
+> public can reach with a browser and no credentials — the company's own website, developer portal
+> and documentation, the specifications it publishes for public use (OpenAPI, AsyncAPI, JSON Schema,
+> `apis.json`, `llms.txt` and similar), its public repositories, and its public status, pricing and
+> changelog pages. **Nothing here is obtained by breaching a system, defeating an access control, or
+> using credentials of any kind.**
+>
+> **The rating is an independent assessment.** The Kin Score and Agent Readiness rating are
+> independently calculated scores of a company's *public* API artifacts, produced by API Evangelist
+> against a published rubric. They are not certifications, endorsements, security assessments, or
+> audits, and they score published artifacts — not the quality, safety, or security of the software.
+>
+> **Corrections, re-scores, and removal are free.** No partnership, contract, or purchase is
+> required, and you do not need to justify the request.
+>
+> - **Something wrong?** Open an issue on this repository, or email
+>   [info@apievangelist.com](mailto:info@apievangelist.com).
+> - **Published something new?** Ask for a re-score and we will re-run the rating.
+> - **Want the listing taken down?** Say so and we will honor it. The profile is reduced to your
+>   company name, a factual description, and a link to your own site, and the company is recorded as
+>   **unrated** — never scored zero for having asked.
+>
+> **Response times.** Acknowledgement within **one business day**; removal or restriction within
+> **two business days**; corrections and re-scores within **five business days**.
+>
+> **Not from the company, and here with a question?** You are welcome here — we would rather be the
+> front line and point you the right way than have a good report go nowhere. What this repository
+> can answer is narrow, though, so it is worth knowing who you are actually looking for:
+>
+> - **A question about how the API works, an account, billing, or a bug in the service** — that is
+>   the company's own support, not us. We profile this API; we do not operate it and cannot see
+>   your account.
+> - **A bug in an open-source project we only catalog** — file it on that project's own repository.
+>   This has happened with a real and correct bug report that reached us instead of the people who
+>   could fix it, which helped nobody.
+> - **Anything about this listing itself** — the description, the tags, the rating, a missing or
+>   wrong artifact — is ours. Open an issue here.
+> - **Not sure, or something general about API Evangelist or APIs.io** — open an issue on the
+>   [APIs.io Inbox](https://github.com/api-search/inbox) and we will route it.
+>
+> **This repository contains no software, and we will never ask you to download anything.** There is
+> no build, release, installer, or binary here — only text and machine-readable API descriptions, so
+> there is nothing here that can be "corrupt" or need "repairing". Any issue, comment, or email
+> claiming otherwise and offering a download link is not from us and is hostile. Do not follow the
+> link; it is a lure. Report it to GitHub and, if you like, tell us at
+> [info@apievangelist.com](mailto:info@apievangelist.com) so we can take it down.
+>
+> **On a security or compliance team?** Email
+> [info@apievangelist.com](mailto:info@apievangelist.com) with *security* in the subject line and
+> you will get a person, not a form. We will tell you exactly which public URLs this profile was
+> built from so your team can see the same surface we did, and we will take the listing down on
+> request while you work through it.
+>
+> Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
+<!-- API-EVANGELIST-PROVENANCE:END -->
+
+Air Canada is Canada's flag carrier and largest airline, headquartered in Montreal, operating scheduled passenger service under the AC designator along with Air Canada Rouge, Air Canada Express and the Aeroplan loyalty programme. Its home market is Canada, where it forms a duopoly with WestJet. Air Canada sits at the supply end of the travel distribution chain: it is the sole source of its own seat inventory, reached either through the legacy GDS EDIFACT channel (Amadeus, Sabre, Travelport), through certified NDC aggregators, or directly through its own NDC API. Its API posture is unusual for a carrier in that the distribution surface is genuinely well documented in public: the ndc.aircanada.com developer portal publishes complete IATA NDC 17.2 (EDIST) message documentation, request/response element tables, error catalogues, use cases and downloadable sample XML with no login. What is not public is access itself — production credentials require a commercial agreement with Air Canada's distribution team, accredited IATA/ARC codes passed on every request, and passing Air Canada display certification test cases. There is no consumer API (no public flight status, booking or Aeroplan endpoint), no OpenAPI or machine-readable contract, no bulk export operation, and Air Canada publishes that it may revoke NDC programme access at its sole discretion. Public docs, gated access, no exit path.
+
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/air-canada/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/air-canada/refs/heads/main/apis.yml)
+
+## Tags
+
+- Travel
+- Canada
+- Aviation
+- Airline
+- NDC
+- Distribution
+- Booking
+- Airlines
+- Loyalty
+
+## Timestamps
+
+- **Created:** 2026-07-28
+- **Modified:** 2026-07-28
+
+## Two Surfaces
+
+Air Canada has two distinct API surfaces and they should not be conflated.
+
+- **Consumer surface** — none published. `developer.aircanada.com`, `developers.aircanada.com`, `docs.aircanada.com`, `developer.aeroplan.com` and `api.aeroplan.com` do not resolve. `www.aircanada.com/developers`, `/api`, `/openapi.json` and `/swagger.json` all return 404. Flight status, check-in, booking and Aeroplan are web and app only.
+- **Distribution surface** — documented in public at [ndc.aircanada.com](https://ndc.aircanada.com/), gated in practice. Ten IATA NDC 17.2 (EDIST) message services, XML over SOAP, reached through the `ndcpartners.aircanada.com` gateway once you are certified.
+
+## APIs
+
+### Air Canada NDC AirShopping API
+
+IATA NDC 17.2 AirShopping message pair (AirShoppingRQ / AirShoppingRS). Shops one-way, round-trip and North America multicity itineraries and returns branded fare-family offers with per-passenger price breakdowns, calendar offers and flight details. Requires agent IATA number and Agency ID for agency flows, or Point of Sale for direct consumer flows.
+
+- **Human URL:** [https://ndc.aircanada.com/api/documentation/airshopping](https://ndc.aircanada.com/api/documentation/airshopping)
+- **Base URL:** `https://ndcpartners.aircanada.com`
+
+### Air Canada NDC OfferPrice API
+
+IATA NDC 17.2 OfferPrice message pair (OfferPriceRQ / OfferPriceRS). Returns detailed and comprehensive pricing for a selected offer, including base fare, tax breakdown, surcharges and fare rules.
+
+- **Human URL:** [https://ndc.aircanada.com/api/documentation/offerprice](https://ndc.aircanada.com/api/documentation/offerprice)
+- **Base URL:** `https://ndcpartners.aircanada.com`
+
+### Air Canada NDC ServiceList API
+
+IATA NDC 17.2 ServiceList message pair (ServiceListRQ / ServiceListRS). Returns optional and ancillary services purchasable against an offer or order, such as Maple Leaf Lounge access and Air Canada Bistro meal vouchers.
+
+- **Human URL:** [https://ndc.aircanada.com/api/documentation/servicelist](https://ndc.aircanada.com/api/documentation/servicelist)
+- **Base URL:** `https://ndcpartners.aircanada.com`
+
+### Air Canada NDC SeatAvailability API
+
+IATA NDC 17.2 SeatAvailability message pair (SeatAvailabilityRQ / SeatAvailabilityRS). Returns seat maps with advance and preferred seat pricing, during a booking flow against an OfferID or after an Order has been created against an OrderID.
+
+- **Human URL:** [https://ndc.aircanada.com/api/documentation/seatavailability](https://ndc.aircanada.com/api/documentation/seatavailability)
+- **Base URL:** `https://ndcpartners.aircanada.com`
+
+### Air Canada NDC OrderCreate API
+
+IATA NDC 17.2 OrderCreate message pair (OrderCreateRQ / OrderViewRS). Creates an actual reservation and returns an airline-assigned OrderID plus an Air Canada record locator and associated reservation details.
+
+- **Human URL:** [https://ndc.aircanada.com/api/documentation/ordercreate](https://ndc.aircanada.com/api/documentation/ordercreate)
+- **Base URL:** `https://ndcpartners.aircanada.com`
+
+### Air Canada NDC OrderRetrieve API
+
+IATA NDC 17.2 OrderRetrieve message pair (OrderRetrieveRQ / OrderViewRS). Retrieves a single Order by mandatory OrderID and Owner. Air Canada documents that retrieving a cancelled Order, a GDS booking, a redemption booking, or the modification history of an Order is not supported.
+
+- **Human URL:** [https://ndc.aircanada.com/api/documentation/orderretrieve](https://ndc.aircanada.com/api/documentation/orderretrieve)
+- **Base URL:** `https://ndcpartners.aircanada.com`
+
+### Air Canada NDC OrderChange API
+
+IATA NDC 17.2 OrderChange message pair (OrderChangeRQ / OrderViewRS). Applies servicing changes to an existing Order, including seat and ancillary servicing with or without itinerary change, passenger servicing and frequent-flyer updates.
+
+- **Human URL:** [https://ndc.aircanada.com/api/documentation/orderchange](https://ndc.aircanada.com/api/documentation/orderchange)
+- **Base URL:** `https://ndcpartners.aircanada.com`
+
+### Air Canada NDC OrderReshop API
+
+IATA NDC 17.2 OrderReshop message pair (OrderReshopRQ / OrderReshopRS). Reshops an existing Order to produce change offers, including partially flown itineraries and origin/destination replacement.
+
+- **Human URL:** [https://ndc.aircanada.com/api/documentation/orderreshop](https://ndc.aircanada.com/api/documentation/orderreshop)
+- **Base URL:** `https://ndcpartners.aircanada.com`
+
+### Air Canada NDC OrderCancel API
+
+IATA NDC 17.2 OrderCancel message pair (OrderCancelRQ / OrderCancelRS). Cancels an existing Order held by Air Canada, referenced by OrderID and Owner.
+
+- **Human URL:** [https://ndc.aircanada.com/api/documentation/ordercancel](https://ndc.aircanada.com/api/documentation/ordercancel)
+- **Base URL:** `https://ndcpartners.aircanada.com`
+
+### Air Canada NDC OrderChangeNotification API
+
+IATA NDC 17.2 OrderChangeNotif message. Air Canada-initiated notification of changes made to an Order outside the seller's own request, such as schedule change or involuntary disruption handling.
+
+- **Human URL:** [https://ndc.aircanada.com/api/documentation/orderchangenotification](https://ndc.aircanada.com/api/documentation/orderchangenotification)
+- **Base URL:** `https://ndcpartners.aircanada.com`
+
+## Switching Cost
+
+Recorded in full in [review.yml](review.yml). Summary:
+
+| Dimension | Finding |
+| --- | --- |
+| Interface shape | `standard-plus-proprietary` — IATA NDC 17.2 / EDIST, extended by an Air Canada schema fork (`NDC2017.2-schemas-edist-ACNDC`) |
+| Second source | `no-alternative` — aggregators and GDSs are interchangeable pipes to a single supplier |
+| Exit path | `no-export-published` — no OrderList, no bulk export; OrderRetrieve needs a known OrderID, one at a time |
+| Identifier portability | IATA airline/airport/agency codes and PADIS code lists are portable; OrderID, OfferID and the Air Canada record locator are not |
+| Contractual lock-in | Published display requirements: audits, 30-day unilateral change notice, revocation at sole discretion |
+| Access gate | `commercial-agreement`, plus accredited IATA/ARC codes and display certification |
+| Distribution model | `gds-intermediated`, with a real `ndc-direct` option |
+| NDC posture | IATA NDC 17.2 published and documented; Air Canada claims NDC@Scale certification on its own site |
+
+## Artifacts
+
+Harvested from Air Canada's own public NDC developer portal on 2026-07-28. The portal is a React SPA that ships its documentation inside the client bundle, so the tables below were read from that published bundle verbatim. Nothing here is invented.
+
+| Artifact | What it holds |
+| --- | --- |
+| [`authentication/`](authentication/air-canada-authentication.yml) | The `apikey` header plus the in-payload SellerID / IATA number / AgencyID identity chain |
+| [`conventions/`](conventions/air-canada-conventions.yml) | SOAP envelope, endpoints per gateway, `orc-transaction-id` tracing, versioning, mandatory orchestration order — and the absent idempotency, pagination and rate-limit contracts |
+| [`errors/`](errors/air-canada-error-codes.yml) | 156 published non-payment error codes across the ten message services |
+| [`errors/` (declines)](errors/air-canada-decline-codes.yml) | 141 published payment-authorization codes from the OrderCreate PCI path |
+| [`asyncapi/`](asyncapi/air-canada-ocn-webhooks.yml) | The OrderChangeNotification webhook surface and its 19 published status codes |
+| [`sandbox/`](sandbox/air-canada-sandbox.yml) | GOLD/TPZ environments, test IATA numbers, ACB accounts, Aeroplan profiles, test cards (incl. 3DS), promo codes, Flight Pass fixtures |
+| [`lifecycle/`](lifecycle/air-canada-lifecycle.yml) | Versioning, release notes, roadmap, status page, support desk — and the absent deprecation policy and SLA |
+| [`changelog/`](changelog/air-canada-changelog.yml) | The release-notes surface and its freshness (last dated entry 2023-01-09) |
+| [`conformance/`](conformance/air-canada-conformance.yml) | What this API conforms to (NDC 17.2, PADIS, ISO, SOAP, ATPCO) and what it does not (OpenAPI, REST, RFC 9457, OAuth, security.txt) |
+| [`examples/`](examples/_index.yml) | 67 committed sample request/response XML messages, plus 29 multi-megabyte responses indexed by URL |
+| [`skills/`](skills/_index.yml) | Three packaged agent skills: shop-and-book, cancel-and-refund, handle-disruption-notifications |
+| [`security/`](security/air-canada-domain-security.yml) | TLS/HSTS/DNSSEC/CAA/SPF/DMARC probe |
+| [`well-known/`](well-known/air-canada-well-known.yml) | The `/.well-known/` probe — nothing is published; the SPA's 200s are false positives |
+| [`llms/`](llms/air-canada-llms.txt) | Generated llms.txt (Air Canada publishes none) |
+| [`data-model/`](data-model/air-canada-data-model.yml) | The NDC entity graph derived from the sample corpus — 20 entities, 20 relationships, and why NDC keys are a reference graph rather than a nested document |
+| [`vocabulary/`](vocabulary/air-canada-vocabulary.yml) | The controlled vocabulary actually exercised on the wire: PADIS/ISO code lists with observed values, plus the Air Canada-specific terms (branded fare families, ACNDC document names, Aeroplan/eUpgrade) |
+| [`agentic-access/`](agentic-access/air-canada-agentic-access.yml) | A recommended `x-agentic-access` contract for the ten message services — read/write/physical consequence, TTL ceilings, and the operations an agent should never hold a standing credential for |
+| [`packages/`](packages/air-canada-packages.yml) | The SDK search result: zero first-party API clients, two first-party .NET utilities on NuGet from `github.com/aircanada`, and the third-party generic NDC ecosystem |
+
+Not present, because Air Canada does not publish them: OpenAPI/WSDL/XSD, a first-party API client library, a CLI, an MCP server, OAuth scopes, a vulnerability disclosure programme, a trust centre, a deprecation policy, or an idempotency contract.
+
+## Common Properties
+
+- [Website](https://www.aircanada.com/)
+- [Developer Portal](https://ndc.aircanada.com/)
+- [Documentation](https://ndc.aircanada.com/api/documentation/ndcapis)
+- [Getting Started](https://ndc.aircanada.com/api/gettingstarted/gettingstarted)
+- [Sign Up](https://ndc.aircanada.com/seller-registration-form)
+- [Connection Options](https://ndc.aircanada.com/ndc-program/connection-options)
+- [Sandbox](https://gold-ndc-sandbox.aircanada.com/login)
+- [Support](https://ndc.aircanada.com/support)
+- [FAQ](https://ndc.aircanada.com/support/faq)
+- [Status](https://ndc.aircanada.com/support/statusMonitoring)
+- [Release Notes](https://ndc.aircanada.com/api/releasenotes/latestrelease)
+- [Roadmap](https://ndc.aircanada.com/api/roadmap)
+- [NDC Display Requirements (PDF)](https://www.aircanada.com/content/dam/aircanada/portal/documents/PDF/ndc-displayRequirements-en.pdf)
+- [Known Issues](https://ndc.aircanada.com/support/knownissues)
+- [GitHub Organization](https://github.com/aircanada)
+- [Terms of Use](https://www.aircanada.com/ca/en/aco/home/legal/terms-of-use.html)
+- [Privacy Policy](https://www.aircanada.com/ca/en/aco/home/legal/privacy-policy.html)
+- [LinkedIn](https://www.linkedin.com/company/air-canada)
+
+## Maintainers
+
+- Kin Lane — kin@apievangelist.com
